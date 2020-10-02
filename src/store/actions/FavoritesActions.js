@@ -1,10 +1,7 @@
 import api from "../apis/api";
 import * as actionTypes from "./actionTypes";
 
-import _ from "lodash";
-
 export const initFavorites = () => async (dispatch, getState) => {
-  console.log("in init");
   let user = getState().auth.userId;
   dispatch(startFetchFavorites());
   await api
@@ -56,7 +53,6 @@ export const setFavorites = (favorites) => {
 export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
   let user_id = getState().auth.userId;
   let id = JSON.stringify(favorite_id);
-  console.log(user_id, favorite_id);
   await api
     .delete(`/users/${user_id}/favorites/${id}`, {
       params: {
@@ -72,7 +68,6 @@ export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
 export const createFavorite = (user_id, product_id, size) => async (
   dispatch
 ) => {
-  console.log(size);
   await api
     .post(`/users/${user_id}/favorites`, {
       member_id: user_id,

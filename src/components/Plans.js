@@ -75,6 +75,7 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     loading: state.plan.loading,
+    current_user: state.auth.current_user,
     current_plan: state.plan.current_plan,
     plans: state.plan.select,
     error: state.plan.error,

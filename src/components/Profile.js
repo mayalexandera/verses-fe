@@ -7,6 +7,7 @@ class Profile extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
   }
+
   renderPlan = () => {
     return this.props.current_user && this.props.current_user.subscribed ? (
       <div className='row product-nav-centered'>
@@ -22,7 +23,7 @@ class Profile extends React.Component {
       <div>
         <div className='profile-title'>
           <div className='title-placeholder' ><li className='row secondaryFont'>{this.props.current_user.name}</li></div>
-          {/* {this.renderPlan()} */}
+          {this.renderPlan()}
         </div>
       </div>
     ) : ( null
@@ -40,6 +41,7 @@ class Profile extends React.Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,

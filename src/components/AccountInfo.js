@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 class AccountInfo extends React.Component {
-  // componentDidMount() {
-  //   this.props.fetchUser()
-  // }
 
   render() {
     console.log(this.props.current_user)

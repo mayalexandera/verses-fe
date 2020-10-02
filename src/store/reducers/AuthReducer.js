@@ -38,7 +38,7 @@ const fetchUserFail = (state, action) => {
 
 const fetchUserSuccess = (state, action) => {
   console.log('in ftchUser', action.payload)
-  return updateObject(state, {error: null, current_user: action.user, loading: false, subscribed: true})
+  return updateObject(state, {error: null, current_user: action.user, loading: false})
 }
 
 const authFail = (state, action) => {

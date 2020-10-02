@@ -1,6 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
-import * as actions from "../actions/index";
 
 const initialState = {
   orders: [],
@@ -9,14 +8,12 @@ const initialState = {
 };
 
 const startOrder = (state, action) => {
-  console.log(state, action.payload);
   return updateObject(state, {
     loading: false,
   });
 };
 
 const orderSuccess = (state, action) => {
-  console.log(state, action.payload.length);
   if (action.payload.length < 1 || action.payload === state.orders) {
     return state;
   } else {
@@ -27,7 +24,6 @@ const orderSuccess = (state, action) => {
     action.payload.map((order) => {
       updated.push({ order });
     });
-    console.log(action.payload, updated);
     return updateObject(state, {
       orders: [...updated],
       error: null,
@@ -46,7 +42,6 @@ const fetchOrderSuccess = (state, action) => {
       error: null,
     });
   } else {
-    console.log(action.payload);
     return updateObject(state, {
       orders: [...action.payload],
       loading: false,
@@ -56,7 +51,6 @@ const fetchOrderSuccess = (state, action) => {
 };
 
 const orderFailed = (state, action) => {
-  console.log(state, action.payload);
   return updateObject(state, {
     error: true,
     loading: false,
@@ -64,13 +58,11 @@ const orderFailed = (state, action) => {
 };
 
 const deleteOrder = (state, action) => {
-  console.log(state, action.payload);
   const updated = [];
   state.orders.map((order) => {
     if (order.id !== action.payload) {
       updated.push({ ...order });
     }
-    console.log(action.payload, updated);
   });
   return updateObject(state, {
     orders: [...updated],

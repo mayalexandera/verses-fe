@@ -10,7 +10,8 @@ export const userPlanStart = () => {
 
 export const userPlanDelete = () => async (dispatch, getState) => {
   let user = getState().auth.userId
-  await api.delete(`/users/${user}/plan_membership`).then(dispatch({
+  await api.delete(`/users/${user}/plan_membership`)
+  .then(dispatch({
     type: actionTypes.USER_PLAN_DELETE,
   })
   )
@@ -28,7 +29,9 @@ export const initFetchPlans = () => async (dispatch) => {
 }
 
 export const fetchPlansSuccess = (plans)=> {
-  return({type: actionTypes.FETCH_PLANS_SUCCESS, payload: plans})
+  return{
+    type: actionTypes.FETCH_PLANS_SUCCESS, payload: plans
+  }
 }
 
 export const fetchPlansFail = (error) => {
@@ -42,7 +45,6 @@ export const fetchPlansStart = () => {
 }
 
 export const initPlanMembership = (plan_id) => async (dispatch, getState) =>{
-  console.log('in initPlanMembership')
   let user = getState().auth.userId
   dispatch(userPlanStart());
   const planData = {
@@ -52,8 +54,7 @@ export const initPlanMembership = (plan_id) => async (dispatch, getState) =>{
   await api
   .post(`/users/${user}/plan_membership`, planData)
   .then(response => {
-    console.log(response.data)
-    dispatch(userPlanSuccess([response.data]))
+    dispatch(userPlanSuccess(response.data))
   })
   .catch(err => {
     dispatch(userPlanFail(err.message))

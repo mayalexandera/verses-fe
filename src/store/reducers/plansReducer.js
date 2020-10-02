@@ -14,17 +14,15 @@ const userPlanStart = (state, action) => {
 };
 
 const userPlanDelete = (state, action) => {
-  console.log("in userPlanDelete", action.payload);
   return updateObject(state, {
     loading: false,
     error: null,
-    message: action.payload.message,
+    message: null,
     current_plan: null,
   });
 };
 
 const fetchPlansFail = (state, action) => {
-  console.log(action.payload);
   return updateObject(state, {
     select: action.payload,
     loading: false,
@@ -34,16 +32,13 @@ const fetchPlansFail = (state, action) => {
 };
 
 const userPlanSuccess = (state, action) => {
-  console.log(action.payload);
   if (action.payload.status === 204) {
-    console.log("it is 204");
     return updateObject(state, {
       loading: false,
       error: true,
       message: action.payload.message,
     });
   }
-  console.log(action.payload[0]);
   return updateObject(state, {
     error: null,
     loading: false,
@@ -52,7 +47,6 @@ const userPlanSuccess = (state, action) => {
 };
 
 const userPlanFail = (state, action) => {
-  console.log(state, action.payload);
   return updateObject(state, {
     error: action.error,
     loading: false,
@@ -61,7 +55,6 @@ const userPlanFail = (state, action) => {
 };
 
 const fetchPlansSuccess = (state, action) => {
-  console.log(action.payload);
   return updateObject(state, {
     select: action.payload,
     error: null,

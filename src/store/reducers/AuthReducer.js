@@ -7,18 +7,16 @@ const initialState = {
   error: null,
   loading: null,
   current_user: null,
- 
 };
 
-const authStart = (state, action) => {
+const authStart = (state) => {
   return updateObject(state, { error: null });
 };
 
 const authSuccess = (state, action) => {
-  console.log(action)
   localStorage.setItem("token", action.idToken);
   localStorage.setItem("user", action.userId);
-  console.log(localStorage)
+
   return updateObject(state, {
     token: action.idToken,
     userId: action.userId,
@@ -27,19 +25,21 @@ const authSuccess = (state, action) => {
   });
 };
 
+const fetchUserStart = (state) => {
+  return updateObject(state, { error: null, loading: true });
+};
 
-const fetchUserStart = (state, action) => {
-  return updateObject(state, {error: null, loading: true})
-}
-
-const fetchUserFail = (state, action) => {
-  return updateObject(state, { error: true, loading: false,})
-}
+const fetchUserFail = (state) => {
+  return updateObject(state, { error: true, loading: false });
+};
 
 const fetchUserSuccess = (state, action) => {
-  console.log('in ftchUser', action.payload)
-  return updateObject(state, {error: null, current_user: action.user, loading: false})
-}
+  return updateObject(state, {
+    error: null,
+    current_user: action.user,
+    loading: false,
+  });
+};
 
 const authFail = (state, action) => {
   return updateObject(state, {
@@ -49,10 +49,14 @@ const authFail = (state, action) => {
   });
 };
 
-const authLogout = (state, action) => {
-  return updateObject(state, { token: null, userId: null, current_user: null, cart: [], });
+const authLogout = (state) => {
+  return updateObject(state, {
+    token: null,
+    userId: null,
+    current_user: null,
+    cart: [],
+  });
 };
-
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

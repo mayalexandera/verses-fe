@@ -18,10 +18,6 @@
   font-style: italic;
 }
 
-.background {
-  background-color: white;
-}
-
 html,
 body {
   background-color: white;
@@ -54,13 +50,9 @@ a {
   color: #555;
 }
 
-button {
-  border: none;
-}
+button { border: none; }
 
-hr {
-  margin-top: 7px;
-}
+hr { margin-top: 7px; }
 
 @font-face {
   font-family: "Futura";
@@ -88,7 +80,6 @@ hr {
 .nav-container {
   width: 100%;
   height: 100px;
-  max-height: 100px;
   background-color: #fff;
   margin-bottom: 10px;
   position: fixed;
@@ -181,12 +172,8 @@ hr {
   font-style: italic;
 }
 
-.user-menu {
-  float: right;
-}
-.user-menu:last-child {
-  margin-right: 30px;
-}
+.user-menu { float: right; }
+.user-menu:last-child { margin-right: 30px; }
 
 .user-menu span {
   display: inline-block;
@@ -202,18 +189,14 @@ hr {
   display: absolute;
   justify-content: center;
 }
-.user-menu li:last-child {
-  margin-right: 40px;
-}
+.user-menu li:last-child { margin-right: 40px; }
 
 ion-icon {
   align-self: center;
   color: black;
 }
 
-#page-content {
-  min-height: 500px;
-}
+#page-content { min-height: 500px; }
 
 /* PRODUCT index */
 .section-products {
@@ -228,7 +211,6 @@ ion-icon {
 /* PRODUCT CARD */
 
 .product-card {
-  /* display: list-item; */
   text-decoration: none;
   margin: 10% 5%;
   height: 400px;
@@ -281,9 +263,7 @@ ion-icon {
 }
 
 /* PRODUCT SHOW */
-.product-description-container {
-  margin-left: 30px;
-}
+.product-description-container { margin-left: 30px; }
 
 .product-show {
   max-width: 1140px;
@@ -682,9 +662,8 @@ ion-icon {
   transform: translate(0px, -85px);
 }
 
-.plan-spacer {
-  height: 75px;
-}
+.plan-spacer { height: 75px; }
+
 .title li {
   margin: 3% 0%;
   font-weight: 200;
@@ -696,9 +675,7 @@ ion-icon {
   display: flex;
 }
 
-.plan-subtitle {
-  font-size: 80%;
-}
+.plan-subtitle { font-size: 80%; }
 
 .plan-price {
   font-size: 205%;
@@ -737,9 +714,7 @@ ion-icon {
   font-family: "Futura";
 }
 
-.landing:hover {
-  display: hidden;
-}
+.landing:hover { display: hidden; }
 
 .title {
   text-align: center;
@@ -810,9 +785,7 @@ ion-icon {
 }
 
 /*MORE INFO */
-.more-info {
-  height: 20vh;
-}
+.more-info { height: 20vh; }
 
 /* CART */
 .cart-item-card {
@@ -823,9 +796,7 @@ ion-icon {
   margin: 10px 0px;
 }
 
-.cart-item-img-wrapper {
-  width: 100%;
-}
+.cart-item-img-wrapper { width: 100%; }
 
 .cart-item-card img {
   height: 100%;
@@ -844,9 +815,7 @@ ion-icon {
   margin-left: 15px;
 }
 
-.cart-item-subtitle span {
-  font-weight: 400;
-}
+.cart-item-subtitle span { font-weight: 400; }
 
 .cart-item-details-container {
   list-style: none;

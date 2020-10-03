@@ -45,21 +45,15 @@ class OrderContainer extends React.Component {
   render() {
     return (
       <div className='row order-box section-order'>
-        {/* <div className='row section-order'> */}
           <div className='order-title'>Order History</div>
           <> {this.renderOrders()}</>
-          {console.log(this.props.orders)}
         </div>
-      // </div>
     );
   }
 }
 
 const msp = (state) => {
-  console.log(state);
-  return {
-    orders: state.order.orders,
-  };
+  return { orders: state.order.orders };
 };
 
 const mdp = (dispatch) => {

@@ -6,7 +6,7 @@ import PlanCard from "./PlanCard";
 class Plans extends React.Component {
   componentDidMount() {
     this.props.initFetchPlans();
-    this.props.fetchUser();
+    this.props.fetchUserPlan();
     this.renderHandler();
   }
 
@@ -15,12 +15,42 @@ class Plans extends React.Component {
       <div>loading</div>
     ) : (
       this.props.plans.map((plan) => {
-        return <PlanCard plan={plan} current_plan={this.props.current_plan} />;
+        return (
+          <PlanCard
+            plan={plan}
+            current_plan={this.props.current_plan}
+          />
+        );
       })
     );
   };
 
-  deletePlanHandler = () => {
+  renderPlanActions = () => {
+    return (
+      <div className='title'>
+        <button
+          className='row'
+          id='plan-route-button'
+          onClick={(e) => this.changePlanHandler(e)}
+        >
+          Yes
+        </button>
+        <button
+          className='profile-title'
+          id='plan-route-button'
+          onClick={(e) => this.unsubscribeHandler(e)}
+        >
+          No, I'd like to unsubscribe.
+        </button>
+      </div>
+    );
+  };
+
+  unsubscribeHandler = () => {
+    this.props.userPlanDelete();
+  };
+
+  changePlanHandler = () => {
     this.props.userPlanDelete();
     this.props.initFetchPlans();
   };
@@ -28,15 +58,8 @@ class Plans extends React.Component {
   renderText = () => {
     return this.props.error_message ===
       "You currently have a subscription.  Would you like to change your plan?"
-      ? "Yes"
+      ? this.renderPlanActions()
       : "See Plans";
-  };
-
-  clickHandler = () => {
-    this.props.error_message ===
-    "You currently have a subscription.  Would you like to change your plan?"
-      ? this.deletePlanHandler()
-      : this.props.initFetchPlans();
   };
 
   renderHandler = () => {
@@ -45,13 +68,7 @@ class Plans extends React.Component {
       signUpResponse = (
         <div>
           <div className='title'>{this.props.error_message}</div>
-          <button
-            className='row'
-            id='plan-route-button'
-            onClick={(e) => this.clickHandler(e)}
-          >
-            {this.renderText()}
-          </button>
+          {this.renderPlanActions()}
         </div>
       );
     } else {
@@ -72,24 +89,19 @@ class Plans extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     loading: state.plan.loading,
-    current_user: state.auth.current_user,
     current_plan: state.plan.current_plan,
     plans: state.plan.select,
-    error: state.plan.error,
     error_message: state.plan.message,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initPlanMembership: (plan_id) =>
-      dispatch(actions.initPlanMembership(plan_id)),
     userPlanDelete: () => dispatch(actions.userPlanDelete()),
     initFetchPlans: () => dispatch(actions.initFetchPlans()),
-    fetchUser: () => dispatch(actions.fetchUser()),
+    fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
   };
 };
 

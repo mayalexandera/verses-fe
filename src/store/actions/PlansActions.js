@@ -2,10 +2,7 @@ import api from "../apis/api";
 import * as actionTypes from "./actionTypes";
 
 export const userPlanStart = () => {
-  console.log('in plan start')
- return {
-   type: actionTypes.USER_PLAN_START
- }
+ return { type: actionTypes.USER_PLAN_START}
 }
 
 export const userPlanDelete = () => async (dispatch, getState) => {
@@ -42,6 +39,19 @@ export const fetchPlansFail = (error) => {
 
 export const fetchPlansStart = () => {
   return { type: actionTypes.FETCH_PLANS_START }
+}
+
+export const fetchUserPlan = () => async (dispatch, getState) => {
+  let user = getState().auth.userId
+  dispatch(userPlanStart())
+  await api
+  .get(`users/${user}`)
+  .then(response => {
+    dispatch(userPlanSuccess(response.data))
+  })
+  .catch(err => {
+    dispatch(userPlanFail(err.message))
+  })
 }
 
 export const initPlanMembership = (plan_id) => async (dispatch, getState) =>{

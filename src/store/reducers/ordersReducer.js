@@ -21,9 +21,8 @@ const orderSuccess = (state, action) => {
     state.orders.map((order) => {
       updated.push({ ...order });
     });
-    action.payload.map((order) => {
-      updated.push({ order });
-    });
+    updated.push({ ...action.payload.order });
+
     return updateObject(state, {
       orders: [...updated],
       error: null,

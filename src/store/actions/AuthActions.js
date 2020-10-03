@@ -8,7 +8,6 @@ export const authStart = () => {
 };
 
 export const authSuccess = (token, userId) => {
-  console.log(token, userId);
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken: token,
@@ -33,7 +32,6 @@ export const logout = () => {
 
 export const auth = (email, password, name, isSignup) => {
   return (dispatch) => {
-    console.log("in auth");
     dispatch(authStart());
     const authData = {
       email: email,
@@ -46,11 +44,8 @@ export const auth = (email, password, name, isSignup) => {
     api
       .post(path, authData)
       .then((response) => {
-        console.log(response.data);
         localStorage.setItem("token", response.data.session_token);
-        console.log(localStorage);
         localStorage.setItem("userId", response.data.id);
-        console.log(response.data);
         dispatch(
           authSuccess(
             response.data.session_token,
@@ -60,7 +55,7 @@ export const auth = (email, password, name, isSignup) => {
         );
       })
       .catch((err) => {
-        dispatch(authFail());
+        dispatch(authFail(err));
       });
   };
 };
@@ -69,10 +64,9 @@ export const fetchUserStart = () => {
   return { type: actionTypes.FETCH_USER_START };
 };
 
-export const fetchUser = () => async (dispatch, getState) => {
+export const fetchUser = () => async (dispatch) => {
   let user = localStorage.getItem("userId");
   JSON.stringify(user);
-  console.log(user);
   await api
     .get(`/users/${user}`)
     .then((response) => {
@@ -91,7 +85,6 @@ export const fetchUserFail = (error) => {
 };
 
 export const fetchUserSuccess = (user) => {
-  console.log(user);
   return {
     type: actionTypes.FETCH_USER_SUCCESS,
     user: user,

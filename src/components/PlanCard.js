@@ -6,7 +6,7 @@ import * as actions from "../store/actions/index";
 const PlanCard = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
-    return props.current_user && !props.current_user.subscribed
+    return props.current_user && props.current_user.subscribed === false
       ? signUp()
       : deletePlan();
   };
@@ -20,18 +20,22 @@ const PlanCard = (props) => {
   };
 
   const renderText = () => {
-    return !props.current_plan || props.plan.id !== props.current_plan.plan_id
-      ? "Choose Plan"
-      : "Current Plan";
+    if(!props.current_plan || !props.current_plan.plan_membership) return "Choose Plan"
+
+    else if (props.current_plan.plan_membership.plan_id !== props.plan.id) {
+      return "Choose Plan"
+    } else {
+      return "Current Plan"
+    }
   };
 
   const renderId = () => {
     //guests
-    if (!props.current_user || props.current_user === null)
+    if (props.current_plan === undefined || props.current_plan === null)
       return "plan-option";
 
     //members with or without plan membership
-    return !props.current_plan || props.plan.id !== props.current_plan.plan_id
+    return !props.current_plan.plan_membership || props.plan.id !== props.current_plan.plan_membership.plan_id
       ? "plan-option"
       : "current-plan";
   };

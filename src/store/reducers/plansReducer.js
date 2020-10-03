@@ -9,11 +9,11 @@ const initialState = {
   current_plan: null,
 };
 
-const userPlanStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true, message: null });
+const userPlanStart = (state) => {
+  return updateObject(state, { error: null, loading: true, message: null, current_plan: null });
 };
 
-const userPlanDelete = (state, action) => {
+const userPlanDelete = (state) => {
   return updateObject(state, {
     loading: false,
     error: null,
@@ -42,7 +42,7 @@ const userPlanSuccess = (state, action) => {
   return updateObject(state, {
     error: null,
     loading: false,
-    current_plan: { ...action.payload },
+    current_plan: action.payload,
   });
 };
 

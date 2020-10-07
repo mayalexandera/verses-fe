@@ -49,7 +49,7 @@ class AppHeader extends React.Component {
               </ul>
               <ul className='user-menu'>
                 <span>
-                  {this.props.current_user ? (
+                  {this.props.token !== null ? (
                     <Link to='/favorites'>
                       <ion-icon size='large' name='heart-outline'></ion-icon>
                     </Link>
@@ -60,7 +60,7 @@ class AppHeader extends React.Component {
                   )}
                 </span>
                 <span>
-                  {this.props.current_user ? (
+                  {this.props.token !== null ? (
                     <Link to='/profile'>
                       <ion-icon size='large' name='person-outline'></ion-icon>
                     </Link>
@@ -71,7 +71,7 @@ class AppHeader extends React.Component {
                   )}
                 </span>
                 <span>
-                  {this.props.current_user ? (
+                  {this.props.token !== null ? (
                     <Link to='/cart'>
                       <ion-icon size='large' name='cart-outline'></ion-icon>
                     </Link>
@@ -82,7 +82,7 @@ class AppHeader extends React.Component {
                   )}
                 </span>
                 <span>
-                  {this.props.token ? (
+                  {this.props.token !== null ? (
                     <Link to='/login'>
                       <span id='button' onClick={(e) => this.props.logout(e)}>
                         LOGOUT

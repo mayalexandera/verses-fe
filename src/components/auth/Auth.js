@@ -140,7 +140,7 @@ class Auth extends Component {
 
     let authRedirect = null;
     if (this.props.isAuthenticated) {
-      authRedirect = <Redirect to={"/"} />;
+      authRedirect = <Redirect to={this.props.authRedirectPath} />;
     } else if (!this.props.isAuthenticated) {
       authRedirect = <Redirect to={"/login"} />;
     }
@@ -152,14 +152,11 @@ class Auth extends Component {
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
-          <button id='add-to-favorites-button'>SUBMIT</button>
+            <Button id={'add-to-favorites-button'}>SUBMIT</Button>
         </form>
-  
-         <div className='form'>
-            <button onClick={this.switchAuthModeHandler} id='add-to-cart-button'>
-              SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-            </button>
-         </div>
+        <Button id={"add-to-cart-button" }clicked={this.switchAuthModeHandler}>
+            SWITCH TO {this.state.isSignup ? "SIGN IN" : "SIGN UP"}
+        </Button>
       </div>
     );
   }

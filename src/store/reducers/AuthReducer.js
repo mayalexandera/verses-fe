@@ -6,6 +6,7 @@ const initialState = {
   userId: JSON.parse(localStorage.getItem("user")),
   error: null,
   loading: null,
+   authRedirectPath: '/',
   current_user: null,
 };
 
@@ -58,6 +59,10 @@ const authLogout = (state) => {
   });
 };
 
+const setAuthRedirectPath = (state, action) => {
+  return updateObject(state, { authRedirectPath: action.path });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTH_START:
@@ -74,6 +79,8 @@ const reducer = (state = initialState, action) => {
       return fetchUserStart(state, action);
     case actionTypes.FETCH_USER_FAIL:
       return fetchUserFail(state, action);
+    case actionTypes.SET_AUTH_REDIRECT_PATH:
+      return setAuthRedirectPath(state, action);
 
     default:
       return state;

@@ -95,8 +95,8 @@ class Auth extends Component {
     this.setState({ controls: updatedControls });
   };
 
-  submitHandler = (event) => {
-    event.preventDefault();
+  submitHandler = (e) => {
+    e.preventDefault();
     this.props.onAuth(
       this.state.controls.email.value,
       this.state.controls.password.value,
@@ -108,7 +108,7 @@ class Auth extends Component {
   switchAuthModeHandler = () => {
     this.setState((prevState) => {
       return { isSignup: !prevState.isSignup };
-    }, console.log(this.state));
+    });
   };
 
   render() {
@@ -147,16 +147,19 @@ class Auth extends Component {
 
     return (
       <div className='form title'>
-        <p>Sign In</p>
+        <p className='brands-title'>Sign In</p>
         {authRedirect}
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
-          <Button btnType='Success'>SUBMIT</Button>
+          <button id='add-to-favorites-button'>SUBMIT</button>
         </form>
-        <Button clicked={this.switchAuthModeHandler} btnType='Danger'>
-          SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
-        </Button>
+  
+         <div className='form'>
+            <button onClick={this.switchAuthModeHandler} id='add-to-cart-button'>
+              SWITCH TO {this.state.isSignup ? "SIGNIN" : "SIGNUP"}
+            </button>
+         </div>
       </div>
     );
   }

@@ -4,10 +4,10 @@ import { updateObject } from "../utility";
 const initialState = {
   orders: [],
   error: null,
-  loading: false,
+  loading: false
 };
 
-const startOrder = (state, action) => {
+const startOrder = (state) => {
   return updateObject(state, {
     loading: false,
   });

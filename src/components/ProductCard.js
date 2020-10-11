@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
-  console.log(props);
   let img;
   if (props.product !== "undefined" && props.product !== "undefined")
     img = props.product.images.split(",")[0];
@@ -30,7 +29,6 @@ const ProductCard = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state, ownProps);
   return {
     favorites: state.favorite.select,
     cart_items: state.cart.cart_items,

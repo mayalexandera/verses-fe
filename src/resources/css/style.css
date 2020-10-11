@@ -261,7 +261,8 @@ ion-icon {
 .product-title {
   margin: 0 auto;
   text-decoration: underline;
-  font-size: 90%;
+  /* font-family: 'Futura'; */
+  font-size: 100%;
   font-weight: 400;
   margin-bottom: 6px;
 }
@@ -270,7 +271,8 @@ ion-icon {
   font-size: 85%;
   font-weight: 300;
   color: black;
-  margin-bottom: 2;
+  /* font-family: 'Futura'; */
+  margin-bottom: 2px;
 }
 
 /* PRODUCT SHOW */
@@ -447,9 +449,7 @@ ion-icon {
 .dropdown-content li:hover {
   z-index: 2 important!;
   opacity: 1;
-  text-decoration: underline;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  font-weight: 400;
 }
 
 .dropdown:hover .dropdown-content {

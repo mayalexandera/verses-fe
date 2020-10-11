@@ -135,7 +135,7 @@ class Auth extends Component {
 
     let errorMessage = null;
     if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
+      errorMessage = <p className='product-subtitle'>{this.props.error.message}</p>;
     }
 
     let authRedirect = null;
@@ -147,16 +147,18 @@ class Auth extends Component {
 
     return (
       <div className='form title'>
-        <p className='brands-title'>Sign In</p>
+        <p className='brands-title'>Sign Up | Log In</p>
         {authRedirect}
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
             <Button id={'add-to-favorites-button'}>SUBMIT</Button>
         </form>
-        <Button id={"add-to-cart-button" }clicked={this.switchAuthModeHandler}>
-            SWITCH TO {this.state.isSignup ? "SIGN IN" : "SIGN UP"}
-        </Button>
+        <div className='form'>
+          <Button id={"add-to-cart-button" }clicked={this.switchAuthModeHandler}>
+              SWITCH TO {this.state.isSignup ? "SIGN IN" : "SIGN UP"}
+          </Button>
+        </div>
       </div>
     );
   }

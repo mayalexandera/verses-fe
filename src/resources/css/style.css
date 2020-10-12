@@ -301,6 +301,7 @@ ion-icon {
 
 .errorMessage { 
   height: 40px;
+  font-size: 90%;
   font-weight: 400;
 }
 
@@ -357,17 +358,24 @@ ion-icon {
 }
 
 #favorite-card-button {
-  margin: 3px 9px;
+  display: inline-block;
+  vertical-align: top;
   font-weight: 400;
+  font-size: 90%;
   cursor: pointer;
   border: 1px solid rgb(228, 228, 228);
   outline: none;
   background-color: white;
-  width: 80px;
-  height: 40px;
   border-radius: 20px;
-  padding: 2px;
+  padding: 8px 24px;
   color: rgb(38, 38, 38);
+}
+
+#delete-favorite-button {
+  right: 8px;
+  position: absolute;
+  background-color: transparent;
+  opacity: 40%;
 }
 
 /* PRODUCT NAV */
@@ -422,18 +430,16 @@ ion-icon {
 }
 
 .dropdown-content li {
-  color: black;
+  color:  rgb(148, 146, 146);
   padding: 3px 10px;
-  font-weight: 300;
+  font-weight: 400;
   z-index: 1;
 }
 
 .dropdown-content li:hover {
   z-index: 2 important!;
   opacity: 1;
-  text-decoration: underline;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  color: black;
 }
 
 .dropdown:hover .dropdown-content {
@@ -450,25 +456,19 @@ ion-icon {
 
 /* FAVORITES */
 .favorite-card {
-  border: 1px solid rgb(100, 98, 98);
   display: list-item;
-  text-decoration: none;
-  border-radius: 4px;
-  position: relative;
   margin: 10% 5%;
   padding: 10px;
-  height: 600px;
-  box-shadow: 0 2px 2px #efefef;
+  min-height: 50%;
+  max-height: 400px;
 }
 
 .favorite-card-details {
-  height: 70px;
   display: inline-block;
-  margin-top: 0% 5%;
+  margin: 0% 2%;
   padding: 5px;
   background-color: white;
   list-style: none;
-  line-height: 1.45;
 }
 
 .favorite-outer {
@@ -491,10 +491,10 @@ ion-icon {
 }
 
 .favorite-actions {
-  display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
+
 .cart-re-route {
   list-style: none;
   cursor: pointer;
@@ -516,7 +516,10 @@ ion-icon {
 
 #favorite-card-button:hover,
 #favorite-card-button:active,
-#favorite-card-button:visited {
+#favorite-card-button:visited,
+#add-to-cart-button:hover,
+#add-to-cart-button:active,
+#add-to-cart-button:visited{
   background-color: rgb(238, 236, 236);
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -538,14 +541,6 @@ ion-icon {
   background-color: black;
   font-weight: 300;
   font-size: 95%;
-}
-
-#add-to-cart-button:hover,
-#add-to-cart-button:active,
-#add-to-cart-button:visited {
-  background-color: rgb(238, 236, 236);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 #add-to-favorites-button {

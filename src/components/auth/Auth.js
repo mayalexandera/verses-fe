@@ -12,7 +12,7 @@ class Auth extends Component {
         elementType: "input",
         elementConfig: {
           type: "email",
-          placeholder: "Email",
+          placeholder: "Email address",
         },
         value: "",
         validation: {
@@ -26,7 +26,7 @@ class Auth extends Component {
         elementType: "input",
         elementConfig: {
           type: "text",
-          placeholder: "Name",
+          placeholder: "Full Name",
         },
         value: "",
       },
@@ -147,14 +147,14 @@ class Auth extends Component {
 
     return (
       <div className='form title'>
-        <p className='brands-title'>Sign In</p>
+        <p className='brands-title'>Your account</p>
         {authRedirect}
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
             <Button id={'add-to-favorites-button'}>SUBMIT</Button>
         </form>
-        <Button id={"add-to-cart-button" }clicked={this.switchAuthModeHandler}>
+        <Button id={"add-to-cart-button" } clicked={this.switchAuthModeHandler}>
             SWITCH TO {this.state.isSignup ? "SIGN IN" : "SIGN UP"}
         </Button>
       </div>

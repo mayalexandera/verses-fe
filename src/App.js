@@ -15,7 +15,6 @@ class App extends React.Component {
       <div >
         <Layout >
           <AppRouter />
-          {console.log(this.props)}
         </Layout>
       </div>
     );

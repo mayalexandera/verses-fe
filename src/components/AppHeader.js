@@ -4,19 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 class AppHeader extends React.Component {
-  onLoad = () => {
-    return !this.props.current_user ? (
-      <li>
-        <Link to='/login'>
-          <li id='button'>SIGN UP | LOG IN</li>
-        </Link>
-      </li>
-    ) : (
-      <li onClick={(e) => this.props.logout(e)} id='button'>
-        SIGN OUT
-      </li>
-    );
-  };
+
   render() {
     return (
       <nav className='nav-container'>
@@ -50,48 +38,37 @@ class AppHeader extends React.Component {
               <ul className='user-menu'>
                 <span>
                   {this.props.token !== null ? (
+                    <>
                     <Link to='/favorites'>
                       <ion-icon size='large' name='heart-outline'></ion-icon>
                     </Link>
-                  ) : (
-                    <Link to='/login'>
-                      <ion-icon size='large' name='heart-outline'></ion-icon>
-                    </Link>
-                  )}
-                </span>
-                <span>
-                  {this.props.token !== null ? (
                     <Link to='/profile'>
                       <ion-icon size='large' name='person-outline'></ion-icon>
                     </Link>
-                  ) : (
-                    <Link to='/login'>
-                      <ion-icon size='large' name='person-outline'></ion-icon>
-                    </Link>
-                  )}
-                </span>
-                <span>
-                  {this.props.token !== null ? (
                     <Link to='/cart'>
                       <ion-icon size='large' name='cart-outline'></ion-icon>
                     </Link>
-                  ) : (
-                    <Link to='/login'>
-                      <ion-icon size='large' name='cart-outline'></ion-icon>
-                    </Link>
-                  )}
-                </span>
-                <span>
-                  {this.props.token !== null ? (
                     <Link to='/login'>
                       <span id='button' onClick={(e) => this.props.logout(e)}>
                         LOGOUT
                       </span>
                     </Link>
+                    </>
                   ) : (
+                    <>
+                    <Link to='/login'>
+                      <ion-icon size='large' name='heart-outline'></ion-icon>
+                    </Link>
+                    <Link to='/login'>
+                      <ion-icon size='large' name='person-outline'></ion-icon>
+                    </Link>
+                    <Link to='/login'>
+                      <ion-icon size='large' name='cart-outline'></ion-icon>
+                    </Link>
                     <Link to='/login'>
                       <span id='button'>SIGN UP | LOG IN</span>
                     </Link>
+                    </>
                   )}
                 </span>
               </ul>

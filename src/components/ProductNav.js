@@ -35,9 +35,10 @@ const sizes = [
   "14",
 ];
 const ProductNav = (props) => {
-  const clickHandler = (e) => {
+
+  const brandHandler = (e, brand_id) => {
     e.preventDefault();
-    props.fetchProdByBrand(e.target.id);
+    props.fetchProdByBrand(brand_id);
   };
 
   const categoryHandler = (e, category) => {
@@ -60,7 +61,7 @@ const ProductNav = (props) => {
               return (
                 <li
                   key={brand.id}
-                  onClick={(e) => clickHandler(e)}
+                  onClick={(e) => brandHandler(e, brand.id)}
                   id={brand.id}
                 >
                   {brand.name}

@@ -543,7 +543,7 @@ ion-icon {
 #order-button {
   list-style: none;
   margin: 10px auto;
-  width: 60%;
+  width: 250px;
   color: white;
   border-radius: 20px;
   height: 40px;
@@ -568,7 +568,7 @@ ion-icon {
   list-style: none;
   margin: 10px auto;
   border: 1px solid black;
-  width: 60%;
+  width: 250px;
   color: black;
   border-radius: 20px;
   height: 40px;
@@ -949,11 +949,16 @@ ion-icon {
 
 /* LOGIN */
 
-.form {
-  width: 60%;
+.form input{
+  width: 40%;
+  height: 40px;
   margin: 5px auto;
   align-content: center;
   align-items: center;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: hsl(85, 87%, 94%);
+  padding: 0 16px;
 }
 
 #form-button {

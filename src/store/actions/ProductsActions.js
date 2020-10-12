@@ -10,7 +10,6 @@ export const fetchProdByBrand = (brand_id) => async (dispatch) => {
       },
     })
     .then((resp) => {
-      console.log(resp);
       dispatch(setProducts(resp.data));
     })
     .catch((err) => {
@@ -26,7 +25,6 @@ export const fetchProdByCategory = (category) => async (dispatch) => {
       },
     })
     .then((resp) => {
-      console.log(resp);
       dispatch(setProducts(resp.data));
     })
     .catch((err) => {
@@ -42,7 +40,6 @@ export const fetchProdBySize = (size) => async (dispatch) => {
       },
     })
     .then((resp) => {
-      console.log(resp);
       dispatch(setProducts(resp.data));
     })
     .catch((err) => {
@@ -65,7 +62,6 @@ export const setProducts = (products) => {
 };
 
 export const setShowProduct = (product) => async (dispatch) => {
-  console.log(product.brand_id);
   await dispatch(actions.setShowBrand(product.brand_id)).then(
     dispatch({ type: actionTypes.SET_SHOW_PRODUCT, payload: product })
   );
@@ -78,13 +74,11 @@ export const initProducts = () => async (dispatch) => {
       dispatch(setProducts(resp.data));
     })
     .catch((error) => {
-      console.log(error);
       dispatch(fetchProductsFailed(error));
     });
 };
 
 export const fetchShowProduct = (prod_id) => async (dispatch) => {
-  console.log("in fetchSHow", prod_id);
   await api
     .get(`products/${prod_id}`)
     .then((resp) => {

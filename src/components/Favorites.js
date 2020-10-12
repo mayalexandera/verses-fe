@@ -18,29 +18,20 @@ class Favorites extends React.Component {
   };
 
   renderList = () => {
-    console.log(this.props.favorites);
     if (
       this.props.favorites.length < 1 ||
       this.props.favorites.length === "undefined"
     )
       return (
-        <div className='col product-nav-centered'>
-          <li id='message-italic'>Your favorites are empty</li>
-          <hr id='plan-title-hr-2' />
-          <div className='row title-placeholder'>
-            <button
-              id='route-button'
-              onClick={() => this.props.history.push("/products")}
-            >
-              BROWSE
-            </button>
-          </div>
+        <div className=' product-nav-centered'>
+          <p className='brands-subtitle' id='message'>
+            Items added to your Favorites will be saved here.
+          </p>
         </div>
       );
     return this.props.favorites.map((fave) => {
       let product = fave["product"];
       let brand = this.findBrand(product);
-      console.log(fave["product"], brand);
       return (
         <Favorite
           brand={brand}
@@ -53,7 +44,12 @@ class Favorites extends React.Component {
   };
 
   render() {
-    return <div className='section-products'>{this.renderList()}</div>;
+    return (
+      <div className='section-products'>
+        <p className='favorites-label'>Favorites</p>
+        {this.renderList()}
+      </div>
+    );
   }
 }
 

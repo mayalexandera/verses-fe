@@ -29,13 +29,10 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  overflow-y: hidden;
-}
+body { overflow-y: hidden }
 
-.clearfix {
-  zoom: 1;
-}
+.clearfix { zoom: 1 }
+
 .clearfix:after {
   content: ".";
   clear: both;
@@ -50,12 +47,11 @@ a {
   color: #555;
 }
 
-button {
-  border: none;
-}
+button { border: none }
 
 hr {
   margin-top: 7px;
+  margin-bottom: 20px;
 }
 
 @font-face {
@@ -66,7 +62,9 @@ hr {
 /* ----------------------------------------------- */
 /* REUSABLE COMPONENTS */
 /* ----------------------------------------------- */
+
 /* Main navi */
+
 .main-nav {
   float: left;
   list-style: none;
@@ -100,22 +98,7 @@ hr {
   margin: 0px 12px;
 }
 
-.main-nav li:first-child {
-  margin-left: 40px;
-}
-
-.title-placeholder {
-  color: white;
-  max-width: 300px;
-  width: 600px;
-  padding: 10px;
-  background-color: black;
-  font-size: 150%;
-  font-weight: 400;
-  justify-content: center;
-  text-align: center;
-  list-style: none;
-}
+.main-nav li:first-child { margin-left: 40px }
 
 .guest-message {
   color: white;
@@ -128,7 +111,6 @@ hr {
   position: relative;
   font-style: italic;
   justify-content: center;
-  font-family: "Prata", serif;
   text-align: center;
   list-style: none;
 }
@@ -166,27 +148,24 @@ hr {
   transition: border-bottom 0.3s;
 }
 
-#message-italic {
-  font-family: "Prata", serif;
+#message {
+  /* font-family: "Futura"; */
   margin-bottom: 100px;
+  font-weight: 400;
   text-transform: none;
-  font-size: 175%;
+  font-size: 100%;
   color: black;
-  font-style: italic;
 }
 
-.user-menu {
-  float: right;
-}
+.user-menu { float: right }
 
-.user-menu:last-child {
-  margin-right: 30px;
-}
+.user-menu:last-child { margin-right: 30px }
 
 .user-menu span {
   display: inline-block;
   margin: 0 12px;
 }
+
 .nav-links {
   width: 100%;
   position: relative;
@@ -197,18 +176,14 @@ hr {
   display: absolute;
   justify-content: center;
 }
-.user-menu li:last-child {
-  margin-right: 40px;
-}
+.user-menu li:last-child { margin-right: 40px }
 
 ion-icon {
   align-self: center;
   color: black;
 }
 
-#page-content {
-  min-height: 500px;
-}
+#page-content { min-height: 500px }
 
 /* PRODUCT index */
 .section-products {
@@ -217,9 +192,12 @@ ion-icon {
   margin: 0 auto;
   width: 85%;
   justify-content: space-between;
-  text-transform: uppercase;
 }
 
+.favorites-label {
+  font-weight: 400;
+  font-size: 125%;
+}
 /* PRODUCT CARD */
 
 .product-card {
@@ -274,9 +252,7 @@ ion-icon {
 }
 
 /* PRODUCT SHOW */
-.product-description-container {
-  margin-left: 30px;
-}
+.product-description-container { margin-left: 30px }
 
 .product-show {
   max-width: 1140px;
@@ -292,7 +268,9 @@ ion-icon {
 
 .product-brand-show-title,
 .product-show-title {
-  font-size: 115%;
+  font-family: "Futura";
+  text-transform: uppercase;
+  font-size: 125%;
   font-weight: 400;
   margin-bottom: 3px;
 }
@@ -321,6 +299,11 @@ ion-icon {
   margin-left: 10px;
 }
 
+.errorMessage { 
+  height: 40px;
+  font-weight: 400;
+}
+
 #product-text {
   margin-left: 10px;
   float: right;
@@ -338,20 +321,19 @@ ion-icon {
 
 .product-add-to-bag-wrapper {
   align-items: center;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 #size-button {
-  margin: 3px 9px;
+  margin: 4px;
   font-weight: 400;
   cursor: pointer;
   border: 1px solid rgb(228, 228, 228);
   outline: none;
   background-color: white;
-  width: 80px;
   height: 40px;
-  border-radius: 20px;
-  padding: 2px;
+  border-radius: 5px;
+  padding: 10px;
   color: rgb(38, 38, 38);
 }
 
@@ -362,14 +344,16 @@ ion-icon {
 }
 
 #size-button-clicked {
-  margin: 3px 9px;
-  background-color: white;
-  width: 80px;
-  height: 40px;
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 2px;
+  margin: 4px;
   font-weight: 400;
+  cursor: pointer;
+  border: 1px solid black;
+  outline: none;
+  background-color: white;
+  height: 40px;
+  border-radius: 5px;
+  padding: 10px;
+  color: rgb(38, 38, 38);
 }
 
 #favorite-card-button {
@@ -591,7 +575,7 @@ ion-icon {
 }
 
 .product-actions {
-  margin-top: 40px;
+  margin-top: 10px;
   width: 100%;
   justify-content: space-between;
 }
@@ -683,9 +667,7 @@ ion-icon {
   transform: translate(0px, -85px);
 }
 
-.plan-spacer {
-  height: 75px;
-}
+.plan-spacer { height: 75px }
 
 .title li {
   margin: 3% 0%;
@@ -698,9 +680,7 @@ ion-icon {
   display: flex;
 }
 
-.plan-subtitle {
-  font-size: 80%;
-}
+.plan-subtitle { font-size: 80% }
 
 .plan-price {
   font-size: 205%;
@@ -720,9 +700,7 @@ ion-icon {
   padding: 2px 0px;
   display: block;
 }
-.plan-card:first-child {
-  margin-left: 60px;
-}
+.plan-card:first-child { margin-left: 60px }
 
 #plan-price {
   font-size: 200%;
@@ -739,9 +717,7 @@ ion-icon {
   font-family: "Futura";
 }
 
-.landing:hover {
-  display: hidden;
-}
+.landing:hover { display: hidden }
 
 .title {
   text-align: center;
@@ -812,9 +788,7 @@ ion-icon {
 }
 
 /*MORE INFO */
-.more-info {
-  height: 20vh;
-}
+.more-info { height: 20vh }
 
 /* CART */
 .cart-item-card {
@@ -825,9 +799,7 @@ ion-icon {
   margin: 10px 0px;
 }
 
-.cart-item-img-wrapper {
-  width: 100%;
-}
+.cart-item-img-wrapper { width: 100% }
 
 .cart-item-card img {
   height: 100%;
@@ -846,9 +818,7 @@ ion-icon {
   margin-left: 15px;
 }
 
-.cart-item-subtitle span {
-  font-weight: 400;
-}
+.cart-item-subtitle span { font-weight: 400 }
 
 .cart-item-details-container {
   list-style: none;

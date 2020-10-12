@@ -5,6 +5,7 @@ import * as actions from "../store/actions/index";
 class ProductShow extends React.Component {
   state = {
     productSize: null,
+    errorMessage: null
   };
 
   componentDidMount() {
@@ -13,6 +14,12 @@ class ProductShow extends React.Component {
 
   handleClick = (e) => {
     e.preventDefault();
+    this.state.productSize === null ?  this.setState({errorMessage: 'Please select a size.'}) :
+    this.submitRequest(e)
+    } 
+
+  submitRequest = (e) => {
+
     if (this.props.isAuthenticated && this.props.isAuthenticated) {
       if (e.target.value === "addToCart") {
         this.props.addToCart(
@@ -40,15 +47,17 @@ class ProductShow extends React.Component {
 
   handleSizeClick = (e) => {
     e.preventDefault();
-    this.setState({ productSize: e.target.value });
+    e.target.value === this.state.productSize ? this.setState({productSize: null}) :
+    this.setState({ productSize: e.target.value, errorMessage: null});
   };
 
   button = (size) => {
-    return size === this.state.productSize ? "size-button-clicked" : "size-button"
-  }
+    return size === this.state.productSize
+      ? "size-button-clicked"
+      : "size-button";
+  };
 
   renderProduct = () => {
-
     return (
       <section className='product-show'>
         <div className='col span-2-of-3'>
@@ -77,7 +86,7 @@ class ProductShow extends React.Component {
             {this.props.showProduct.price_string}
           </p>
           <hr />
-            <p className='product-show-select'>Select Size</p>
+          <p className='product-show-select'>Select Size</p>
           <div className='product-add-to-bag-wrapper'>
             {this.props.sizes.map((size) => {
               return (
@@ -93,19 +102,20 @@ class ProductShow extends React.Component {
             })}
           </div>
           <ul className='product-actions'>
+            <div className="errorMessage">{this.state.errorMessage}</div>
             <button
               onClick={(e) => this.handleClick(e)}
               value='addToCart'
-              id='add-to-cart-button'
+              id='add-to-favorites-button'
             >
               ADD TO CART
             </button>
             <button
               onClick={(e) => this.handleClick(e)}
               value='favorite'
-              id='add-to-favorites-button'
+              id='add-to-cart-button'
             >
-              FAVORITE
+              Add To Favorites
             </button>
           </ul>
           <div className='product-show-description-wrapper'>

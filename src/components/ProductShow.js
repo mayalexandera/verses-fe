@@ -86,7 +86,7 @@ class ProductShow extends React.Component {
           <p className='product-show-subtitle'>
             {this.props.showProduct.price_string}
           </p>
-          <hr />
+          <hr id='plan-show-hr'/>
           <p className='product-show-select'>Select Size</p>
           <div className='product-add-to-bag-wrapper'>
             {this.props.sizes.map((size) => {
@@ -107,14 +107,14 @@ class ProductShow extends React.Component {
             <button
               onClick={(e) => this.handleClick(e)}
               value='addToCart'
-              id='add-to-favorites-button'
+              id='add-to-cart-button'
             >
               Add to Cart
             </button>
             <button
               onClick={(e) => this.handleClick(e)}
               value='favorite'
-              id='add-to-cart-button'
+              id='add-to-favorites-button'
             >
               Add To Favorites
             </button>
@@ -140,7 +140,7 @@ class ProductShow extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     showProduct: state.product.show,
     brand: state.brand.show,

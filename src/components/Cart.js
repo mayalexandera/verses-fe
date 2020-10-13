@@ -42,27 +42,27 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
-    return this.props.cart_items === undefined ? (
-      null
-    ) : (
-      this.props.cart_items.map((item) => {
-        let product = this.findProduct(item);
-        let brand = this.findBrand(product);
-        return (
-          <CartItem
-            cart_item={item}
-            brand={brand}
-            key={item.id}
-            product={product}
-          />
-        );
-      })
-    );
+    return this.props.cart_items === undefined
+      ? null
+      : this.props.cart_items.map((item) => {
+          let product = this.findProduct(item);
+          let brand = this.findBrand(product);
+          return (
+            <CartItem
+              cart_item={item}
+              brand={brand}
+              key={item.id}
+              product={product}
+            />
+          );
+        });
   };
 
   render() {
-    let submitButton, message
-    this.props.cart_items === undefined ? message = "0 Items | $0.00" : message = null
+    let submitButton, message;
+    this.props.cart_items === undefined
+      ? (message = "0 Items | $0.00")
+      : (message = null);
     this.props.cart_items === undefined || this.props.cart_items.length === 0
       ? (submitButton = null)
       : (submitButton = (
@@ -70,19 +70,17 @@ class Cart extends React.Component {
             id='add-to-favorites-button'
             onClick={(e) => this.clickHandler(e)}
           >
-            Submit
+            Checkout
           </button>
         ));
     return (
       <div className='section-products'>
-          Cart
-          <div className="guest-message">
-            {message}
-          </div>
+        Cart
+        <div className='guest-message'>{message}</div>
         <div className='cart-container'>
           {this.renderList()}
+          {submitButton}
         </div>
-        {submitButton}
       </div>
     );
   }

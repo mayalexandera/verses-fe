@@ -35,19 +35,23 @@ const CartItem = (props) => {
             <p>{props.brand.name}</p> {props.product.name}
             <div className='cart-item-details'>
               <p>Size: </p> {props.cart_item.size_string}
+
               <ion-icon
                 id='arrow-button'
                 size='small'
                 name='chevron-down-outline'
               ></ion-icon>
+
               <p>Quantity:</p>
               {props.cart_item.quantity}
+
               <ion-icon
                 id='arrow-button'
                 size='small'
                 name='chevron-down-outline'
                 onClick={() => console.log(props.product.size_range)}
               ></ion-icon>
+
             </div>
             <div className='cart-item-buttons'>
               <button
@@ -70,7 +74,6 @@ const CartItem = (props) => {
       ) : (
         "loading"
       )}
-      <hr />
     </div>
   );
 };

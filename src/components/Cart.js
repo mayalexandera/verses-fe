@@ -10,7 +10,7 @@ class Cart extends React.Component {
 
   clickHandler = (e) => {
     e.preventDefault();
-    e.target.value === "plans"
+    this.props.current_user === null
       ? this.props.history.push("/plans")
       : this.authorized();
   };
@@ -19,16 +19,6 @@ class Cart extends React.Component {
     !this.props.current_user.plan_membership_id
       ? this.props.history.push("/plans")
       : this.props.initOrder();
-  };
-
-  renderText = () => {
-    return this.props.cart_id !== null
-      ? "Submit"
-      : "You must be a subscriber to place orders";
-  };
-
-  value = () => {
-    return this.props.cart_id !== null ? "submit" : "plans";
   };
 
   findProduct = (item) => {
@@ -52,16 +42,8 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
-    if (this.props.error_message)
-      return (
-        <div className='title-placeholder'>{this.props.error_message}</div>
-      );
-
     return this.props.cart_items === undefined ? (
-      <div className='guest-message'>
-        {" "}
-        <div>You should subscribe... </div>
-      </div>
+      null
     ) : (
       this.props.cart_items.map((item) => {
         let product = this.findProduct(item);
@@ -79,33 +61,39 @@ class Cart extends React.Component {
   };
 
   render() {
-    return (
-      <section>
-        <div className='col span-4-of-9 product-cart-container'>
-          {this.renderList()}
+    let submitButton, message
+    this.props.cart_items === undefined ? message = "0 Items | $0.00" : message = null
+    this.props.cart_items === undefined || this.props.cart_items.length === 0
+      ? (submitButton = null)
+      : (submitButton = (
           <button
-            value={this.value()}
-            className='product-nav-centered cart-re-route'
-            id='favorite-card-button'
+            id='add-to-favorites-button'
             onClick={(e) => this.clickHandler(e)}
           >
-            {this.renderText()}
+            Submit
           </button>
+        ));
+    return (
+      <div className='section-products'>
+          Cart
+          <div className="guest-message">
+            {message}
+          </div>
+        <div className='cart-container'>
+          {this.renderList()}
         </div>
-      </section>
+        {submitButton}
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    cart_id: state.cart.cart_id,
     current_user: state.auth.current_user,
-    member_id: state.cart.member_id,
     cart_items: state.cart.cart_items,
     products: state.product.select,
     brands: state.brand.select,
-    error_message: state.cart.message,
   };
 };
 

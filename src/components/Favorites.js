@@ -46,7 +46,7 @@ class Favorites extends React.Component {
   render() {
     return (
       <div className='section-products'>
-        <p className='favorites-label'>Favorites</p>
+        <p className='features-label'>Favorites</p>
         {this.renderList()}
       </div>
     );

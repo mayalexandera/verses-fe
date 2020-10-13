@@ -109,7 +109,7 @@ class ProductShow extends React.Component {
               value='addToCart'
               id='add-to-favorites-button'
             >
-              ADD TO CART
+              Add to Cart
             </button>
             <button
               onClick={(e) => this.handleClick(e)}

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
   
 const CartItem = (props) => {
-  console.log(props)
   let cart_item;
   if(props.cart_items && props.cart_items !== undefined) {
     cart_item = props.cart_items.filter(
@@ -28,13 +27,10 @@ const CartItem = (props) => {
 
   return (
     <div>
-      {/* {!props.error && props.product !== null ? ( */}
-
       {!props.error && !props.loading ? (
-
         
-        <div className='cart-item-card row'>
-          <img src={props.product.images.split(",")[0]} />
+        <div className='cart-item-card'>
+          <img alt={props.product.name} src={props.product.images.split(",")[0]} />
           <ul className='cart-item-details-container'>
             <li className='cart-item-title'>{props.brand.name}</li>
             <li className='cart-item-subtitle'>{props.product.name}</li>
@@ -70,14 +66,10 @@ const CartItem = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(state, ownProps);
+const mapStateToProps = (state) => {
   return {
     userId: state.auth.userId,
-    cart_id: state.cart.cart_id,
-    member_id: state.cart.member_id,
     cart_items: state.cart.cart_items,
-    brands: state.brand.select,
     loading: state.cart.loading,
     error: state.cart.error,
   };

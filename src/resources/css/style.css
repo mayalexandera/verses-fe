@@ -9,15 +9,6 @@
   outline: none;
 }
 
-.secondaryFont {
-  font-family: "Prata", serif;
-  font-weight: 300;
-  font-size: 24px;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-  font-style: italic;
-}
-
 html,
 body {
   background-color: white;
@@ -65,20 +56,6 @@ hr {
 
 /* Main navi */
 
-.main-nav {
-  float: left;
-  list-style: none;
-  margin-top: 8px;
-}
-
-.nav-bar {
-  width: 100%;
-  display: flex;
-  position: absolute;
-  top: 50%;
-  transform: translate(0%, -50%);
-}
-
 .nav-container {
   width: 100%;
   height: 100px;
@@ -86,33 +63,47 @@ hr {
   margin-bottom: 10px;
   position: fixed;
   z-index: 1;
+  font-size: 90%;
 }
+
+.nav-bar {
+  width: 100%;
+  display: inline-flex;
+  position: absolute;
+}
+
+.nav-links { margin-top: 40px; width: 100% }
+
+.nav-link-button:hover {
+  border-bottom: 2px solid #d3f6a2;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.nav-link-button,
+.nav-link-button:link,
+.nav-link-button:visited {
+  padding: 8px 10px;
+  font-weight: 400;
+  color: black;
+  text-transform: uppercase;
+  font-size: 90%;
+}
+
+.nav-link-button:first-child { margin-left: 40px }
+.nav-link-button:last-child { margin-right: 40px  }
+
+.user-menu { float: right; }
 
 .rapper-whatever {
   margin-top: 7em;
   background-color: white;
 }
 
-.main-nav li {
-  display: inline-block;
-  margin: 0px 12px;
-}
-
-.main-nav li:first-child { margin-left: 40px }
-
 .guest-message {
-  color: white;
-  max-width: 300px;
-  width: 600px;
-  padding: 10px;
-  background-color: black;
-  font-size: 150%;
-  font-weight: 200;
-  position: relative;
-  font-style: italic;
-  justify-content: center;
-  text-align: center;
-  list-style: none;
+  font-size: 80%;
+  font-weight: 300;
+  border: 1px solid red;
 }
 
 #route-button {
@@ -126,78 +117,26 @@ hr {
   border: none;
 }
 
-#button:hover {
-  border-bottom: 2px solid #d3f6a2;
-  -webkit-transition: font-weight 0.2s;
-  transition: font-weight 0.2s;
-  -webkit-transition: color 0.3s;
-  transition: color 0.3s;
-}
-
-#button,
-#button:link,
-#button:visited {
-  padding: 8px 0;
-  font-weight: 400;
-  color: black;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 90%;
-  border-bottom: 2px solid transparent;
-  -webkit-transition: border-bottom 0.3s;
-  transition: border-bottom 0.3s;
-}
-
-#message {
-  /* font-family: "Futura"; */
-  margin-bottom: 100px;
-  font-weight: 400;
-  text-transform: none;
-  font-size: 100%;
-  color: black;
-}
-
-.user-menu { float: right }
-
-.user-menu:last-child { margin-right: 30px }
-
-.user-menu span {
-  display: inline-block;
-  margin: 0 12px;
-}
-
-.nav-links {
-  width: 100%;
-  position: relative;
-}
-
-.nav-links > ul {
-  top: 50%;
-  display: absolute;
-  justify-content: center;
-}
-.user-menu li:last-child { margin-right: 40px }
-
-ion-icon {
-  align-self: center;
-  color: black;
-}
-
-#page-content { min-height: 500px }
-
 /* PRODUCT index */
 .section-products {
-  vertical-align: top;
+  font-weight: 400;
+  display: block;
+  font-size: 125%;
+  text-align: center;
+  border: 1px solid red;
   list-style: none;
   margin: 0 auto;
-  width: 85%;
-  justify-content: space-between;
+  width: 95%;
 }
 
-.favorites-label {
-  font-weight: 400;
-  font-size: 125%;
+.cart { border: 1px solid red }
+
+.cart-container { 
+  border: 1px solid red;
+  width: 70%;
 }
+
+
 /* PRODUCT CARD */
 
 .product-card {
@@ -311,14 +250,6 @@ ion-icon {
 }
 
 /* CART */
-.product-cart-container {
-  float: right;
-  padding: 15px;
-  min-height: 300px;
-  border: 1px solid black;
-  margin: 2% 8%;
-  justify-content: center;
-}
 
 .product-add-to-bag-wrapper {
   align-items: center;
@@ -787,10 +718,9 @@ ion-icon {
 
 /* CART */
 .cart-item-card {
-  padding: 10px 5px;
-  height: 170px;
-  width: 100%;
-  display: block;
+  border: 1px solid red;
+  height: 200px;
+  /* display: block; */
   margin: 10px 0px;
 }
 
@@ -799,17 +729,18 @@ ion-icon {
 .cart-item-card img {
   height: 100%;
   margin-right: 3%;
-  float: right;
+  float: left;
 }
 
 .cart-item-title {
-  font-size: 100%;
+  font-size: 80%;
   font-weight: 400;
   margin-bottom: 6px;
 }
 
 .cart-item-subtitle {
-  font-size: 80%;
+  font-size: 50%;
+  font-weight: 300;
   margin-left: 15px;
 }
 
@@ -817,7 +748,7 @@ ion-icon {
 
 .cart-item-details-container {
   list-style: none;
-  position: relative;
+  /* position: relative; */
   margin: 10px 20px;
 }
 

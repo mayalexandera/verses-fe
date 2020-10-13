@@ -8,7 +8,6 @@ class Layout extends React.Component {
     this.props.initProducts();
     this.props.fetchUser();
     this.props.initFavorites();
-    this.props.initCart();
     this.props.fetchOrders();
   }
 
@@ -34,7 +33,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     initProducts: () => dispatch(actions.initProducts()),
     initBrands: () => dispatch(actions.initBrands()),
-    initCart: () => dispatch(actions.initCart()),
     initFavorites: () => dispatch(actions.initFavorites()),
     fetchUser: () => actions.fetchUser(),
     fetchOrders: () => actions.fetchOrders(),

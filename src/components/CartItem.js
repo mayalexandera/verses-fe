@@ -31,36 +31,46 @@ const CartItem = (props) => {
             src={props.product.images.split(",")[0]}
           />
           <div className='cart-item-details-container'>
-            <p>{props.brand.name}</p>
-            <p>{props.product.name}</p>
-            <p>{props.product.price_string}</p>
-
-            <span>SIZE: </span>
-            {props.cart_item.size_string}
-
-            <span>QUANTITY: </span>
-            {props.cart_item.quantity}
-          </div>
-          <div>
-            <button
-              onClick={(e) => clickHandler(e)}
-              id='remove-from-cart-button'
-              value='delete'
-            >
-              REMOVE
-            </button>
-            <button
-              onClick={(e) => clickHandler(e)}
-              id='remove-from-cart-button'
-              value='favorite'
-            >
-              FAVORITE
-            </button>
+            <div className='cart-item-price'>{props.product.price_string}</div>
+            <p>{props.brand.name}</p> {props.product.name}
+            <div className='cart-item-details'>
+              <p>Size: </p> {props.cart_item.size_string}
+              <ion-icon
+                id='arrow-button'
+                size='small'
+                name='chevron-down-outline'
+              ></ion-icon>
+              <p>Quantity:</p>
+              {props.cart_item.quantity}
+              <ion-icon
+                id='arrow-button'
+                size='small'
+                name='chevron-down-outline'
+                onClick={() => console.log(props.product.size_range)}
+              ></ion-icon>
+            </div>
+            <div className='cart-item-buttons'>
+              <button
+                onClick={(e) => clickHandler(e)}
+                id='remove-from-cart-button'
+                value='favorite'
+              >
+                Move To Favorites
+              </button>
+              <button
+                onClick={(e) => clickHandler(e)}
+                id='remove-from-cart-button'
+                value='delete'
+              >
+                Remove
+              </button>
+            </div>
           </div>
         </div>
       ) : (
         "loading"
       )}
+      <hr />
     </div>
   );
 };

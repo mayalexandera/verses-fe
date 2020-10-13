@@ -718,10 +718,11 @@ hr {
 
 /* CART */
 .cart-item-card {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 200px;
   display: block;
   margin: 10px 0px;
+  line-height: 1.75;
 }
 
 .cart-item-img-wrapper { width: 100% }
@@ -730,37 +731,75 @@ hr {
   height: 100%;
   margin-right: 3%;
   float: left;
+  /* border: 1px solid red; */
 }
-
-.cart-item-details-container span { font-weight: 400 }
 
 .cart-item-details-container {
   text-align: left;
   list-style: none;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 20px 0px;
-  font-size: 50%;
+  font-size: 70%;
+  padding-right: 5px;
+  display: block;
   font-weight: 300;
+}
+
+.cart-item-details-container p { 
+  /* margin-bottom: 20px;  */
+  font-weight: 400;
+}
+
+.cart-item-details p {
+  display: inline-block; 
+  margin-left: 5px;
+  margin-right: 10px;
+  /* border: 1px solid red; */
+}
+
+.cart-item-details p:first-child {
+  display: inline-block; 
+  margin-left: 0px;
+  /* border: 1px solid red; */
+}
+
+#arrow-button {
+  margin-left: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.cart-item-buttons {
+  display: inline-block;
+  margin-top: 20px;
+  /* border: 1px solid red; */
+}
+
+.cart-item-details {
+  margin-right: 10px;
+  /* border: 1px solid red; */
+ }
+
+.cart-item-price  {
+  float: right;
+  /* border: 1px solid red; */
 }
 
 #remove-from-cart-button {
-  list-style: none;
   cursor: pointer;
-  text-transform: uppercase;
-  text-align: center;
-  background-color: #fff;
+  background-color: transparent;
   font-weight: 300;
+  border-bottom: 1px solid black;
   color: black;
-  border-radius: 2px;
-  font-size: 60%;
+  font-size: 90%;
   margin-left: 25px;
-  padding: 3px;
-  border: 0.25px solid rgb(148, 146, 146);
-  box-shadow: 0 2px 2px #efefef;
 }
 
+#remove-from-cart-button:first-child { margin-left: 0px; }
+
 #remove-from-cart-button:hover {
-  background-color: rgb(238, 236, 236);
+  border-bottom: 1px solid rgb(148, 146, 146);
+  color:  rgb(148, 146, 146);
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }

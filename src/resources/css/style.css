@@ -720,7 +720,7 @@ hr {
 .cart-item-card {
   border: 1px solid red;
   height: 200px;
-  /* display: block; */
+  display: block;
   margin: 10px 0px;
 }
 
@@ -732,24 +732,15 @@ hr {
   float: left;
 }
 
-.cart-item-title {
-  font-size: 80%;
-  font-weight: 400;
-  margin-bottom: 6px;
-}
-
-.cart-item-subtitle {
-  font-size: 50%;
-  font-weight: 300;
-  margin-left: 15px;
-}
-
-.cart-item-subtitle span { font-weight: 400 }
+.cart-item-details-container span { font-weight: 400 }
 
 .cart-item-details-container {
+  text-align: left;
   list-style: none;
-  /* position: relative; */
-  margin: 10px 20px;
+  border: 1px solid red;
+  margin: 20px 0px;
+  font-size: 50%;
+  font-weight: 300;
 }
 
 #remove-from-cart-button {

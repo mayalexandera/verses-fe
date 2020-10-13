@@ -133,11 +133,8 @@ class ProductShow extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className='section-products'>
-          {" "}
-          <br />
-          {this.renderProduct()}
-        </div>
+        <br />
+        {this.renderProduct()}
       </React.Fragment>
     );
   }

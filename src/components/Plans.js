@@ -15,12 +15,7 @@ class Plans extends React.Component {
       <div>loading</div>
     ) : (
       this.props.plans.map((plan) => {
-        return (
-          <PlanCard
-            plan={plan}
-            current_plan={this.props.current_plan}
-          />
-        );
+        return <PlanCard plan={plan} current_plan={this.props.current_plan} />;
       })
     );
   };
@@ -66,24 +61,26 @@ class Plans extends React.Component {
     let signUpResponse;
     if (this.props.error_message) {
       signUpResponse = (
-        <div>
+        <>
           <div className='title'>{this.props.error_message}</div>
           {this.renderPlanActions()}
-        </div>
+        </>
       );
     } else {
-      signUpResponse = <div>{this.renderPlans()}</div>;
+      signUpResponse = this.renderPlans();
     }
     return signUpResponse;
   };
 
   render() {
     return (
-      <div className='row plan-box'>
-        <li id='plan-header'>Join Us</li>
-        <hr id='plan-title-hr' />
-        <div>{this.renderHandler()}</div>
-      </div>
+      <>
+        <div className='plan-header'>Join Us</div>
+          <hr id='plan-title-hr' />
+        <div className=' plan-box'>
+          {this.renderHandler()}
+        </div>
+      </>
     );
   }
 }

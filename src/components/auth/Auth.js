@@ -152,13 +152,13 @@ class Auth extends Component {
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
-            <Button id={'add-to-favorites-button'}>SUBMIT</Button>
+          <Button id={"add-to-favorites-button"}>SUBMIT</Button>
         </form>
-        <Button id={"add-to-cart-button" } clicked={this.switchAuthModeHandler}>
-            SWITCH TO {this.state.isSignup ? "SIGN IN" : "SIGN UP"}
+        <Button id={"add-to-cart-button"} clicked={this.switchAuthModeHandler}>
+          SWITCH TO {!this.state.isSignup ? "SIGN UP" : "SIGN IN"}
         </Button>
       </div>
-    );
+    ); 
   }
 }
 

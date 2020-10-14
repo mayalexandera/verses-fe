@@ -47,10 +47,7 @@ button {
 }
 
 hr {
-  /* color: rgb(199, 198, 198); */
   width: 92%;
-  margin-top: 7px;
-  margin-bottom: 20px;
 }
 
 @font-face {
@@ -141,7 +138,7 @@ hr {
   display: block;
   font-size: 125%;
   text-align: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   list-style: none;
   margin: 0 auto;
   width: 95%;
@@ -149,7 +146,7 @@ hr {
 
 .cart-container {
   width: 60%;
-    border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /* PRODUCT CARD */
@@ -206,7 +203,9 @@ hr {
 }
 
 /* PRODUCT SHOW */
-.product-description-container { margin-left: 30px }
+.product-description-container {
+  margin-left: 30px;
+}
 
 .product-show {
   max-width: 1140px;
@@ -468,10 +467,8 @@ hr {
 #add-to-favorites-button {
   background-color: black;
   border: 1px solid black;
-  font-size: 70%;
   font-weight: 300;
   color: white;
-  padding: 12px 26px;
 }
 
 #add-to-cart-button,
@@ -479,6 +476,7 @@ hr {
 #add-to-favorites-button {
   margin: 10px auto;
   border-radius: 20px;
+  padding: 8px 26px;
   width: 225px;
   cursor: pointer;
   display: block;
@@ -535,17 +533,11 @@ hr {
 /* PLANS */
 
 .plan-box {
-  justify-content: center;
-  position: relative;
-  height: 150vh;
-  transform: translate(0px, -120px);
-}
-
-.plan-outer {
-  width: 100%;
-  margin: 5% 0%;
+  justify-content: space-between;
+  background-color: grey;
+  padding: 12px;
+  border: 1px solid red;
   display: flex;
-  padding: 10px 0px;
 }
 
 .plan-header {
@@ -554,22 +546,23 @@ hr {
   font-weight: 400;
   justify-content: center;
   list-style: none;
-  transform: translate(0px, -100px);
+  /* transform: translate(0px, -100px); */
+  font-size: 300%;
+  border: 1px solid purple;
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
 }
 
 #plan-header {
   display: flex;
-  font-size: 300%;
-  font-family: "Playfair Display", serif;
   font-weight: 400;
   justify-content: center;
   height: 150px;
-  margin-bottom: 40px;
   margin-top: 30px;
   list-style: none;
   z-index: 1;
   color: black;
-  transform: translate(0px, 80px);
+  /* transform: translate(0px, 80px); */
 }
 
 #plan-route-button {
@@ -598,47 +591,55 @@ hr {
   transform: translate(0px, 10px);
 }
 
+#plan-hr {
+  width: 100%;
+}
+
 #cart-item-hr {
   margin: 7px auto;
   margin-bottom: 35px;
   width: 92%;
   transform: translate(0px, 10px);
 }
-/*  */
-.plan-spacer { height: 75px }
-
-.title li {
-  margin: 3% 0%;
-  font-weight: 200;
+/* plan */
+.plan-title {
+  font-size: 75%;
+  display: block;
+  list-style: none;
+  font-weight: 400;
+  /* border: 1px solid red; */
 }
 
-.plan-title li {
-  justify-content: center;
-  font-size: 120%;
-  display: flex;
+.plan-subtitle {
+  font-size: 80%;
 }
-
-.plan-subtitle { font-size: 80% }
 
 .plan-price {
-  font-size: 205%;
+  font-size: 80%;
   list-style: none;
-  font-size: 110%;
+  /* border: 1px solid red; */
+  font-weight: 300;
+}
+
+.plan-description {
+  font-size: 75%;
+  margin-top: 20px;
+  line-height: 1.5;
+  height: 60px;
+  list-style: none;
+  /* border: 1px solid red; */
   font-weight: 400;
 }
 
 .plan-card {
   background-color: #fff;
-  text-decoration: none;
-  height: 500px;
-  margin-top: 50px;
-  max-width: 370px;
   box-shadow: 0px 2px 2px #efefef;
+  margin-top: 20px;
+  padding-top: 15px;
   border-radius: 5px;
-  padding: 2px 0px;
-  display: block;
+  /* border: 1px solid red; */
+  display: inline-block;
 }
-.plan-card:first-child { margin-left: 60px }
 
 #plan-price {
   font-size: 200%;
@@ -655,26 +656,27 @@ hr {
   font-family: "Futura";
 }
 
-.landing:hover { display: hidden }
-
-.title {
-  text-align: center;
-  align-items: center;
-}
-
 .plan-card-details {
   display: inline-block;
-  list-style: none;
   padding: 0px 6%;
   width: 100%;
   line-height: 1.5;
+  /* border: 1px solid red; */
+  font-weight: 300;
+}
+
+.plan-card-details p {
+  font-size: 200%;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .plan-card-details span {
-  font-size: 50%;
-  font-weight: 300;
-  transform: translate(0px, -30px);
-  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  margin-left: 8px;
+  font-size: 85%;
+  /* border: 1px solid red; */
 }
 
 .plan-bullet-points {
@@ -682,15 +684,10 @@ hr {
   list-style: none;
   width: 100%;
   height: 70%;
-  padding: 5%;
   margin: 5% 0%;
-  line-height: 1.5;
-}
-
-.plan-bullet-points li {
-  line-height: 2;
-  width: 100%;
   font-size: 80%;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 #current-plan {
@@ -702,6 +699,7 @@ hr {
   border: 1px solid hsl(85, 64%, 79%);
   box-shadow: 0 2px 2px #efefef;
 }
+
 #plan-option {
   text-transform: uppercase;
   font-size: 90%;
@@ -716,17 +714,19 @@ hr {
 
 #plan-button {
   margin-bottom: 20px;
+
   text-align: center;
   border: none;
 }
 
 #plan-hr {
-  width: 82%;
-  margin: 7px auto;
+  width: 100%;
 }
 
 /*MORE INFO */
-.more-info { height: 20vh }
+/* .more-info {
+  height: 20vh;
+} */
 
 /* CART */
 .cart-item-card {
@@ -734,10 +734,15 @@ hr {
   display: block;
   padding-bottom: 10px;
   line-height: 1.75;
-  box-shadow: rgb(229, 229, 229) 0px 0px 0px 0px inset, rgb(229, 229, 229) 0px 0px 0px 0px inset, rgb(229, 229, 229) 0px -1px 0px 0px inset, rgb(229, 229, 229) 0px 0px 0px 0px inset;
+  box-shadow: rgb(229, 229, 229) 0px 0px 0px 0px inset,
+    rgb(229, 229, 229) 0px 0px 0px 0px inset,
+    rgb(229, 229, 229) 0px -1px 0px 0px inset,
+    rgb(229, 229, 229) 0px 0px 0px 0px inset;
 }
 
-.cart-item-img-wrapper { width: 100% }
+.cart-item-img-wrapper {
+  width: 100%;
+}
 
 .cart-item-card img {
   height: 100%;
@@ -752,10 +757,11 @@ hr {
   font-size: 70%;
   display: block;
   font-weight: 300;
-  
 }
 
-.cart-item-details-container p { font-weight: 400 }
+.cart-item-details-container p {
+  font-weight: 400;
+}
 
 .cart-item-details p {
   display: inline-block;
@@ -779,9 +785,13 @@ hr {
   margin-top: 20px;
 }
 
-.cart-item-details { margin-right: 10px }
+.cart-item-details {
+  margin-right: 10px;
+}
 
-.cart-item-price { float: right }
+.cart-item-price {
+  float: right;
+}
 
 #remove-from-cart-button {
   cursor: pointer;
@@ -793,7 +803,9 @@ hr {
   margin-left: 25px;
 }
 
-#remove-from-cart-button:first-child { margin-left: 0px }
+#remove-from-cart-button:first-child {
+  margin-left: 0px;
+}
 
 #remove-from-cart-button:hover {
   border-bottom: 1px solid rgb(148, 146, 146);

@@ -20,12 +20,12 @@ const PlanCard = (props) => {
   };
 
   const renderText = () => {
-    if(!props.current_plan || !props.current_plan.plan_membership) return "Choose Plan"
-
+    if (!props.current_plan || !props.current_plan.plan_membership)
+      return "Choose Plan";
     else if (props.current_plan.plan_membership.plan_id !== props.plan.id) {
-      return "Choose Plan"
+      return "Choose Plan";
     } else {
-      return "Current Plan"
+      return "Current Plan";
     }
   };
 
@@ -35,7 +35,8 @@ const PlanCard = (props) => {
       return "plan-option";
 
     //members with or without plan membership
-    return !props.current_plan.plan_membership || props.plan.id !== props.current_plan.plan_membership.plan_id
+    return !props.current_plan.plan_membership ||
+      props.plan.id !== props.current_plan.plan_membership.plan_id
       ? "plan-option"
       : "current-plan";
   };
@@ -43,53 +44,47 @@ const PlanCard = (props) => {
   return (
     <div className='col span-1-of-3'>
       <div className='plan-card'>
-        <div className='col plan-outer'>
-          <React.Fragment>
-            <ul className='plan-card-details'>
-              <li className='plan-title'>{props.plan.name}</li>
-              <li id='plan-price'>
-                {props.plan.price_string}
-                <span>/month</span>
-              </li>
-              <li className='plan-subtitle'>{props.plan.description}</li>
-            </ul>
-          </React.Fragment>
-        </div>
-        <hr id='plan-hr' />
-        <div className='plan-card-details'>
-          <ul className='plan-bullet-points'>
-            <li>4 items at a time</li>
-            <li>5,000+ items from 50+ designers</li>
-            <li>Wear items with retail value up to $350</li>
-            <li>Monthly shipments worth up to $1,400</li>
-          </ul>
-        </div>
-        <div id='plan-button'>
-          {props.current_user ? (
-            <button
-              plan={props.plan.id}
-              id={renderId()}
-              value='button'
-              onClick={(e) => clickHandler(e)}
-            >
-              {renderText()}
+        <React.Fragment>
+          <div className='plan-card-details'>
+            <ul className='plan-title'>Up to</ul>
+            <p>{props.plan.items} </p>
+            <span>items per month</span>
+            <li className='plan-description'>{props.plan.description}</li>
+          </div>
+          <hr id='plan-hr' />
+        </React.Fragment>
+      <div className='plan-card-details'>
+        <ul className='plan-bullet-points'>
+          <li><ion-icon name="checkmark"></ion-icon>4 items at a time</li>
+          <li>5,000+ items from 50+ designers</li>
+          <li>Wear items with retail value up to $350</li>
+          <li>Monthly shipments worth up to $1,400</li>
+        </ul>
+      </div>
+      <div id='plan-button'>
+        {props.current_user ? (
+          <button
+          plan={props.plan.id}
+          id={renderId()}
+          value='button'
+          onClick={(e) => clickHandler(e)}
+          >
+            {renderText()}
+          </button>
+        ) : (
+          <NavLink to='/login' activeStyle={{ color: "white" }}>
+            <button plan={props.plan.id} id={renderId()} value='button'>
+              TRY NOW
             </button>
-          ) : (
-            <NavLink to='/login' activeStyle={{ color: "white" }}>
-              <button plan={props.plan.id} id={renderId()} value='button'>
-                TRY NOW
-              </button>
-            </NavLink>
-          )}
-        </div>
+          </NavLink>
+        )}
       </div>
     </div>
+        </div>
   );
 };
 const mapStateToProps = (state) => {
-  return {
-    current_user: state.auth.current_user,
-  };
+  return { current_user: state.auth.current_user };
 };
 
 const mapDispatchToProps = (dispatch) => {

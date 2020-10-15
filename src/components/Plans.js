@@ -74,13 +74,11 @@ class Plans extends React.Component {
 
   render() {
     return (
-      <>
+      <div className='background'>
         <div className='plan-header'>Join Us</div>
-          <hr id='plan-title-hr' />
-        <div className=' plan-box'>
-          {this.renderHandler()}
-        </div>
-      </>
+        <hr id='plan-title-hr' />
+        <div className=' plan-box'>{this.renderHandler()}</div>
+      </div>
     );
   }
 }

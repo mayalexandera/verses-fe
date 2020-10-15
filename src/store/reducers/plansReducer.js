@@ -32,6 +32,7 @@ const fetchPlansFail = (state, action) => {
 };
 
 const userPlanSuccess = (state, action) => {
+  console.log(action)
   if (action.payload.status === 204) {
     return updateObject(state, {
       loading: false,
@@ -39,6 +40,7 @@ const userPlanSuccess = (state, action) => {
       message: action.payload.message,
     });
   }
+
   return updateObject(state, {
     error: null,
     loading: false,

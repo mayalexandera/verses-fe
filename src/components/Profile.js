@@ -8,34 +8,22 @@ class Profile extends React.Component {
     this.props.fetchUser();
   }
 
-  renderPlan = () => {
-    return this.props.current_user && this.props.current_user.subscribed ? (
-      <div className='row product-nav-centered'>
-        <div className='profile-title row'>
-          <span className='profile-title'>Your Plan:</span> <div className='product-show-title'>{this.props.current_user.plan_membership.plan_name}</div>
-        </div>
-      </div>
-    ) : null;
-  };
-
   renderUser = () => {
     return this.props.current_user && this.props.current_user ? (
-      <div>
+      <section className='profile-card'>
+        <p className='profile-photo' />
         <div className='profile-title'>
-          <div className='title-placeholder' ><li className='row secondaryFont'>{this.props.current_user.name}</li></div>
-          {this.renderPlan()}
+          <p>{this.props.current_user.name}</p>
+          <p className='profile-subtitle'>Verses member since June 2016</p>
         </div>
-      </div>
-    ) : ( null
-    );
+      </section>
+    ) : null;
   };
 
   render() {
     return (
-      <div>
-        <div className='box'>
-          {this.renderUser()}
-        </div>
+      <div className='profile-container'>
+        {this.renderUser()}
         <OrderContainer />
       </div>
     );
@@ -46,10 +34,6 @@ const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
     favorites: state.favorite.favorites,
-    products: state.favorite.products,
-    loading: state.auth.loading,
-    cart: state.cart.cart,
-    cart_items: state.cart.cart_items,
   };
 };
 

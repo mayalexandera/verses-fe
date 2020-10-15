@@ -5,49 +5,34 @@ import { Link } from "react-router-dom";
 
 class OrderContainer extends React.Component {
   componentDidMount() {
-       this.props.fetchOrders()
+    this.props.fetchOrders();
   }
 
-  renderError = () => {
-    console.log("in render order");
-    return (
-      <>
-        <div className='title-placeholder'>You must be a subscriber to place orders</div>
-        <Link to={"/plans/"}>
-          <button id='plan-option' value='button'>
-            See Subscriptions
-          </button>
-        </Link>
-      </>
-    );
-  };
-
-
   renderOrders = () => {
-    if (this.props.orders && this.props.orders){
-    return this.props.orders.map((order) => {
-      return (
-        <div className='order-card'>
-          <div className='row order-item'>
-            <span>Order Date:</span> {order.order_date}
-          </div>
+    if (this.props.orders && this.props.orders) {
+      return this.props.orders.map((order) => {
+        return (
+          <div className='order-card'>
+            <div className='row order-item'>
+              <span>Order Date:</span> {order.order_date.slice(0,10)}
+            </div>
 
-          <div className='row order-item'>
-            <span>Total: </span>
-            {order.total_cost_string}
+            <div className='row order-item'>
+              <span>Total: </span>
+              {order.total_cost_string}
+            </div>
           </div>
-
-        </div>
-      );
-    });
-  }}
+        );
+      });
+    }
+  };
 
   render() {
     return (
-      <div className='row order-box section-order'>
-          <div className='order-title'>Order History</div>
-          <> {this.renderOrders()}</>
-        </div>
+      <div className='orders-container'>
+        <div className='order-title'>Order History</div>
+        <> {this.renderOrders()}</>
+      </div>
     );
   }
 }

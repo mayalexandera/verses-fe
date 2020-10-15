@@ -67,10 +67,10 @@ export const fetchCartFailed = (error) => {
   };
 };
 
-export const addProductToCartFailed = (err) => {
+export const addProductToCartFailed = (error) => {
   return {
     type: actionTypes.ADD_PRODUCT_TO_CART_FAILED,
-    payload: err,
+    payload: error,
   };
 };
 
@@ -85,15 +85,11 @@ export const removeProductFromCart = (cart_item_id) => async (
   dispatch,
   getState
 ) => {
+
   let user = getState().auth.userId;
   await api
-    .delete(`/users/${user}/cart/cart_items/`, {
-      params: { item_id: cart_item_id },
-    })
+    .delete(`/users/${user}/cart/cart_items/${cart_item_id}`)
     .then(
-      dispatch({
-        type: actionTypes.REMOVE_PRODUCT_FROM_CART,
-        payload: cart_item_id
-      })
+      dispatch({type: actionTypes.REMOVE_PRODUCT_FROM_CART})
     );
 };

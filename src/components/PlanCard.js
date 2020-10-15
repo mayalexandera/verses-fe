@@ -20,10 +20,12 @@ const PlanCard = (props) => {
   };
 
   const renderText = () => {
-    if (!props.current_plan || !props.current_plan.plan_membership)
-      return "Choose Plan";
-    else if (props.current_plan.plan_membership.plan_id !== props.plan.id) {
-      return "Choose Plan";
+    if (
+      !props.current_plan ||
+      !props.current_plan.plan_membership ||
+      props.current_plan.plan_membership.plan_id !== props.plan.id
+    ) {
+      return "Try Now";
     } else {
       return "Current Plan";
     }
@@ -33,7 +35,6 @@ const PlanCard = (props) => {
     //guests
     if (props.current_plan === undefined || props.current_plan === null)
       return "plan-option";
-
     //members with or without plan membership
     return !props.current_plan.plan_membership ||
       props.plan.id !== props.current_plan.plan_membership.plan_id
@@ -42,32 +43,35 @@ const PlanCard = (props) => {
   };
 
   return (
-    <div className='col span-1-of-3'>
-      <div className='plan-card'>
-        <React.Fragment>
-          <div className='plan-card-details'>
-            <ul className='plan-title'>Up to</ul>
-            <p>{props.plan.items} </p>
-            <span>items per month</span>
-            <li className='plan-description'>{props.plan.description}</li>
-          </div>
-          <hr id='plan-hr' />
-        </React.Fragment>
-      <div className='plan-card-details'>
+    <div className='plan-card'>
+      <React.Fragment>
+        <div className='plan-card-details'>
+          <ul className='plan-title'>Up to</ul>
+          <p>{props.plan.items} </p>
+          <span>items per month</span>
+          <li className='plan-description'>{props.plan.description}</li>
+        </div>
+        <hr id='plan-hr' />
+      </React.Fragment>
+      <div className='plan-card-features'>
         <ul className='plan-bullet-points'>
-          <li><ion-icon name="checkmark"></ion-icon>4 items at a time</li>
-          <li>5,000+ items from 50+ designers</li>
-          <li>Wear items with retail value up to $350</li>
-          <li>Monthly shipments worth up to $1,400</li>
+          {props.plan.features.split(",").map((feature) => {
+            return (
+              <li>
+                <ion-icon name='checkmark'></ion-icon>
+                <span>{feature}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div id='plan-button'>
         {props.current_user ? (
           <button
-          plan={props.plan.id}
-          id={renderId()}
-          value='button'
-          onClick={(e) => clickHandler(e)}
+            plan={props.plan.id}
+            id={renderId()}
+            value='button'
+            onClick={(e) => clickHandler(e)}
           >
             {renderText()}
           </button>
@@ -79,8 +83,10 @@ const PlanCard = (props) => {
           </NavLink>
         )}
       </div>
+      <div className='plan-price'>
+        <span>{props.plan.price_string}</span> <p>/month</p>
+      </div>
     </div>
-        </div>
   );
 };
 const mapStateToProps = (state) => {

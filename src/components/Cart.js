@@ -100,8 +100,6 @@ const mapDispatchToProps = (dispatch) => {
     initCart: () => dispatch(actions.initCart()),
     addToCart: (user_id, product_id, size) =>
       dispatch(actions.addProductToCart(user_id, product_id, size)),
-    removeProductFromCart: (user_id, product_id, size) =>
-      dispatch(actions.removeProductFromCart(user_id, product_id, size)),
     initOrder: () => dispatch(actions.initOrder()),
   };
 };

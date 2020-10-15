@@ -65,21 +65,22 @@ hr {
   width: 100%;
   height: 100px;
   background-color: #fff;
-  margin-bottom: 10px;
   position: fixed;
+  border: 1px solid red;
   z-index: 1;
   font-size: 90%;
 }
 
-.nav-bar {
+.nav-links {
+  border: 1px solid purple;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
-  display: inline-flex;
-  position: absolute;
 }
 
-.nav-links {
-  margin-top: 40px;
-  width: 100%;
+.main-menu {
+  display: block;
+  border: 1px solid red;
 }
 
 .nav-link-button:hover {
@@ -107,12 +108,13 @@ hr {
 
 .user-menu {
   float: right;
+  border: 1px solid red;
+  display: block;
+  justify-content: right;
 }
 
 .rapper-whatever {
-  margin-top: 7em;
-  padding: 0 8px;
-  background-color: white;
+  margin-top: 5em;
 }
 
 .guest-message {
@@ -124,7 +126,7 @@ hr {
 #route-button {
   border-radius: 4px;
   color: white;
-  background-color: hrtransparent;
+  background-color: transparent;
   text-align: center;
   display: inline;
   align-content: center;
@@ -534,10 +536,11 @@ hr {
 
 .plan-box {
   justify-content: space-between;
-  background-color: grey;
-  padding: 12px;
+  background-color: rgb(235, 223, 156);
+  padding: 1% 5%;
   border: 1px solid red;
   display: flex;
+  min-height: 100vh;
 }
 
 .plan-header {
@@ -548,7 +551,7 @@ hr {
   list-style: none;
   /* transform: translate(0px, -100px); */
   font-size: 300%;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   margin-bottom: 10px;
   font-family: "Playfair Display", serif;
 }
@@ -607,7 +610,6 @@ hr {
   display: block;
   list-style: none;
   font-weight: 400;
-  /* border: 1px solid red; */
 }
 
 .plan-subtitle {
@@ -615,35 +617,38 @@ hr {
 }
 
 .plan-price {
-  font-size: 80%;
-  list-style: none;
-  /* border: 1px solid red; */
-  font-weight: 300;
+  display: flex;
+  margin: 10% 0%;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.plan-price p {
+  font-size: 12px;
+}
+
+.plan-price span {
+  font-size: 150%;
+  font-weight: 400;
 }
 
 .plan-description {
   font-size: 75%;
   margin-top: 20px;
   line-height: 1.5;
-  height: 60px;
   list-style: none;
-  /* border: 1px solid red; */
   font-weight: 400;
 }
 
 .plan-card {
   background-color: #fff;
   box-shadow: 0px 2px 2px #efefef;
-  margin-top: 20px;
-  padding-top: 15px;
+  margin: 20px 20px;
+  padding-top: 20px;
+  max-width: 300px;
+  max-height: 425px;
   border-radius: 5px;
-  /* border: 1px solid red; */
   display: inline-block;
-}
-
-#plan-price {
-  font-size: 200%;
-  font-weight: 500;
 }
 
 .landing {
@@ -656,11 +661,14 @@ hr {
   font-family: "Futura";
 }
 
-.plan-card-details {
+.plan-card-details,
+.plan-card-features {
   display: inline-block;
   padding: 0px 6%;
   width: 100%;
+  min-height: 98px;
   line-height: 1.5;
+  margin-bottom: 10px;
   /* border: 1px solid red; */
   font-weight: 300;
 }
@@ -679,54 +687,63 @@ hr {
   /* border: 1px solid red; */
 }
 
+.plan-card-features {
+  min-height: 99px;
+}
+
 .plan-bullet-points {
   display: block;
   list-style: none;
   width: 100%;
   height: 70%;
+  min-height: 40px;
   margin: 5% 0%;
   font-size: 80%;
   font-weight: 400;
   line-height: 1.5;
 }
 
-#current-plan {
-  text-transform: uppercase;
-  display: inline-block;
-  font-size: 90%;
-  background-color: hsl(85, 76%, 85%);
-  padding: 6px 70px;
-  border: 1px solid hsl(85, 64%, 79%);
-  box-shadow: 0 2px 2px #efefef;
+.plan-bullet-points span {
+  margin-left: 14px;
 }
 
-#plan-option {
+#plan-option,
+#current-plan {
+  min-width: 226px;
   text-transform: uppercase;
-  font-size: 90%;
-  display: inline-block;
-  border: 1px solid rgb(12, 11, 11);
-  background-color: rgb(12, 11, 11);
-  padding: 6px 70px;
-  color: #fff;
+  font-size: 85%;
+  padding: 8px 26px;
+  width: 80%;
   top: 10px;
   box-shadow: 0 2px 2px #efefef;
 }
 
-#plan-button {
-  margin-bottom: 20px;
+#current-plan {
+  background-color: hsl(85, 76%, 85%);
+  border: 1px solid hsl(85, 64%, 79%);
+}
 
-  text-align: center;
-  border: none;
+#plan-option {
+  background-color: rgb(12, 11, 11);
+  border: 1px solid rgb(12, 11, 11);
+  color: #fff;
+}
+
+#plan-option:hover,
+#current-plan:hover {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+#plan-button {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
 }
 
 #plan-hr {
   width: 100%;
 }
-
-/*MORE INFO */
-/* .more-info {
-  height: 20vh;
-} */
 
 /* CART */
 .cart-item-card {
@@ -815,16 +832,14 @@ hr {
 }
 
 /* ORDERS */
-.section-order {
+.orders-container {
   background-color: #fff;
-  margin: 3% 10%;
   border-radius: 2px;
-  align-items: center;
-  padding: 30px;
-  list-style: none;
-  width: 50%;
+  display: block;
   float: right;
-  box-shadow: 0 2px 2px #efefef;
+  align-items: center;
+  border: 1px solid red;
+  width: 50%;
 }
 
 .order-title {
@@ -889,8 +904,7 @@ hr {
   width: 40%;
   height: 40px;
   margin: 5px auto;
-  align-content: center;
-  align-items: center;
+  display: flex;
   border: 1px solid lightgrey;
   border-radius: 5px;
   background-color: hsl(85, 87%, 94%);
@@ -910,42 +924,43 @@ hr {
 
 /** PROFILE **/
 
-.profile-banner {
-  height: 100px;
-  justify-content: center;
-  width: 100%;
-  float: right;
-  display: flex;
-  position: relative;
+.profile-container {
+  border: 1px solid red;
+  margin: 0px 20px;
+}
+
+.profile-card {
+  border: 1px solid red;
+  display: inline-block;
 }
 
 .profile-title {
-  display: flex;
-  font-size: 90%;
-  margin-bottom: 50px;
-  font-weight: 300;
-  justify-content: center;
+  font-family: "Futura";
+  border: 1px solid red;
+  font-size: 150%;
+  font-weight: 400;
+  display: inline-block;
+}
+
+.profile-title p {
+  display: block;
+}
+
+.profile-photo {
+  width: 60px;
+  height: 60px;
+  margin-right: 20px;
+  display: inline-block;
+  background-size: 60px 60px;
+  border-radius: 50%;
+  background-color: hsl(85, 87%, 94%);
 }
 
 .profile-subtitle {
-  display: flex;
-  font-size: 80%;
-  margin-bottom: 50px;
-  font-weight: 300;
-  justify-content: center;
-}
-
-/* BRANDS */
-
-.brands-title {
-  display: flex;
-  font-size: 300%;
-  font-family: "Futura";
-  text-transform: uppercase;
+  font-family: "Lato";
+  color: rgb(148, 146, 146);
+  font-size: 45%;
+  border: 1px solid red;
   font-weight: 400;
-  justify-content: center;
-  height: 120px;
-  list-style: none;
-  z-index: 1;
-  color: black;
+  display: inline-block;
 }

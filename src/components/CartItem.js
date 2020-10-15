@@ -13,7 +13,7 @@ const CartItem = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
     e.target.value === "delete"
-      ? props.removeProductFromCart(cart_item[0])
+      ? props.removeProductFromCart(cart_item[0].id)
       : props.addCartToFavorite(
           props.userId,
           props.product.id,
@@ -93,8 +93,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(
         actions.addCartToFavorite(user_id, product_id, size, cart_item_id)
       ),
-    removeProductFromCart: (cart_item) =>
-      dispatch(actions.removeProductFromCart(cart_item)),
+    removeProductFromCart: (cart_item_id) =>
+      dispatch(actions.removeProductFromCart(cart_item_id)),
   };
 };
 

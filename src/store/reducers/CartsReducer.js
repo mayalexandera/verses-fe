@@ -60,7 +60,7 @@ const removeProductFromCart = (state, action) => {
 
   console.log(action.payload, updatedCart);
   state.cart_items.map((cartItem) => {
-    if (cartItem.id !== action.payload) {
+    if (cartItem.id !== action.payload[1]) {
       updatedCart.push({ ...cartItem });
     }
   });
@@ -68,6 +68,7 @@ const removeProductFromCart = (state, action) => {
     cart_items: [...updatedCart],
     error: false,
     message: null,
+    cart_total: action.payload[0]
   });
 };
 

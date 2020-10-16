@@ -10,11 +10,13 @@ export const addProductToCart = (user_id, product_id, size) => async (
       product_id: JSON.stringify(product_id),
       size: size,
     })
-    .then((resp) =>
+    .then((resp) => {
+      console.log(resp.data)
       dispatch({
         type: actionTypes.ADD_PRODUCT_TO_CART,
         payload: resp.data,
       })
+    }
     )
     .catch((err) => dispatch(addProductToCartFailed(err)));
 };
@@ -88,10 +90,10 @@ export const removeProductFromCart = (cart_item_id) => async (
 ) => {
   console.log(cart_item_id);
   let user = getState().auth.userId;
-  await api.delete(`/users/${user}/cart/cart_items/${cart_item_id}`).then(
+  await api.delete(`/users/${user}/cart/cart_items/${cart_item_id}`).then(response =>
     dispatch({
       type: actionTypes.REMOVE_PRODUCT_FROM_CART,
-      payload: cart_item_id,
+      payload: [response.data.total_cost_string, cart_item_id]
     })
   );
 };

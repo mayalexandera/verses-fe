@@ -61,7 +61,7 @@ class ProductShow extends React.Component {
   renderProduct = () => {
     return (
       <section className='product-show'>
-        <div className='col span-2-of-3'>
+        <div className='col span-3-of-5'>
           <div>
             {!this.props.showProduct ? (
               <div>loading</div>
@@ -80,51 +80,64 @@ class ProductShow extends React.Component {
             )}
           </div>
         </div>
-        <div className='span-1-of-3' id='product-text'>
+        <div className='span-2-of-5 product-header'>
           <p className='product-brand-show-title'>{this.props.brand.name}</p>
           <p className='product-show-subtitle'>{this.props.showProduct.name}</p>
           <p className='product-show-subtitle'>
             {this.props.showProduct.price_string}
           </p>
-          <hr id='plan-show-hr'/>
-          <p className='product-show-select'>Select Size</p>
-          <div className='product-add-to-bag-wrapper'>
-            {this.props.sizes.map((size) => {
-              return (
-                <button
-                  onClick={(e) => this.handleSizeClick(e)}
-                  className='product-show-subtitle'
-                  id={this.button(size)}
-                  value={size}
-                >
-                  {size}
-                </button>
-              );
-            })}
+          <hr id='product-show-hr' />
+          <div className='product-menu'>
+            <div className='product-show-select'>
+              <p>Select Size</p>
+              <a className='size-chart' href={this.props.brand.size_chart}>
+                Size Chart
+              </a>
+            </div>
+            <div>
+              {this.props.sizes.map((size) => {
+                return (
+                  <button
+                    onClick={(e) => this.handleSizeClick(e)}
+                    className='product-show-subtitle'
+                    id={this.button(size)}
+                    value={size}
+                  >
+                    {size}
+                  </button>
+                );
+              })}
+            </div>
+            <ul className='product-actions'>
+              <div className='errorMessage'>{this.state.errorMessage}</div>
+              <button
+                onClick={(e) => this.handleClick(e)}
+                value='addToCart'
+                id='add-to-cart-button'
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={(e) => this.handleClick(e)}
+                value='favorite'
+                id='add-to-favorites-button'
+              >
+                Add To Favorites
+              </button>
+            </ul>
+            <div className='product-show-description'>
+              {this.props.showProduct.description}
+            </div>
+            <ul className='fit-details'>
+              {this.props.showProduct.fit_details !== undefined ? (
+                this.props.showProduct.fit_details.split(".").map((detail) => {
+                  return <li>{detail}</li>;
+                })
+              ) : (
+                <p>loading</p>
+              )}
+            </ul>
           </div>
-          <ul className='product-actions'>
-            <div className='errorMessage'>{this.state.errorMessage}</div>
-            <button
-              onClick={(e) => this.handleClick(e)}
-              value='addToCart'
-              id='add-to-cart-button'
-            >
-              Add to Cart
-            </button>
-            <button
-              onClick={(e) => this.handleClick(e)}
-              value='favorite'
-              id='add-to-favorites-button'
-            >
-              Add To Favorites
-            </button>
-          </ul>
-          <div className='product-show-description-wrapper'>
-            <p>{this.props.showProduct.description}</p>
-          </div>
-          <a id='size-chart' href={this.props.brand.size_chart}>
-            Size Chart
-          </a>
         </div>
       </section>
     );

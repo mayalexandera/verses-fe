@@ -74,9 +74,15 @@ class Plans extends React.Component {
 
   render() {
     return (
-      <div className='background'>
-        <div className='plan-header'>Join Us</div>
-        <hr id='plan-title-hr' />
+      <div className='plan-background'>
+        <div className='plan-header'>Pick a Plan</div>
+        <div className='plan-header-subtitle'>
+          <p>
+            Become a member to access a forever-evolving closet of
+            identity-affirming designer clothing, accessories, and more.
+          </p>
+          <em>No commitments. Pause or cancel at any time.</em>
+        </div>
         <div className=' plan-box'>{this.renderHandler()}</div>
       </div>
     );

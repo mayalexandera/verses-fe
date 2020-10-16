@@ -6,6 +6,7 @@ const initialState = {
   member_id: null,
   cart_items: [],
   error: null,
+  cart_total: null,
   loading: false,
   message: null,
 };
@@ -17,6 +18,7 @@ const setCart = (state, action) => {
       cart_id: action.payload.id,
       member_id: action.payload.member_id,
       cart_items: action.payload.cart_items,
+      cart_total: action.payload.total_cost_string,
       loading: false,
       error: null,
       message: null,
@@ -51,7 +53,7 @@ const addProductToCart = (state, action) => {
 };
 
 const removeProductFromCart = (state, action) => {
-  console.log(state, action.payload);
+  console.log(state, action);
   let cart_item = state.cart_items.filter((item) => item.id === action.payload);
   console.log(cart_item);
   const updatedCart = [];

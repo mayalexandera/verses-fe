@@ -1,5 +1,6 @@
 import api from "../apis/api";
 import * as actionTypes from "../actions/actionTypes";
+import * as actions from '../actions/index'
 
 export const addProductToCart = (user_id, product_id, size) => async (
   dispatch
@@ -24,14 +25,14 @@ export const addCartToFavorite = (
   size,
   cart_item_id
 ) => async (dispatch) => {
-  await api
-    .post(`/users/${member_id}/favorites`, {
-      member_id: member_id,
-      product_id: JSON.stringify(product_id),
-      size: size,
-      cart_item_id: JSON.stringify(cart_item_id),
-    })
-    .then(dispatch(removeProductFromCart(cart_item_id)));
+  await api.post(`/users/${member_id}/favorites`, {
+    member_id: member_id,
+    product_id: JSON.stringify(product_id),
+    size: size,
+    cart_item_id: JSON.stringify(cart_item_id),
+  });
+  console.log(cart_item_id);
+  dispatch(removeProductFromCart(cart_item_id));
 };
 
 export const initCart = () => async (dispatch, getState) => {
@@ -85,11 +86,12 @@ export const removeProductFromCart = (cart_item_id) => async (
   dispatch,
   getState
 ) => {
-
+  console.log(cart_item_id);
   let user = getState().auth.userId;
-  await api
-    .delete(`/users/${user}/cart/cart_items/${cart_item_id}`)
-    .then(
-      dispatch({type: actionTypes.REMOVE_PRODUCT_FROM_CART})
-    );
+  await api.delete(`/users/${user}/cart/cart_items/${cart_item_id}`).then(
+    dispatch({
+      type: actionTypes.REMOVE_PRODUCT_FROM_CART,
+      payload: cart_item_id,
+    })
+  );
 };

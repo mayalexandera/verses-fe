@@ -64,7 +64,8 @@ export const setProducts = (products) => {
 export const setShowProduct = (product) => async (dispatch) => {
   await dispatch(actions.setShowBrand(product.brand_id)).then(
     dispatch({ type: actionTypes.SET_SHOW_PRODUCT, payload: product })
-  );
+    );
+    console.log(product)
 };
 
 export const initProducts = () => async (dispatch) => {

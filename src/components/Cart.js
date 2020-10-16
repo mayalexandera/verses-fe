@@ -62,7 +62,7 @@ class Cart extends React.Component {
     let submitButton, message;
     this.props.cart_items === undefined
       ? (message = "0 Items | $0.00")
-      : (message = null);
+      : (message = this.props.cart_total);
     this.props.cart_items === undefined || this.props.cart_items.length === 0
       ? (submitButton = null)
       : (submitButton = (
@@ -73,12 +73,16 @@ class Cart extends React.Component {
             Checkout
           </button>
         ));
+
     return (
       <div className='section-products'>
         Cart
         <div className='guest-message'>{message}</div>
-        <div className='cart-container'>
+        <div className='span-3-of-5 cart-container'>
           {this.renderList()}
+        </div>
+        <div className='span-2-of-5 order-summary'>
+          <p>Summary</p>
           {submitButton}
         </div>
       </div>
@@ -89,7 +93,9 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
+    cart_total: state.cart.cart_total,
     cart_items: state.cart.cart_items,
+    cart_total: state.cart.cart_total,
     products: state.product.select,
     brands: state.brand.select,
   };

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 const CartItem = (props) => {
+  console.log(props.product.price_cents)
   let cart_item;
   if (props.cart_items && props.cart_items !== undefined) {
     cart_item = props.cart_items.filter(
@@ -20,52 +21,48 @@ const CartItem = (props) => {
           props.cart_item.size_string,
           props.cart_item.id
         );
-  };
-
-  return (
-    <div>
+      };
+      
+      return (
+        <div>
       {!props.error && !props.loading ? (
         <div className='cart-item-card'>
           <img
             alt={props.product.name}
             src={props.product.images.split(",")[0]}
-          />
+            />
           <div className='cart-item-details-container'>
             <div className='cart-item-price'>{props.product.price_string}</div>
             <p>{props.brand.name}</p> {props.product.name}
             <div className='cart-item-details'>
               <p>Size: </p> {props.cart_item.size_string}
-
               <ion-icon
                 id='arrow-button'
                 size='small'
                 name='chevron-down-outline'
-              ></ion-icon>
-
+                ></ion-icon>
               <p>Quantity:</p>
               {props.cart_item.quantity}
-
               <ion-icon
                 id='arrow-button'
                 size='small'
                 name='chevron-down-outline'
                 onClick={() => console.log(props.product.size_range)}
-              ></ion-icon>
-
+                ></ion-icon>
             </div>
             <div className='cart-item-buttons'>
               <button
                 onClick={(e) => clickHandler(e)}
                 id='remove-from-cart-button'
                 value='favorite'
-              >
+                >
                 Move To Favorites
               </button>
               <button
                 onClick={(e) => clickHandler(e)}
                 id='remove-from-cart-button'
                 value='delete'
-              >
+                >
                 Remove
               </button>
             </div>
@@ -73,7 +70,7 @@ const CartItem = (props) => {
         </div>
       ) : (
         "loading"
-      )}
+        )}
     </div>
   );
 };

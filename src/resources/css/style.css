@@ -46,10 +46,6 @@ button {
   border: none;
 }
 
-hr {
-  width: 92%;
-}
-
 @font-face {
   font-family: "Futura";
   src: local("Futura"), local("futura"),
@@ -65,59 +61,48 @@ hr {
   width: 100%;
   background-color: #fff;
   position: fixed;
-  border: 1px solid red;
   z-index: 1;
   font-size: 90%;
 }
 
 .nav-links {
-  background-color:white;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 30px 0;
+  padding: 25px 0;
+}
+
+.main-menu,
+.user-menu {
+  display: flex;
+  margin: auto;
 }
 
 .main-menu {
-  display: inline-block;
-  margin: auto;
   margin-left: 0;
-  border: 1px solid red;
+}
+.user-menu {
+  margin-right: 0;
 }
 
-.nav-link-button:hover {
-  border-bottom: 2px solid #d3f6a2;
-  -webkit-transition: color 0.3s;
-  transition: color 0.3s;
-}
-
-.nav-link-button,
-.nav-link-button:link,
-.nav-link-button:visited {
+.nav-link-button {
   padding: 0 10px;
+  display: flex;
   font-weight: 400;
   color: black;
   text-transform: uppercase;
   font-size: 90%;
+  margin: auto;
 }
 
 .nav-link-button:first-child {
   margin-left: 40px;
 }
 .nav-link-button:last-child {
-  margin: auto;
   margin-right: 40px;
 }
 
-.user-menu {
-  border: 1px solid red;
-  display: flex;
-  margin: auto;
-  margin-right: 0;
-}
-
 .rapper-whatever {
-  margin-top: 5em;
+  margin-top: 82px;
 }
 
 .guest-message {
@@ -141,17 +126,21 @@ hr {
 .section-products {
   font-weight: 400;
   display: block;
-  font-size: 125%;
   text-align: center;
-  /* border: 1px solid red; */
-  list-style: none;
-  margin: 0 auto;
-  width: 95%;
+  border: 1px solid red;
 }
 
 .cart-container {
   width: 60%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
+  display: inline-block;
+}
+
+.order-summary {
+  border: 1px solid red;
+  vertical-align: top;
+  text-align: left;
+  display: inline-block;
 }
 
 /* PRODUCT CARD */
@@ -201,20 +190,17 @@ hr {
 }
 
 .product-subtitle {
-  font-size: 85%;
+  font-size: 75%;
   font-weight: 300;
   color: black;
   margin-bottom: 2;
 }
 
 /* PRODUCT SHOW */
-.product-description-container {
-  margin-left: 30px;
-}
-
 .product-show {
   max-width: 1140px;
   margin: 2% auto;
+  border: 1px solid red;
 }
 
 .product-show img {
@@ -245,39 +231,58 @@ hr {
 
 .product-show-select {
   font-size: 80%;
+  margin-top: 20px;
+  border: 1px solid red;
   font-weight: 400;
+  display: flex;
+  margin-bottom: 8px;
+  justify-content: space-between;
 }
 
-.product-show-description-wrapper {
-  font-size: 70%;
+.product-show-description,
+.fit-details {
+  margin-top: 20px;
+  font-size: 80%;
   font-weight: 300;
   line-height: 1.5;
-  margin-top: 50px;
   display: block;
-  margin-left: 10px;
+}
+
+.fit-details li {
+  margin-left: 16px;
+  list-style-type: disc;
+  margin-bottom: 4px;
+}
+
+.fit-details li:last-child {
+  list-style: none;
+  margin-bottom: 10px;
 }
 
 .errorMessage {
-  height: 40px;
   font-size: 90%;
   font-weight: 400;
+  display: flex;
+  justify-content: center;
 }
 
-#product-text {
-  margin-left: 10px;
+.product-header {
   float: right;
+  border: 1px solid red;
 }
+
+.product-menu {
+  padding-left: 10px;
+  padding-right: 28px;
+  border: 1px solid red;
+}
+
 #product-show-hr {
   margin-top: 7px;
   margin-bottom: 20px;
 }
 
 /* CART */
-
-.product-add-to-bag-wrapper {
-  align-items: center;
-  margin-top: 5px;
-}
 
 #size-button {
   margin: 4px;
@@ -286,7 +291,7 @@ hr {
   border: 1px solid rgb(228, 228, 228);
   outline: none;
   background-color: white;
-  height: 40px;
+  min-width: 40px;
   border-radius: 5px;
   padding: 10px;
   color: rgb(38, 38, 38);
@@ -296,6 +301,7 @@ hr {
 #size-button:active,
 #size-button:visited {
   border: 1px solid black;
+  min-width: 40px;
 }
 
 #size-button-clicked {
@@ -306,6 +312,7 @@ hr {
   outline: none;
   background-color: white;
   height: 40px;
+  min-width: 40px;
   border-radius: 5px;
   padding: 10px;
   color: rgb(38, 38, 38);
@@ -339,7 +346,6 @@ hr {
   z-index: 3;
   font-weight: 300;
   width: 100%;
-  margin-top: -2em;
   position: fixed;
   height: 30px;
   background-color: rgb(245, 245, 245);
@@ -480,10 +486,12 @@ hr {
 #order-button,
 #add-to-favorites-button {
   margin: 10px auto;
-  border-radius: 20px;
-  padding: 8px 26px;
+  border-radius: 30px;
+  padding: 18px 26px;
   width: 225px;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 85%;
   display: block;
   text-align: center;
 }
@@ -513,18 +521,13 @@ hr {
 }
 
 .product-actions {
-  margin-top: 10px;
-  width: 100%;
-  justify-content: space-between;
-  font-weight: 300;
   font-size: 95%;
 }
 
-#size-chart {
+.size-chart {
   border-bottom: 0.25px solid rgb(148, 146, 146);
-  font-size: 60%;
-  float: right;
-  margin-top: 20px;
+  font-size: 75%;
+  /* border: 1px solid red; */
 }
 
 .center-nav-button {
@@ -536,43 +539,35 @@ hr {
 }
 
 /* PLANS */
-.background {
-  background-color: green
+.plan-background {
+  background-color: rgb(233, 242, 191);
+  display: inline-block;
 }
 
 .plan-box {
   justify-content: space-between;
-  background-color: rgb(235, 223, 156);
+  margin-top: 20px;
   padding: 1% 5%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   min-height: 100vh;
 }
 
 .plan-header {
   display: flex;
-  background-color: blue;
-  font-size: 150%;
   font-weight: 400;
   justify-content: center;
-  list-style: none;
-  /* transform: translate(0px, -100px); */
-  font-size: 300%;
-  /* border: 1px solid purple; */
-  margin-bottom: 10px;
+  font-size: 250%;
+  margin: 30px auto;
   font-family: "Playfair Display", serif;
 }
 
-#plan-header {
-  display: flex;
+.plan-header-subtitle {
+  padding: 0 20%;
+  line-height: 1.7;
   font-weight: 400;
-  justify-content: center;
-  height: 150px;
-  margin-top: 30px;
-  list-style: none;
-  z-index: 1;
-  color: black;
-  /* transform: translate(0px, 80px); */
+  font-size: 100%;
+  text-align: center;
 }
 
 #plan-route-button {
@@ -678,7 +673,9 @@ hr {
   font-weight: 300;
 }
 
-.plan-card-details { height: 150px}
+.plan-card-details {
+  height: 150px;
+}
 
 .plan-card-details p {
   font-size: 200%;
@@ -748,8 +745,8 @@ hr {
   justify-content: center;
 }
 
-#plan-hr {
-  width: 100%;
+#product-show-hr {
+  width: 90%;
 }
 
 /* CART */

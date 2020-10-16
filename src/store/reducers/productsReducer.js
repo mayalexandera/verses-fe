@@ -21,7 +21,7 @@ const setProducts = (state, action) => {
 
 const setShowProduct = (state, action) => {
   const array = action.payload.images.split(",");
-  console.log(state, array);
+  console.log(state, action);
   return updateObject(state, {
     show: { ...action.payload },
     images: array,

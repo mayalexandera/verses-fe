@@ -83,7 +83,9 @@ class Plans extends React.Component {
           </p>
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
-        <div className=' plan-box'>{this.renderHandler()}</div>
+        <div className=' plan-box'>
+          <div>{this.renderHandler()}</div>
+        </div>
       </div>
     );
   }

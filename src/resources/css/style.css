@@ -135,13 +135,14 @@ button {
   width: 60%;
   border: 1px solid red;
   display: inline-block;
+  text-align: left;
 }
 
 .order-summary {
   border: 1px solid red;
   vertical-align: top;
   text-align: left;
-  display: inline-block;
+  line-height: 1.75;
 }
 
 /* PRODUCT CARD */
@@ -199,8 +200,9 @@ button {
 
 /* PRODUCT SHOW */
 .product-show {
-  max-width: 1140px;
-  margin: 2% auto;
+  /* max-width: 1140px; */
+  display: flex;
+  margin: 2%;
   border: 1px solid red;
 }
 
@@ -312,7 +314,6 @@ button {
   border: 1px solid black;
   outline: none;
   background-color: white;
-  height: 40px;
   min-width: 40px;
   border-radius: 5px;
   padding: 10px;
@@ -524,29 +525,35 @@ button {
 /* PLANS */
 .plan-background {
   background-color: rgb(233, 242, 191);
-  display: inline-block;
 }
 
 .plan-box {
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 1% 5%;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 80%;
+  height: 100%;
+  padding: 1%;
   display: flex;
-  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+.plan-box > div {
+  display: flex;
 }
 
 .plan-header {
   display: flex;
+  padding: 30px 0;
   font-weight: 400;
   justify-content: center;
   font-size: 250%;
-  margin: 30px auto;
   font-family: "Playfair Display", serif;
 }
 
 .plan-header-subtitle {
-  padding: 0 20%;
+  padding: 0 26%;
   line-height: 1.7;
+  display: inline-block;
   font-weight: 400;
   font-size: 100%;
   text-align: center;
@@ -629,8 +636,8 @@ button {
   box-shadow: 0px 2px 2px #efefef;
   margin: 20px 20px;
   padding-top: 20px;
-  max-width: 300px;
-  max-height: 425px;
+  max-width: 325px;
+  max-height: 475px;
   border-radius: 5px;
   display: inline-block;
 }
@@ -734,8 +741,10 @@ button {
 /* CART */
 .cart-item-card {
   height: 200px;
+  position: relative;
   display: block;
-  padding-bottom: 10px;
+  font-size: 90%;
+  border: 1px solid red;
   line-height: 1.75;
   box-shadow: rgb(229, 229, 229) 0px 0px 0px 0px inset,
     rgb(229, 229, 229) 0px 0px 0px 0px inset,
@@ -743,38 +752,39 @@ button {
     rgb(229, 229, 229) 0px 0px 0px 0px inset;
 }
 
-.cart-item-img-wrapper {
-  width: 100%;
-}
-
 .cart-item-card img {
   height: 100%;
   margin-right: 3%;
+  border: 1px solid red;
   float: left;
 }
 
 .cart-item-details-container {
   text-align: left;
   list-style: none;
-  padding: 40px 5px 0px 0px;
-  font-size: 70%;
-  display: block;
+  padding: 30px 5px 0px 0px;
   font-weight: 300;
+  border: 1px solid red;
+  font-size: 90%;
 }
 
-.cart-item-details-container p {
+.cart-item-details-container > p {
   font-weight: 400;
+  border: 1px solid red;
+  font-size: 110%;
+}
+
+.cart-item-details {
+  margin-right: 10px;
+  display: block;
 }
 
 .cart-item-details p {
   display: inline-block;
+  border: 1px solid red;
   margin-left: 5px;
   margin-right: 10px;
-}
-
-.cart-item-details p:first-child {
-  display: inline-block;
-  margin-left: 0px;
+  font-weight: 400;
 }
 
 #arrow-button {
@@ -786,10 +796,6 @@ button {
 .cart-item-buttons {
   display: inline-block;
   margin-top: 20px;
-}
-
-.cart-item-details {
-  margin-right: 10px;
 }
 
 .cart-item-price {
@@ -859,9 +865,33 @@ button {
 }
 
 .order-summary-container {
-  height: 100vh;
-  display: block;
   position: relative;
+  border: 1px solid red;
+  vertical-align: top;
+  text-align: left;
+  display: inline-block;
+}
+
+.order-summary-container > p {
+  padding-bottom: 20px;
+  font-size: 110%;
+  padding-left: 16px;
+}
+
+.order-summary {
+  font-weight: 300;
+  font-size: 80%;
+  padding: 0px 20px;
+  border: 1px solid red;
+}
+
+.order-summary div {
+    display: flex;
+  justify-content: space-between;
+}
+
+#order-key {
+  font-weight: 400;
 }
 
 .order-info {

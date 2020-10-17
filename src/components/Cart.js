@@ -10,12 +10,14 @@ class Cart extends React.Component {
 
   clickHandler = (e) => {
     e.preventDefault();
+    console.log(this.props)
     this.props.current_user === null
       ? this.props.history.push("/plans")
       : this.authorized();
   };
 
   authorized = () => {
+    console.log(this.props.current_plan)
     !this.props.current_user.plan_membership_id
       ? this.props.history.push("/plans")
       : this.props.initOrder();
@@ -59,10 +61,12 @@ class Cart extends React.Component {
   };
 
   render() {
-    let submitButton, message;
+    let submitButton, message, cart;
     this.props.cart_items === undefined
       ? (message = "0 Items | $0.00")
-      : (message = this.props.cart_total);
+      : (message = null);
+    this.props.cart_items === undefined ? cart = "Cart" : cart = null
+      
     this.props.cart_items === undefined || this.props.cart_items.length === 0
       ? (submitButton = null)
       : (submitButton = (
@@ -76,13 +80,28 @@ class Cart extends React.Component {
 
     return (
       <div className='section-products'>
-        Cart
-        <div className='guest-message'>{message}</div>
+        <div className='guest-message'>
+          {cart}
+          {message}
+        </div>
         <div className='span-3-of-5 cart-container'>
+          Cart
           {this.renderList()}
         </div>
-        <div className='span-2-of-5 order-summary'>
+
+        <div className='span-2-of-5 order-summary-container'>
           <p>Summary</p>
+          <div className='order-summary'>
+            <div>
+              <p id='order-key'>Subtotal</p>
+              {this.props.cart_total}
+            </div>
+            <p id='order-key'>Estimated Shipping & Handling</p>
+            <p id='order-key'>Estimated Tax</p>
+            <hr />
+            <p id='order-key'>Total</p>
+            <hr />
+          </div>
           {submitButton}
         </div>
       </div>

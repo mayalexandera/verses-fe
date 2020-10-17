@@ -129,7 +129,7 @@ class ProductShow extends React.Component {
               {this.props.showProduct.description}
             </div>
             <ul className='fit-details'>
-              {this.props.showProduct.fit_details !== undefined ? (
+              {this.props.showProduct.fit_details !== undefined && this.props.showProduct.fit_details !== null ? (
                 this.props.showProduct.fit_details.split(".").map((detail) => {
                   return <li>{detail}</li>;
                 })

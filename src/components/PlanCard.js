@@ -20,15 +20,14 @@ const PlanCard = (props) => {
   };
 
   const renderText = () => {
-    if (
-      !props.current_plan ||
-      !props.current_plan.plan_membership ||
-      props.current_plan.plan_membership.plan_id !== props.plan.id
-    ) {
+    //guests
+    if (props.current_plan === undefined || props.current_plan === null)
       return "Try Now";
-    } else {
-      return "Current Plan";
-    }
+    //members with or without plan membership
+    return !props.current_plan.plan_membership ||
+      props.plan.id !== props.current_plan.plan_membership.plan_id
+      ? "Try Now"
+      : "Current Plan";
   };
 
   const renderId = () => {

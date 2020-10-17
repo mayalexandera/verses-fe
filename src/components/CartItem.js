@@ -27,10 +27,10 @@ const CartItem = (props) => {
         <div>
       {!props.error && !props.loading ? (
         <div className='cart-item-card'>
-          <img
-            alt={props.product.name}
-            src={props.product.images.split(",")[0]}
-            />
+            <img
+              alt={props.product.name}
+              src={props.product.images.split(",")[0]}
+              />
           <div className='cart-item-details-container'>
             <div className='cart-item-price'>{props.product.price_string}</div>
             <p>{props.brand.name}</p> {props.product.name}

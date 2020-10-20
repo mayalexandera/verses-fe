@@ -6,18 +6,17 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
+    this.props.fetchUser()
   }
 
   clickHandler = (e) => {
     e.preventDefault();
-    console.log(this.props)
     this.props.current_user === null
       ? this.props.history.push("/plans")
       : this.authorized();
   };
 
   authorized = () => {
-    console.log(this.props.current_plan)
     !this.props.current_user.plan_membership_id
       ? this.props.history.push("/plans")
       : this.props.initOrder();
@@ -61,12 +60,12 @@ class Cart extends React.Component {
   };
 
   render() {
-    let submitButton, message, cart;
+    let submitButton, message, cart, guestMessage, memberCart;
     this.props.cart_items === undefined
       ? (message = "0 Items | $0.00")
       : (message = null);
-    this.props.cart_items === undefined ? cart = "Cart" : cart = null
-      
+    this.props.cart_items === undefined ? (cart = "Cart") : (cart = null);
+
     this.props.cart_items === undefined || this.props.cart_items.length === 0
       ? (submitButton = null)
       : (submitButton = (
@@ -77,30 +76,53 @@ class Cart extends React.Component {
             Checkout
           </button>
         ));
+    guestMessage = (
+      <div>
+        <p>{cart}</p>
+      </div>
+    );
+    this.props.current_user 
+      ? (memberCart = "Cart")
+      : (memberCart = (
+          <div>
+            <div className='cart-message'>
+              <p>Free Shipping for Members</p>
+              <p>Become a Verses member for fast and free shipping.</p>
+            </div>
+              <div className='spacer' />
+          </div>
+        ));
 
     return (
       <div className='section-products'>
-        <div className='guest-message'>
-          {cart}
-          {message}
-        </div>
-        <div className='span-3-of-5 cart-container'>
-          Cart
+        <div className='spacer' />
+        <div className='span-4-of-7 cart-container'>
+          {memberCart}
+
+          {guestMessage}
           {this.renderList()}
+          <hr id='order-hr' />
         </div>
 
-        <div className='span-2-of-5 order-summary-container'>
+        <div className='span-3-of-7 order-summary-container'>
           <p>Summary</p>
           <div className='order-summary'>
             <div>
               <p id='order-key'>Subtotal</p>
               {this.props.cart_total}
             </div>
-            <p id='order-key'>Estimated Shipping & Handling</p>
-            <p id='order-key'>Estimated Tax</p>
-            <hr />
-            <p id='order-key'>Total</p>
-            <hr />
+            <div>
+              <p id='order-key'>Estimated Shipping & Handling</p>
+            </div>
+            <div>
+              <p id='order-key'>Estimated Tax</p>
+            </div>
+            <hr id='order-hr' />
+            <div>
+              <p id='order-total'>Total</p>
+            </div>
+            <hr id='order-hr' />
+            {/* <hr /> */}
           </div>
           {submitButton}
         </div>
@@ -126,6 +148,7 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (user_id, product_id, size) =>
       dispatch(actions.addProductToCart(user_id, product_id, size)),
     initOrder: () => dispatch(actions.initOrder()),
+    fetchUser: () => dispatch(actions.fetchUser())
   };
 };
 

@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 const CartItem = (props) => {
-  console.log(props.product.price_cents)
-  let cart_item;
+  const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let cart_item, quantity=props.cart_item.quantity, size=props.cart_item.size_string;
   if (props.cart_items && props.cart_items !== undefined) {
     cart_item = props.cart_items.filter(
       (item) => item.product_id === props.product.id
@@ -21,48 +21,84 @@ const CartItem = (props) => {
           props.cart_item.size_string,
           props.cart_item.id
         );
-      };
-      
-      return (
-        <div>
+  };
+
+  const sizeChangeHandler = (e) => {
+    e.preventDefault()
+    console.log(size)
+    size = e.target.value
+    console.log(size)
+  }
+
+    const quantityChangeHandler = (e) => {
+      e.preventDefault();
+      console.log(quantity);
+      quantity = e.target.value;
+      console.log(quantity);
+    };
+
+  return (
+    <div>
       {!props.error && !props.loading ? (
         <div className='cart-item-card'>
-            <img
-              alt={props.product.name}
-              src={props.product.images.split(",")[0]}
-              />
+          <img
+            alt={props.product.name}
+            src={props.product.images.split(",")[0]}
+          />
           <div className='cart-item-details-container'>
             <div className='cart-item-price'>{props.product.price_string}</div>
             <p>{props.brand.name}</p> {props.product.name}
             <div className='cart-item-details'>
-              <p>Size: </p> {props.cart_item.size_string}
-              <ion-icon
-                id='arrow-button'
-                size='small'
-                name='chevron-down-outline'
-                ></ion-icon>
+              <p>Size: </p>
+              <select
+                className='sizes-dropdown'
+                onChange={(e) => sizeChangeHandler(e)}
+              >
+                {props.product && props.product
+                  ? props.product.size_range.split(",").map((size) => {
+                      return (
+                        <option
+                          selected={size === props.cart_item.size_string}
+                          value={size}
+                        >
+                          {size}
+                        </option>
+                      );
+                    })
+                  : null}
+              </select>
               <p>Quantity:</p>
-              {props.cart_item.quantity}
-              <ion-icon
-                id='arrow-button'
-                size='small'
-                name='chevron-down-outline'
-                onClick={() => console.log(props.product.size_range)}
-                ></ion-icon>
+              <select
+                className='sizes-dropdown'
+                onChange={(e) => quantityChangeHandler(e)}
+              >
+                {props.product && props.product
+                  ? quantities.map((quantity) => {
+                      return (
+                        <option
+                          selected={quantity === props.cart_item.quantity}
+                          value={quantity}
+                        >
+                          {quantity}
+                        </option>
+                      );
+                    })
+                  : null}
+              </select>
             </div>
             <div className='cart-item-buttons'>
               <button
                 onClick={(e) => clickHandler(e)}
                 id='remove-from-cart-button'
                 value='favorite'
-                >
+              >
                 Move To Favorites
               </button>
               <button
                 onClick={(e) => clickHandler(e)}
                 id='remove-from-cart-button'
                 value='delete'
-                >
+              >
                 Remove
               </button>
             </div>
@@ -70,7 +106,7 @@ const CartItem = (props) => {
         </div>
       ) : (
         "loading"
-        )}
+      )}
     </div>
   );
 };

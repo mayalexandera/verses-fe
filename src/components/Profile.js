@@ -22,9 +22,11 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className='profile-container'>
-        {this.renderUser()}
-        <OrderContainer />
+      <div>
+        <div className='profile-container'>
+          {this.renderUser()}
+        </div>
+          <OrderContainer />
       </div>
     );
   }

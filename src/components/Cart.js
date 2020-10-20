@@ -6,7 +6,7 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
-    this.props.fetchUser()
+    this.props.fetchUser();
   }
 
   clickHandler = (e) => {
@@ -43,20 +43,22 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
-    return this.props.cart_items === undefined
-      ? null
-      : this.props.cart_items.map((item) => {
-          let product = this.findProduct(item);
-          let brand = this.findBrand(product);
-          return (
-            <CartItem
-              cart_item={item}
-              brand={brand}
-              key={item.id}
-              product={product}
-            />
-          );
-        });
+    return this.props.cart_items === undefined ? (
+      <p>There are no items in your cart</p>
+    ) : (
+      this.props.cart_items.map((item) => {
+        let product = this.findProduct(item);
+        let brand = this.findBrand(product);
+        return (
+          <CartItem
+            cart_item={item}
+            brand={brand}
+            key={item.id}
+            product={product}
+          />
+        );
+      })
+    );
   };
 
   render() {
@@ -76,20 +78,33 @@ class Cart extends React.Component {
             Checkout
           </button>
         ));
-    guestMessage = (
-      <div>
-        <p>{cart}</p>
-      </div>
-    );
-    this.props.current_user 
+    guestMessage = <div>{cart}</div>;
+    this.props.current_user
       ? (memberCart = "Cart")
       : (memberCart = (
           <div>
             <div className='cart-message'>
               <p>Free Shipping for Members</p>
-              <p>Become a Verses member for fast and free shipping.</p>
+              <p>
+                {"Become a Verses member for fast and free shipping. "}
+                <a
+                  className='guest-cart-link'
+                  onClick={() => this.props.history.push("/login")}
+                >
+                  {" "}
+                  Join Us
+                </a>{" "}
+                or
+                <a
+                  className='guest-cart-link'
+                  onClick={() => this.props.history.push("/login")}
+                >
+                  {" "}
+                  Log In
+                </a>
+              </p>
             </div>
-              <div className='spacer' />
+            <div className='spacer' />
           </div>
         ));
 
@@ -98,7 +113,6 @@ class Cart extends React.Component {
         <div className='spacer' />
         <div className='span-4-of-7 cart-container'>
           {memberCart}
-
           {guestMessage}
           {this.renderList()}
           <hr id='order-hr' />
@@ -113,16 +127,17 @@ class Cart extends React.Component {
             </div>
             <div>
               <p id='order-key'>Estimated Shipping & Handling</p>
+              {"$0.00"}
             </div>
             <div>
-              <p id='order-key'>Estimated Tax</p>
+              <p id='order-key'>Estimated Tax</p>-
             </div>
             <hr id='order-hr' />
             <div>
               <p id='order-total'>Total</p>
+              {this.props.cart_total ? this.props.cart_total : "$0.00"}
             </div>
             <hr id='order-hr' />
-            {/* <hr /> */}
           </div>
           {submitButton}
         </div>
@@ -148,7 +163,7 @@ const mapDispatchToProps = (dispatch) => {
     addToCart: (user_id, product_id, size) =>
       dispatch(actions.addProductToCart(user_id, product_id, size)),
     initOrder: () => dispatch(actions.initOrder()),
-    fetchUser: () => dispatch(actions.fetchUser())
+    fetchUser: () => dispatch(actions.fetchUser()),
   };
 };
 

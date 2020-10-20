@@ -13,13 +13,27 @@ class OrderContainer extends React.Component {
       return this.props.orders.map((order) => {
         return (
           <div className='order-card'>
-            <div className='row order-item'>
-              <span>Order Date:</span> {order.order_date.slice(0,10)}
+            <div className='order-card-thumbnail-wrapper'>
+              <img
+                alt={order.number}
+                src={this.props.products[0].images.split(",")[0]}
+              />
             </div>
-
-            <div className='row order-item'>
-              <span>Total: </span>
-              {order.total_cost_string}
+            <div className='order-card-details'>
+              <p>
+                <span>Ordered:</span> {order.ordered_date}
+              </p>
+              <p>
+                <span>Order</span>#{order.number}
+              </p>
+            </div>
+            <div className='order-history-buttons'>
+              <button>
+                View or Manage
+              </button>
+              <button>
+                Shop Similar
+              </button>
             </div>
           </div>
         );
@@ -29,16 +43,20 @@ class OrderContainer extends React.Component {
 
   render() {
     return (
-      <div className='orders-container'>
-        <div className='order-title'>Order History</div>
-        <> {this.renderOrders()}</>
-      </div>
+      <>
+        <div className='order-title'>Orders</div>
+        <div className='orders-container'>
+          <> {this.renderOrders()}</>
+          
+        </div>
+      </>
     );
   }
 }
 
 const msp = (state) => {
-  return { orders: state.order.orders };
+  console.log(state);
+  return { orders: state.order.orders, order_items: state.order.order_items, products: state.product.select };
 };
 
 const mdp = (dispatch) => {

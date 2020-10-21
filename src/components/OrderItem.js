@@ -14,15 +14,16 @@ const OrderItem = (props) => {
             />
           </div>
           <div className='order-card-details'>
-            {"Delivered"}
-            <p>{props.product_item[0].name}</p>
-            <p>
-              <span>Ordered:</span> {props.order.ordered_date}
-            </p>
-            <p>
-              <span>Order</span>#{props.order.number}
-            </p>
-          </div>
+            <div className='order-item-info'>
+              {"Delivered"}
+              <p>{props.product_item[0].name}</p>
+              <p>
+                <span>Ordered:</span> {props.order.ordered_date}
+              </p>
+              <p>
+                <span>Order</span>#{props.order.number}
+              </p>
+            </div>
           <div className='order-history-buttons'>
             <button onClick={() => console.log(props.order.id)} value={props.order.id}>
               View or Manage
@@ -30,10 +31,11 @@ const OrderItem = (props) => {
             <button
               onClick={() => console.log(props.product_item[0].product_type)}
               value={props.product_item[0].product_type}
-            >
+              >
               Shop Similar
             </button>
           </div>
+              </div>
         </div>
       </div>
       <hr id='order-hr' />

@@ -875,19 +875,44 @@ button {
 }
 
 .section-orders {
+  max-width: 1424px;
+  padding: 0 48px;
+  margin: auto;
   margin-bottom: 48px;
+  /* border: 1px solid red; */
+}
+
+.section-orders > hr {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.orders-message-wrapper {
+  /* border: 1px solid red; */
+  padding-bottom: 40px;
+  display: flex;
 }
 
 .orders-message {
-  padding-bottom: 40px;
-}
-
-.orders-message > img {
-  display: flex;
+  /* border: 1px solid red; */
+  display: inline-flex;
   margin: auto;
 }
 
-.orders-container {
+.orders-message > img {
+  /* border: 1px solid red; */
+  margin-right: 12px;
+}
+
+.orders-message > p {
+    /* border: 1px solid red; */
+    font-size: 16px;
+    font-weight: 300;
+  margin: auto;
+}
+
+.orders-container-wrapper {
   border-radius: 2px;
   display: block;
   align-content: center;
@@ -895,21 +920,15 @@ button {
   max-width: 1200px;
   margin: auto;
 }
-
-.orders-container > hr {
-  margin: 0 48px;
-  width: 80%;
+.orders-container {
+  width: 100%;
 }
 
 .order-card-wrapper {
   position: relative;
   display: flex;
-  /* padding: 20px 0px 24px 0px; */
-  border: 1px solid red;
-  /* width: 75%; */
   margin: auto;
   padding: 40px 0;
-  /* max-width: 66%; */
 }
 
 .order-card-wrapper span {
@@ -924,11 +943,11 @@ button {
   padding-bottom: 12px;
   line-height: 1.5;
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .order-card-details {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   font-weight: 400;
   width: 100%;
@@ -939,21 +958,21 @@ button {
 
 .order-card-thumbnail-wrapper {
   display: block;
-  height: 139px;
-  border: 1px solid red;
-  padding-right: 30px;
+  /* border: 1px solid red; */
+  padding-right: 32px;
 }
 
 .order-card-thumbnail-wrapper img {
+  max-height: 287px;
   height: 100%;
   display: block;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .order-item-info {
-  width: 80%;
-  border: 1px solid red;
+  width: 75%;
+  /* border: 1px solid red; */
 }
 
 .order-item-info > p:first-child {
@@ -963,29 +982,25 @@ button {
 .order-title {
   display: flex;
   position: relative;
-  line-height: 2;
   font-size: 24px;
   font-weight: 400;
-  padding: 0px 20px 0px 20px;
-  border: 1px solid red;
+  max-width: 1424px;
+  margin: auto;
+  /* border: 1px solid red; */
 }
 
 .order-title p {
   padding-right: 8px;
   margin: auto;
   width: 25%;
-  border: 1px solid red;
-}
-
-.order-title hr {
-  width: 100%;
+  /* border: 1px solid red; */
 }
 
 .order-history-buttons {
   display: inline-block;
   padding-left: 20px;
-  width: 20%;
-  border: 1px solid red;
+  width: 25%;
+  /* border: 1px solid red; */
 }
 
 .order-history-buttons button {
@@ -1037,8 +1052,6 @@ button {
 }
 
 #order-hr {
-  /* margin: 10px auto; */
-  /* width: 75%; */
   border-top-style: initial;
   border-right-style: initial;
   border-left-style: initial;

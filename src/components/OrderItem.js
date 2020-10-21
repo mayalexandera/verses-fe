@@ -16,7 +16,7 @@ const OrderItem = (props) => {
           <div className='order-card-details'>
             <div className='order-item-info'>
               {"Delivered"}
-              <p>{props.product_item[0].name}</p>
+              <p><strong>{props.product_item[0].name}</strong></p>
               <p>
                 <span>Ordered:</span> {props.order.ordered_date}
               </p>

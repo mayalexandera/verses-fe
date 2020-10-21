@@ -49,10 +49,23 @@ class OrderContainer extends React.Component {
           </div>
           <hr id='order-hr' />
         </div>
-          <div className='orders-message'><img src="https://www.nike.com/assets/experience/membership/profile/dist/2.3.4/images/shopping_wearTests_icon.svg" alt="manage or track order"/></div>
-        <div className='orders-container'>
+        <div className='orders-message-wrapper'>
+          <div className='orders-message'>
+            <img
+              src='https://www.nike.com/assets/experience/membership/profile/dist/2.3.4/images/shopping_wearTests_icon.svg'
+              alt='manage or track order'
+            />
+            <p>
+              Click <strong>'View or Manage'</strong> to cancel an order, track a shipment, or
+              start a return.
+            </p>
+          </div>
+        </div>
+        <div className='orders-container-wrapper'>
+          <div className='orders-container'>
             <hr id='order-hr' />
-          <> {this.renderOrders()}</>
+            <> {this.renderOrders()}</>
+          </div>
         </div>
       </div>
     );

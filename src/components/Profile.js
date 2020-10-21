@@ -12,11 +12,11 @@ class Profile extends React.Component {
   renderUser = () => {
     return this.props.current_user && this.props.current_user ? (
       <div>
-        <section className='profile-card-wrapper'>
+        <section className='profile-card-container'>
           <div className='profile-card'>
             <p className='profile-photo' />
             <div className='profile-title'>
-              <p>{this.props.current_user.name}</p>
+              <p><strong>{this.props.current_user.name}</strong></p>
               <p className='profile-subtitle'>Verses member since June 2016</p>
           </div>
           </div>
@@ -27,10 +27,12 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className='header-wrapper'>
-        <ProfileHeader/>
-        <div className='spacer'/>
-          {this.renderUser()}
+      <div>
+        <div className='profile-header-wrapper'>
+          <div className='profile-header-container'><ProfileHeader/></div>
+          <div className='spacer'/>
+        </div>
+            <div className='profile-card-wrapper'>{this.renderUser()}</div>
       </div>
     );
   }

@@ -38,10 +38,10 @@ class OrderContainer extends React.Component {
       <div className='section-orders-wrapper'>
         <div className='section-orders'>
           <div className='order-title'>
-            <p>Orders</p>
-            <div className='profile-header-wrapper'>
-              <div className='profile-header-container'>
-                <div className='profile-header-links'>
+            <p><strong>Orders</strong></p>
+            <div className='order-header-wrapper'>
+              <div className='order-header-container'>
+                <div className='order-header-links'>
                   <ProfileHeader />
                 </div>
               </div>

@@ -871,7 +871,7 @@ button {
 /* ORDERS */
 .section-orders-wrapper {
   padding: 0px 48px;
-  padding-top: 48px;
+  padding-top: 50px;
 }
 
 .section-orders {
@@ -986,14 +986,13 @@ button {
   font-weight: 400;
   max-width: 1424px;
   margin: auto;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .order-title p {
   padding-right: 8px;
-  margin: auto;
   width: 25%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .order-history-buttons {
@@ -1133,10 +1132,17 @@ button {
   display: block;
 }
 
-.profile-card-wrapper {
+.profile-card-container {
   padding-bottom: 48px;
   margin: 0px 20px;
+  width: 85%;
   /* border: 1px solid red; */
+}
+
+.profile-card-wrapper {
+  width: 85%;
+  margin: auto;
+  border: 1px solid red;
 }
 
 .profile-title {
@@ -1173,23 +1179,37 @@ button {
 .profile-nav-container {
   text-align: center;
   font-size: 16px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
-.profile-header-wrapper {
-  /* border: 1px solid red; */
+.order-header-wrapper {
+  border: 1px solid red;
   width: 75%;
   justify-content: center;
   margin: auto;
 }
+.profile-header-wrapper {
+  border: 1px solid red;
+  padding-top: 50px;
+  width: 85%;
+  justify-content: center;
+  margin: auto;
+}
 
-.profile-header-container {
+.order-header-container {
   display: block;
   /* border: 1px solid red; */
 }
+.profile-header-container {
+  display: block;
+  max-width: 1424px;
+  padding: 0 48px;
+  margin: auto;
+  /* border: 1px solid red; */
+}
 
-.profile-header-links {
-  width: 66%;
+.order-header-links {
+  width: 68.05%;
   /* border: 1px solid red; */
 }
 
@@ -1199,9 +1219,4 @@ button {
   font-weight: 400;
   display: inline-block;
   color: black;
-}
-
-.header-wrapper {
-  /* border: 1px solid red; */
-  padding-top: 28px;
 }

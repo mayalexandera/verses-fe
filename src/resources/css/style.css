@@ -69,7 +69,7 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .main-menu,
@@ -224,7 +224,7 @@ button {
   /* max-width: 1140px; */
   display: flex;
   margin: 2%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .product-show img {
@@ -256,7 +256,7 @@ button {
 .product-show-select {
   font-size: 80%;
   margin-top: 20px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-weight: 400;
   display: flex;
   margin-bottom: 8px;
@@ -456,18 +456,22 @@ button {
 }
 
 /* FAVORITES */
+.section-favorites {
+  margin-bottom: 48px;
+  border: 1px solid red;
+}
 .favorite-card {
   margin: 10% 5%;
   display: block;
   padding: 10px;
   min-height: 50%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .favorite-card-details {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .favorite-title {
@@ -487,19 +491,19 @@ button {
 
 .favorite-photo {
   position: relative;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .favorite-photo img {
   width: 100%;
   /* height: auto; */
   overflow: hidden;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .favorite-actions {
   text-align: left;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #add-to-favorites-button {
@@ -984,15 +988,14 @@ button {
   position: relative;
   font-size: 24px;
   font-weight: 400;
-  max-width: 1424px;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .order-title p {
   padding-right: 8px;
   width: 25%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .order-history-buttons {
@@ -1142,7 +1145,7 @@ button {
 .profile-card-wrapper {
   width: 85%;
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .profile-title {
@@ -1179,18 +1182,25 @@ button {
 .profile-nav-container {
   text-align: center;
   font-size: 16px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .order-header-wrapper {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 75%;
   justify-content: center;
   margin: auto;
 }
+
+.favorites-header-wrapper {
+  /* border: 1px solid red; */
+  width: 78.5%;
+  justify-content: center;
+  margin: auto;
+}
 .profile-header-wrapper {
-  border: 1px solid red;
-  padding-top: 50px;
+  /* border: 1px solid red; */
+  padding-top: 55px;
   width: 85%;
   justify-content: center;
   margin: auto;
@@ -1209,7 +1219,7 @@ button {
 }
 
 .order-header-links {
-  width: 68.05%;
+  width: 68.2%;
   /* border: 1px solid red; */
 }
 

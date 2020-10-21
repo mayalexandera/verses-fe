@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
-import OrderContainer from "./OrderContainer";
 import ProfileHeader from "./ProfileHeader";
 
 class Profile extends React.Component {

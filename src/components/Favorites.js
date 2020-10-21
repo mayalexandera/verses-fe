@@ -2,6 +2,7 @@ import React from "react";
 import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 import Favorite from "./Favorite";
+import ProfileHeader from "./ProfileHeader";
 
 class Favorites extends React.Component {
   componentDidMount() {
@@ -45,9 +46,22 @@ class Favorites extends React.Component {
 
   render() {
     return (
-      <div className='section-products'>
-        <p className='features-label'>Favorites</p>
-        {this.renderList()}
+      <div className='section-orders-wrapper'>
+        <div className='section-favorites'>
+          <div className='order-title'>
+            <p>
+              <strong>Favorites</strong>
+            </p>
+            <div className='favorites-header-wrapper'>
+              <div className='order-header-container'>
+                <div className='order-header-links'>
+                  <ProfileHeader />
+                </div>
+              </div>
+            </div>
+          </div>
+          {this.renderList()}
+        </div>
       </div>
     );
   }

@@ -43,7 +43,7 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
-    return this.props.cart_items === undefined ? (
+    return this.props.cart_items === undefined || this.props.cart_items.length === 0 ? (
       <p>There are no items in your cart</p>
     ) : (
       this.props.cart_items.map((item) => {

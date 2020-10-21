@@ -68,7 +68,8 @@ button {
 .nav-links {
   display: flex;
   justify-content: space-between;
-  padding: 25px 0;
+  padding: 20px 0;
+  border: 1px solid red;
 }
 
 .main-menu,
@@ -102,7 +103,7 @@ button {
 }
 
 .rapper-whatever {
-  margin-top: 82px;
+  margin-top: 65px;
 }
 
 .guest-message {
@@ -131,6 +132,10 @@ button {
   /* border: 1px solid red; */
 }
 
+.section-products hr {
+  width: 100%;
+}
+
 .cart-container {
   width: 60%;
   font-size: 18px;
@@ -146,7 +151,7 @@ button {
   font-weight: 300;
 }
 .spacer {
-  height: 50px;
+  height: 80px;
 }
 
 .order-summary {
@@ -864,65 +869,98 @@ button {
 }
 
 /* ORDERS */
+.section-orders {
+  padding: 0px 48px;
+}
 .orders-container {
-  background-color: #fff;
   border-radius: 2px;
   display: block;
   align-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
-  padding: 0px 48px;
 }
 
-.order-card {
+.order-card-wrapper {
   position: relative;
   display: flex;
-  box-shadow: 0 2px 2px #efefef;
   border-radius: 5px;
-  padding: 0px 10px;
-  padding-bottom: 12px;
-  border: 1px solid red;
-  flex-wrap: nowrap;
+  padding: 20px 0px 24px 0px;
+  /* border: 1px solid red; */
   width: 75%;
   margin: auto;
+  max-width: 800px;
 }
 
-.order-card span {
+.order-card-wrapper span {
   margin-right: 5px;
 }
 
+.order-card {
+  flex-wrap: nowrap;
+  position: relative;
+  display: flex;
+  line-height: 1.5;
+  width: 100%;
+}
+
 .order-card-details {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-weight: 400;
-  display: inline-block;
+  width: 40%;
   color: #777;
   font-size: 16px;
 }
 
+.order-card-details > p:first-child {
+  color: black;
+  font-weight: 500;
+}
+
 .order-card-thumbnail-wrapper {
+  display: block;
   height: 139px;
-  border: 1px solid red;
-  display: inline-block;
-  padding-right: 20px;
+  /* border: 1px solid red; */
+  width: 139px;
+  margin-right: 20px;
 }
 
 .order-card-thumbnail-wrapper img {
   height: 100%;
-  width: auto;
-  border: 1px solid red;
+  display: block;
+  margin: auto;
+  /* border: 1px solid red; */
 }
 
 .order-title {
   display: inline-flex;
-  font-size: 120%;
+  position: relative;
+  width: 100%;
+  font-size: 24px;
   text-align: left;
-  margin: 30px 20px;
   font-weight: 400;
-  justify-content: center;
+  /* border: 1px solid red; */
+  margin: auto;
+}
+
+.order-title p {
+  padding-right: 8px;
+  margin: auto;
+  width: 25%
+}
+
+.order-title hr {
+  width: 100%;
+}
+
+.order-history-buttons {
+  display: block;
+  padding-left: 20px;
 }
 
 .order-history-buttons button {
-  font-weight: 300;
+  display: block;
+  font-weight: 400;
+  width: 182px;
   font-size: 16px;
   cursor: pointer;
   border: 1px solid rgb(228, 228, 228);
@@ -930,6 +968,7 @@ button {
   background-color: white;
   border-radius: 20px;
   padding: 8px 24px;
+  margin-bottom: 8px;
 }
 
 /* CART */
@@ -974,6 +1013,7 @@ button {
   border-right-color: initial;
   border-left-color: initial;
   border-width: 0px 0px 1px;
+  z-index: 44;
 }
 
 #order-total {
@@ -1029,31 +1069,38 @@ button {
 .profile-container {
   border: 1px solid red;
   margin: 0px 20px;
+  display: flex;
 }
 
 .profile-card {
   border: 1px solid red;
-  display: inline-block;
-}
-
-.profile-title {
-  font-family: "Futura";
-  border: 1px solid red;
-  font-size: 150%;
-  font-weight: 400;
-  display: inline-block;
-}
-
-.profile-title p {
+  line-height: 1.125;
   display: block;
 }
 
+.profile-card-wrapper {
+  padding-bottom: 48px;
+  margin: 0px 20px;
+  border: 1px solid red;
+  
+}
+
+.profile-title {
+  font-size: 150%;
+  font-weight: 400;
+  line-height: 1.125;
+  display: inline-block;
+  margin-top: 16px;
+  vertical-align: top;
+  border: 1px solid red;
+}
+
 .profile-photo {
-  width: 60px;
-  height: 60px;
+  width: 95px;
+  height: 95px;
   margin-right: 20px;
   display: inline-block;
-  background-size: 60px 60px;
+  background-size: 95px 95px;
   border-radius: 50%;
   background-color: hsl(85, 87%, 94%);
 }
@@ -1061,8 +1108,32 @@ button {
 .profile-subtitle {
   font-family: "Lato";
   color: rgb(148, 146, 146);
-  font-size: 45%;
+  font-size: 50%;
   border: 1px solid red;
-  font-weight: 400;
+  font-weight: 300;
   display: inline-block;
+}
+
+/* Profile NAV */
+
+.profile-nav-container {
+  /* width: 75%; */
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  /* border: 1px solid red; */
+}
+
+.profile-header-wrapper {
+  width: 75%;
+}
+
+.profile-nav-link-button {
+  padding: 0 16px;
+  font-weight: 400;
+  color: black;
+}
+
+.header-wrapper {
+  padding-top: 20px;
 }

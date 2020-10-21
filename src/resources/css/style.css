@@ -457,24 +457,51 @@ button {
 
 /* FAVORITES */
 .section-favorites {
+  display: block;
   margin-bottom: 48px;
   border: 1px solid red;
 }
+
+.favorites-container {
+  padding-top: 40px;
+  border: 1px solid red;
+}
+
+.favorites {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+}
+
+.favorite-card-wrapper {
+  border: 1px solid red;
+  max-width: 33.3%;
+  max-height: 675px;
+  display: flex;
+}
 .favorite-card {
-  margin: 10% 5%;
-  display: block;
-  padding: 10px;
-  min-height: 50%;
-  /* border: 1px solid red; */
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  border: 1px solid red;
 }
 
 .favorite-card-details {
+  display: inline-block;
+  width: 100%;
+  height: 18%;
+  line-height: 1.5;
+  border: 1px solid red;
+}
+.favorite-card-info {
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid red; */
 }
 
-.favorite-title {
+.favorite-card-info p {
+  display: inline-block;
   font-size: 90%;
   font-weight: 400;
 }
@@ -490,20 +517,25 @@ button {
 }
 
 .favorite-photo {
+  height: 82%;
   position: relative;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .favorite-photo img {
-  width: 100%;
-  /* height: auto; */
+  /* width: 100%; */
+  height: 100%;
   overflow: hidden;
-  /* border: 1px solid red; */
+  border: 1px solid red;
+  /* transition: opacity 1s ease 0; */
 }
+
+
 
 .favorite-actions {
   text-align: left;
-  /* border: 1px solid red; */
+  padding-top: 16px;
+  border: 1px solid red;
 }
 
 #add-to-favorites-button {

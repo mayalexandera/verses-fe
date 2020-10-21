@@ -17,7 +17,7 @@ const Favorite = (props) => {
   if (props.product === "undefined" || props.product === undefined) return null;
   img = props.product.images.split(",")[0];
   return (
-    <div className='col span-1-of-4'>
+    <div className='favorite-card-wrapper'>
       <div className='favorite-card'>
         <div className='favorite-photo'>
           <img alt={props.product.name} src={img} />
@@ -29,23 +29,22 @@ const Favorite = (props) => {
             <ion-icon size='large' name='close'></ion-icon>
           </button>
         </div>
-        <React.Fragment>
-          <div className='favorite-card-details'>
-            <p className='favorite-title'>{props.brand.name}</p>
-            <p className='favorite-subtitle'>{props.product.name}</p>
+        <div className='favorite-card-details'>
+          <div className='favorite-card-info'>
+            <p><strong>{props.brand.name}</strong></p>
+          <p className='favorite-price'>{props.product.price_string}</p>
           </div>
 
-          <p className='favorite-price'>{props.product.price_string}</p>
-          <p className='favorite-price'>size: {props.fave.size_string}</p>
-        </React.Fragment>
+            <p className='favorite-subtitle'>{props.product.name}</p>
         <div className='favorite-actions'>
           <button
             value='add-to-cart'
             id='favorite-card-button'
             onClick={(e) => clickHandler(e)}
-          >
+            >
             Add to Cart
           </button>
+            </div>
         </div>
       </div>
     </div>

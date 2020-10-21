@@ -60,7 +60,8 @@ class Favorites extends React.Component {
               </div>
             </div>
           </div>
-          {this.renderList()}
+          <div className='spacer'/>
+          <div className='favorites-container'><div className='favorites'>{this.renderList()}</div></div>
         </div>
       </div>
     );

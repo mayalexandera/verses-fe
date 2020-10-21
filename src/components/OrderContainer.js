@@ -20,8 +20,12 @@ class OrderContainer extends React.Component {
               (prod) => prod.id === item.product_id
             );
             return (
-              <OrderItem key={item.id} product_item={product_item} order_item={item} order={order} />
-              
+              <OrderItem
+                key={item.id}
+                product_item={product_item}
+                order_item={item}
+                order={order}
+              />
             );
           });
         }
@@ -31,17 +35,24 @@ class OrderContainer extends React.Component {
 
   render() {
     return (
-      <div className='section-orders'>
-        <div className='header-wrapper'>
-          <div className='order-title'><p>Orders</p>
-          <ProfileHeader/>
+      <div className='section-orders-wrapper'>
+        <div className='section-orders'>
+          <div className='order-title'>
+            <p>Orders</p>
+            <div className='profile-header-wrapper'>
+              <div className='profile-header-container'>
+                <div className='profile-header-links'>
+                  <ProfileHeader />
+                </div>
+              </div>
+            </div>
           </div>
           <hr id='order-hr' />
-          <div className='spacer'/>
         </div>
-          <div className='orders-container'>
-            <> {this.renderOrders()}</>
-          </div>
+        <div className='orders-container'>
+            <hr id='order-hr' />
+          <> {this.renderOrders()}</>
+        </div>
       </div>
     );
   }

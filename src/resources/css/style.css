@@ -102,8 +102,8 @@ button {
   margin-right: 40px;
 }
 
-.rapper-whatever {
-  margin-top: 65px;
+.app-header-wrapper {
+  margin-top: 75px;
 }
 
 .guest-message {
@@ -869,15 +869,30 @@ button {
 }
 
 /* ORDERS */
+.section-orders-wrapper {
+  padding: 0px 48px;
+  padding-top: 48px;
+}
+
 .section-orders {
+  padding: 0px 48px 48px 48px;
+}
+
+.section-orders > hr {
   padding: 0px 48px;
 }
+
 .orders-container {
   border-radius: 2px;
   display: block;
   align-content: center;
   /* border: 1px solid red; */
   width: 100%;
+}
+
+.orders-container > hr {
+  margin: 0 48px;
+  width: 80%;
 }
 
 .order-card-wrapper {
@@ -932,20 +947,19 @@ button {
 }
 
 .order-title {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  width: 100%;
   font-size: 24px;
-  text-align: left;
   font-weight: 400;
+  padding: 0px 20px 0px 20px;
   /* border: 1px solid red; */
-  margin: auto;
 }
 
 .order-title p {
   padding-right: 8px;
   margin: auto;
-  width: 25%
+  width: 25%;
+  /* border: 1px solid red; */
 }
 
 .order-title hr {
@@ -998,14 +1012,15 @@ button {
 .order-summary div {
   display: flex;
   justify-content: space-between;
-}
+} 
 
 #order-key {
   font-weight: 300;
 }
 
 #order-hr {
-  margin: 10px 0px;
+  margin: 10px auto;
+  /* width: 75%; */
   border-top-style: initial;
   border-right-style: initial;
   border-left-style: initial;
@@ -1013,7 +1028,11 @@ button {
   border-right-color: initial;
   border-left-color: initial;
   border-width: 0px 0px 1px;
-  z-index: 44;
+}
+
+.order-card-wrapper > hr {
+  /* width: 75%; */
+  margin: 10px auto;
 }
 
 #order-total {
@@ -1067,13 +1086,13 @@ button {
 /** PROFILE **/
 
 .profile-container {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0px 20px;
   display: flex;
 }
 
 .profile-card {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   line-height: 1.125;
   display: block;
 }
@@ -1081,7 +1100,7 @@ button {
 .profile-card-wrapper {
   padding-bottom: 48px;
   margin: 0px 20px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   
 }
 
@@ -1092,7 +1111,7 @@ button {
   display: inline-block;
   margin-top: 16px;
   vertical-align: top;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .profile-photo {
@@ -1109,7 +1128,7 @@ button {
   font-family: "Lato";
   color: rgb(148, 146, 146);
   font-size: 50%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-weight: 300;
   display: inline-block;
 }
@@ -1117,23 +1136,37 @@ button {
 /* Profile NAV */
 
 .profile-nav-container {
-  /* width: 75%; */
-  display: inline-block;
   text-align: center;
   font-size: 16px;
   /* border: 1px solid red; */
 }
 
 .profile-header-wrapper {
+  /* border: 1px solid red; */
   width: 75%;
+  justify-content: center;
+  margin: auto;
+}
+
+.profile-header-container {
+  display: block;
+  /* border: 1px solid red; */
+}
+
+.profile-header-links {
+  width: 66%;
+  /* border: 1px solid red; */
 }
 
 .profile-nav-link-button {
   padding: 0 16px;
+  vertical-align: top;
   font-weight: 400;
+  display: inline-block;
   color: black;
 }
 
 .header-wrapper {
-  padding-top: 20px;
+  /* border: 1px solid red; */
+  padding-top: 28px;
 }

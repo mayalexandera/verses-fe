@@ -5,6 +5,7 @@ const OrderItem = (props) => {
    (
     <>
       <div className='order-card-wrapper'>
+        <hr id='order-hr'/>
         <div className='order-card'>
           <div className='order-card-thumbnail-wrapper'>
             <img

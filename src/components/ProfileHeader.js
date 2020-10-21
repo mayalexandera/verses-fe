@@ -7,8 +7,7 @@ class ProfileHeader extends React.Component {
   
   render() {
     return (
-      <div className='profile-header-wrapper'>
-        <nav className='profile-nav-container'>
+      <nav className='profile-nav-container'>
           <NavLink
             value='Profile'
             className='profile-nav-link-button'
@@ -38,7 +37,6 @@ class ProfileHeader extends React.Component {
             Settings
           </NavLink>
         </nav>
-      </div>
     );
   }
 }

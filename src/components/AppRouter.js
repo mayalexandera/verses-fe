@@ -18,7 +18,7 @@ export const AppRouter = (props) => {
     <div className='row'>
       <Router>
         <AppHeader />
-        <div className='rapper-whatever'>
+        <div className='app-header-wrapper'>
           <Route exact path='/' exact component={Landing} />
           <Route path='/plans' exact component={Plans} />
           <Route path='/products' exact component={ProductIndex} />

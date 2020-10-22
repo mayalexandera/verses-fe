@@ -5,7 +5,7 @@ import * as actions from "../store/actions/index";
 const CartItem = (props) => {
   const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let cart_item, quantity=props.cart_item.quantity, size=props.cart_item.size_string;
-  if (props.cart_items && props.cart_items !== undefined) {
+  if (props.cart_items.count !== 0 && props.cart_items.count !== 0) {
     cart_item = props.cart_items.filter(
       (item) => item.product_id === props.product.id
     );
@@ -27,7 +27,7 @@ const CartItem = (props) => {
     e.preventDefault()
     console.log(size)
     size = e.target.value
-    console.log(size)
+    console.log(size, props.cart_item)
   }
 
     const quantityChangeHandler = (e) => {

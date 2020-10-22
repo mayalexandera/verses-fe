@@ -46,8 +46,9 @@ class Favorites extends React.Component {
 
   render() {
     return (
-      <div className='section-orders-wrapper'>
-        <div className='section-favorites'>
+      <div>
+        <div className='section-favorites-wrapper'>
+          <div className='section-favorites'>
           <div className='order-title'>
             <p>
               <strong>Favorites</strong>
@@ -60,8 +61,11 @@ class Favorites extends React.Component {
               </div>
             </div>
           </div>
-          <div className='spacer'/>
-          <div className='favorites-container'><div className='favorites'>{this.renderList()}</div></div>
+          <div className='spacer' />
+          </div>
+          {/* <div className='favorites-container'> */}
+            <div className='favorites'>{this.renderList()}</div>
+          {/* </div> */}
         </div>
       </div>
     );

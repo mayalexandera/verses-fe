@@ -31,20 +31,22 @@ const Favorite = (props) => {
         </div>
         <div className='favorite-card-details'>
           <div className='favorite-card-info'>
-            <p><strong>{props.brand.name}</strong></p>
-          <p className='favorite-price'>{props.product.price_string}</p>
+            <p>
+              <strong>{props.brand.name}</strong>
+            </p>
+            <p className='favorite-price'>{props.product.price_string}</p>
           </div>
 
-            <p className='favorite-subtitle'>{props.product.name}</p>
-        <div className='favorite-actions'>
-          <button
-            value='add-to-cart'
-            id='favorite-card-button'
-            onClick={(e) => clickHandler(e)}
+          <p className='favorite-subtitle'>{props.product.name}</p>
+          <div className='favorite-actions'>
+            <button
+              value='add-to-cart'
+              id='favorite-card-button'
+              onClick={(e) => clickHandler(e)}
             >
-            Add to Cart
-          </button>
-            </div>
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>

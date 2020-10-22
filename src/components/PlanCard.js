@@ -6,9 +6,11 @@ import * as actions from "../store/actions/index";
 const PlanCard = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
-    return props.current_user && props.current_user.subscribed === false
-      ? signUp()
-      : deletePlan();
+    if (props.current_user !== null && props.current_user.subscribed === false) signUp()
+    
+    if (props.current_user !== null && props.current_plan === null) signUp()
+    
+    if (props.current_user !== null && props.current_plan !== null) deletePlan();
   };
 
   const signUp = () => {
@@ -35,7 +37,8 @@ const PlanCard = (props) => {
     if (props.current_plan === undefined || props.current_plan === null)
       return "plan-option";
     //members with or without plan membership
-    return !props.current_plan.plan_membership ||
+    if (props.current_plan.plan_membership !== undefined && props.current_plan.plan_membership !== null)
+    return !props.current_plan.id ||
       props.plan.id !== props.current_plan.plan_membership.plan_id
       ? "plan-option"
       : "current-plan";

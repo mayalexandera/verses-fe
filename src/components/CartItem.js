@@ -41,10 +41,12 @@ const CartItem = (props) => {
     <div>
       {!props.error && !props.loading ? (
         <div className='cart-item-card'>
-          <img
-            alt={props.product.name}
-            src={props.product.images.split(",")[0]}
-          />
+        <div className='cart-item-card-photo-wrapper'>
+            <img
+              alt={props.product.name}
+              src={props.product.images.split(",")[0]}
+            />
+        </div>
           <div className='cart-item-details-container'>
             <div className='cart-item-price'>{props.product.price_string}</div>
             <p>{props.brand.name}</p> {props.product.name}
@@ -102,11 +104,13 @@ const CartItem = (props) => {
                 Remove
               </button>
             </div>
+            {/* <br/> */}
           </div>
         </div>
       ) : (
         "loading"
-      )}
+        )}
+        <hr id='order-hr'/>
     </div>
   );
 };

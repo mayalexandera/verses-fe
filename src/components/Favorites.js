@@ -49,22 +49,22 @@ class Favorites extends React.Component {
       <div>
         <div className='section-favorites-wrapper'>
           <div className='section-favorites'>
-          <div className='order-title'>
-            <p>
-              <strong>Favorites</strong>
-            </p>
-            <div className='favorites-header-wrapper'>
-              <div className='order-header-container'>
-                <div className='order-header-links'>
-                  <ProfileHeader />
+            <div className='order-title'>
+              <p>
+                <strong>Favorites</strong>
+              </p>
+              <div className='favorites-header-wrapper'>
+                <div className='order-header-container'>
+                  <div className='order-header-links'>
+                    <ProfileHeader />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='spacer' />
+            <div className='spacer' />
           </div>
           {/* <div className='favorites-container'> */}
-            <div className='favorites'>{this.renderList()}</div>
+          <div className='favorites'>{this.renderList()}</div>
           {/* </div> */}
         </div>
       </div>

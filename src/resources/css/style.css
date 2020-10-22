@@ -128,9 +128,9 @@ button {
   font-weight: 400;
   min-height: 100vh;
   padding-top: 60px;
+  max-width: 1424px;
   margin: auto;
   display: block;
-  text-align: center;
   border: 1px solid red;
 }
 
@@ -148,7 +148,8 @@ button {
   /* border: 1px solid red; */
   display: inline-block;
   text-align: left;
-  margin-left: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .cart-container p {
@@ -162,6 +163,8 @@ button {
 
 .order-summary {
   /* border: 1px solid red; */
+  width: 100%;
+  display: inline-block;
   vertical-align: top;
   text-align: left;
   line-height: 1.75;
@@ -178,58 +181,80 @@ button {
   position: relative;
   padding: 8px;
   margin: auto;
-  margin-bottom: 18px;
+  /* margin-bottom: 18px; */
   vertical-align: top;
   width: 33.3%;
-  height: 640px;
-  /* border: 1px solid red; */
+  height: 645px;
+  border: 1px solid red;
 }
 
-.product-card-body-wrapper {
+.favorite-card-wrapper {
+  display: inline-block;
+  position: relative;
+  padding: 8px;
+  margin: auto;
+  /* margin-bottom: 18px; */
+  vertical-align: top;
+  width: 33.3%;
+  height: 660px;
+  border: 1px solid red;
+}
+
+
+.product-card-content-wrapper,
+.favorite-card-content-wrapper {
   height: 98%;
-  width: 95%;
   /* border: 1px solid red; */
   margin: auto;
   background-color: white;
 }
 
-.product-card-body {
+.product-card-body,
+.favorite-card-body {
   /* border: 1px solid red; */
   vertical-align: top;
   position: relative;
-  padding-top: 8px;
-  max-width: 383px;
   height: 100%;
-}
-
-.product-card-body:hover {
-  background-color: hsl(85, 87%, 94%);
-    -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .product-card-details {
   text-align: left;
-  width: 95%;
-  margin: auto;
   height: 15%;
   line-height: 1.45;
   /* border: 1px solid red; */
 }
 
-.product-photo-wrapper {
+.favorite-card-details {
+  vertical-align: center;
+  padding-top: 15px;
+  text-align: left;
+  height: 15%;
+  line-height: 1.45;
+  /* border: 1px solid red; */
+}
+
+.favorite-card-info {
+  float: left;
+}
+
+.product-photo-wrapper,
+.favorite-photo-wrapper {
   /* border: 1px solid red; */
   display: block;
   height: 85%;
   overflow: hidden;
 }
 
-.product-photo-wrapper img {
-  width: 95%;
-  padding-top: 8px;
+.product-photo-wrapper img,
+.favorite-photo-wrapper img {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  /* height: 100% */
 }
 
-.product-photo:hover {
+.product-photo-wrapper img:hover,
+.favorite-card-wrapper img:hover {
   opacity: 50%;
   transition: 0.3s;
 }
@@ -246,13 +271,14 @@ button {
   font-weight: 300;
   color: black;
   margin-bottom: 2;
+  text-align: left;
 }
 
 /* PRODUCT SHOW */
 .product-show {
-    /* max-width: 1140px; */
+  max-width: 1424px;
   display: flex;
-  margin: 2%;
+  margin: auto;
   /* border: 1px solid red; */
 }
 
@@ -321,13 +347,13 @@ button {
 
 .product-header {
   float: right;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .product-menu {
   padding-left: 10px;
   padding-right: 28px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #product-show-hr {
@@ -402,6 +428,7 @@ button {
 
 #delete-favorite-button {
   right: 8px;
+  top: 8px;
   position: absolute;
   background-color: transparent;
   opacity: 40%;
@@ -492,8 +519,10 @@ button {
 
 .section-favorites-wrapper {
   padding: 0px 48px;
-  /* display: block; */
+  display: block;
+  margin: auto;
   padding-top: 50px;
+  /* max-width: 1424px; */
   margin-bottom: 48px;
 }
 
@@ -505,85 +534,15 @@ button {
   flex-wrap: wrap;
 }
 
-.favorite-card-wrapper {
-  border: 1px solid red;
-  width: 33.3%;
-  max-height: 675px;
-  display: flex;
-  margin-bottom: 40px;
-  justify-content: center;
-}
-.favorite-card {
-  padding: 6px;
+.favorite-photo-wrapper button {
   display: inline-block;
-  vertical-align: top;
-  position: relative;
-  margin: 0 auto;
-  height: 100%;
-  max-width: 100%;
-  border: 1px solid red;
-}
-
-.favorite-card:hover {
-  background-color: hsl(85, 87%, 94%);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.favorite-card-details {
-  /* display: block; */
-  width: inherit;
-  height: 18%;
-  position: relative;
-  line-height: 1.5;
-  border: 1px solid red;
-}
-.favorite-card-info {
-  display: flex;
-  justify-content: space-between;
-}
-
-.favorite-card-info p {
-  /* display: inline-block; */
-  font-size: 90%;
-  font-weight: 400;
-}
-
-.favorite-subtitle,
-.favorite-price {
-  font-size: 75%;
-  font-weight: 300;
-}
-
-.favorite-price {
-  text-align: right;
-}
-
-.favorite-photo {
-  height: 82%;
-  width: auto;
-  position: relative;
-  border: 1px solid red;
-}
-
-.favorite-photo img {
-  /* width: 100%; */
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  display: inline;
-  border: 1px solid red;
-  /* transition: opacity 1s ease 0; */
-}
-
-.favorite-photo button {
   position: relative;
 }
 
 .favorite-actions {
-  text-align: left;
-  padding-top: 16px;
-  /* border: 1px solid red; */
+  float: right;
+  margin-top: 4.5%;
+  border: 1px solid red;
 }
 
 #add-to-favorites-button {
@@ -868,24 +827,35 @@ button {
   height: 200px;
   position: relative;
   display: block;
+  padding-bottom: 20px;
+  padding-top: 20px;
   font-size: 90%;
   /* border: 1px solid red; */
   line-height: 1.75;
 }
 
-.cart-item-card img {
-  height: 100%;
-  margin-right: 3%;
-  /* border: 1px solid red; */
+.cart-item-card-photo-wrapper {
+  /* display: block; */
   float: left;
+  height: 100%;
+  width: 30%;
+  /* border: 1px solid red; */
+  overflow: hidden;
+}
+
+.cart-item-card-photo-wrapper img {
+  height: 100%;
+  width: auto;
+  /* padding-top: 8px; */
+  /* border: 1px solid red; */
 }
 
 .cart-item-details-container {
   text-align: left;
-  list-style: none;
-  padding: 30px 5px 0px 0px;
   font-weight: 300;
   /* border: 1px solid red; */
+  float: right;
+  width: 68%;
   font-size: 90%;
 }
 
@@ -897,6 +867,7 @@ button {
 
 .cart-item-details {
   margin-right: 10px;
+  /* border: 1px solid red; */
   display: block;
   color: #777;
 }
@@ -924,7 +895,7 @@ button {
 
 .cart-item-buttons {
   display: inline-block;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .cart-item-price {
@@ -1000,7 +971,7 @@ button {
   border-radius: 2px;
   display: block;
   align-content: center;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   max-width: 1200px;
   margin: auto;
 }
@@ -1104,6 +1075,8 @@ button {
 
 .order-summary-container {
   position: relative;
+  width: 40%;
+  padding-right: 40px;
   /* border: 1px solid red; */
   vertical-align: top;
   text-align: left;

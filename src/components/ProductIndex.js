@@ -11,16 +11,18 @@ const ProductIndex = (props) => {
 
   const renderList = () => {
     return props.products.map((prod) => {
-      return <ProductCard brand={findBrand(prod)} key={prod.id} product={prod} />;
-    })
+      return (
+        <ProductCard brand={findBrand(prod)} key={prod.id} product={prod} />
+      );
+    });
   };
   return (
-      <>
-        <ProductNav brands={props.brands} />
+    <>
+      <ProductNav brands={props.brands} />
       <div className='section-products'>
-  <div>{renderList()}</div>
+        <div>{renderList()}</div>
       </div>
-      </>
+    </>
   );
 };
 
@@ -33,4 +35,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(ProductIndex);
-

@@ -111,14 +111,14 @@ class Cart extends React.Component {
     return (
       <div className='section-products'>
         <div className='spacer' />
-        <div className='span-4-of-7 cart-container'>
+        <div className='cart-container'>
           {memberCart}
           {guestMessage}
           {this.renderList()}
           <hr id='order-hr' />
         </div>
 
-        <div className='span-3-of-7 order-summary-container'>
+        <div className='order-summary-container'>
           <p>Summary</p>
           <div className='order-summary'>
             <div>

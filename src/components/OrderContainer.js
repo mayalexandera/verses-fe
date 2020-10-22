@@ -38,7 +38,9 @@ class OrderContainer extends React.Component {
       <div className='section-orders-wrapper'>
         <div className='section-orders'>
           <div className='order-title'>
-            <p><strong>Orders</strong></p>
+            <p>
+              <strong>Orders</strong>
+            </p>
             <div className='order-header-wrapper'>
               <div className='order-header-container'>
                 <div className='order-header-links'>
@@ -56,8 +58,8 @@ class OrderContainer extends React.Component {
               alt='manage or track order'
             />
             <p>
-              Click <strong>'View or Manage'</strong> to cancel an order, track a shipment, or
-              start a return.
+              Click <strong>'View or Manage'</strong> to cancel an order, track
+              a shipment, or start a return.
             </p>
           </div>
         </div>

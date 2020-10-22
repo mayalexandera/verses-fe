@@ -15,14 +15,12 @@ const ProductIndex = (props) => {
     })
   };
   return (
-    <div className='background'>
-      <ProductNav brands={props.brands} />
-      <div className=' section-products'>
-        {" "}
-        <br />
-        {renderList()}
+      <>
+        <ProductNav brands={props.brands} />
+      <div className='section-products'>
+  <div>{renderList()}</div>
       </div>
-    </div>
+      </>
   );
 };
 

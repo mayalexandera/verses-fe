@@ -126,11 +126,16 @@ button {
 /* PRODUCT index */
 .section-products {
   font-weight: 400;
-  padding-top: 30px;
   min-height: 100vh;
+  padding-top: 60px;
+  margin: auto;
   display: block;
   text-align: center;
   border: 1px solid red;
+}
+
+.section-products div {
+  margin: auto;
 }
 
 .section-products hr {
@@ -172,14 +177,16 @@ button {
   display: inline-block;
   position: relative;
   padding: 8px;
+  margin: auto;
+  margin-bottom: 18px;
   vertical-align: top;
   width: 33.3%;
-  height: 600px;
+  height: 640px;
   /* border: 1px solid red; */
 }
 
 .product-card-body-wrapper {
-  height: 95%;
+  height: 98%;
   width: 95%;
   /* border: 1px solid red; */
   margin: auto;
@@ -191,9 +198,8 @@ button {
   vertical-align: top;
   position: relative;
   padding-top: 8px;
-  max-width: 400px;
+  max-width: 383px;
   height: 100%;
-  margin-bottom: 18px;
 }
 
 .product-card-body:hover {

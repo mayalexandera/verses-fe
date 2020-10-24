@@ -10,13 +10,13 @@ const initialState = {
 };
 
 const userPlanStart = (state) => {
-  return updateObject(state, { error: null, loading: true, message: null, current_plan: null });
+  return updateObject(state, { error: false, loading: true, message: null, current_plan: null });
 };
 
 const userPlanDelete = (state) => {
   return updateObject(state, {
     loading: false,
-    error: null,
+    error: false,
     message: null,
     current_plan: null,
   });
@@ -36,15 +36,15 @@ const userPlanSuccess = (state, action) => {
   if (action.payload.status === 204) {
     return updateObject(state, {
       loading: false,
-      error: true,
+      error: false,
       message: action.payload.message,
     });
   }
 
   return updateObject(state, {
-    error: null,
+    error: false,
     loading: false,
-    current_plan: action.payload,
+    current_plan: {...action.payload},
   });
 };
 
@@ -59,14 +59,14 @@ const userPlanFail = (state, action) => {
 const fetchPlansSuccess = (state, action) => {
   return updateObject(state, {
     select: action.payload,
-    error: null,
+    error: false,
     loading: false,
     message: null,
   });
 };
 
 const fetchPlansStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true });
+  return updateObject(state, { error: false, loading: true });
 };
 
 const reducer = (state = initialState, action) => {

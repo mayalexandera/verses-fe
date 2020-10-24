@@ -7,7 +7,7 @@ class Plans extends React.Component {
   componentDidMount() {
     this.props.initFetchPlans();
     this.props.fetchUserPlan();
-    this.renderHandler();
+    // this.renderHandler();
   }
 
   renderPlans = () => {
@@ -15,7 +15,7 @@ class Plans extends React.Component {
       <div>loading</div>
     ) : (
       this.props.plans.map((plan) => {
-        return <PlanCard plan={plan} current_plan={this.props.current_plan} />;
+        return <PlanCard plan={plan} />;
       })
     );
   };
@@ -84,7 +84,7 @@ class Plans extends React.Component {
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
         <div className=' plan-box'>
-          <div>{this.renderHandler()}</div>
+          <div>{this.renderPlans()}</div>
         </div>
       </div>
     );

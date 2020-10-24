@@ -1,16 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
 import * as actions from "../store/actions/index";
 
 const PlanCard = (props) => {
+
   const clickHandler = (e) => {
     e.preventDefault();
-    if (props.current_user !== null && props.current_user.subscribed === false) signUp()
-    
-    if (props.current_user !== null && props.current_plan === null) signUp()
-    
-    if (props.current_user !== null && props.current_plan !== null) deletePlan();
+    if (props.current_user !== null && props.current_user.subscribed === false){
+      signUp();}
+
+    if (props.current_user !== null && props.current_plan !== null){
+      deletePlan();}
   };
 
   const signUp = () => {
@@ -23,25 +23,25 @@ const PlanCard = (props) => {
 
   const renderText = () => {
     //guests
-    if (props.current_plan === undefined || props.current_plan === null)
-      return "Try Now";
+    if (props.current_plan === null && props.current_plan === null)
+      {return "Try Now";}
     //members with or without plan membership
-    return !props.current_plan.plan_membership ||
-      props.plan.id !== props.current_plan.plan_membership.plan_id
+    return props.plan.id !== props.current_plan.plan_id
       ? "Try Now"
       : "Current Plan";
   };
 
   const renderId = () => {
     //guests
-    if (props.current_plan === undefined || props.current_plan === null)
+    if (props.current_plan === null && props.current_plan === null) {
       return "plan-option";
+    } else if 
     //members with or without plan membership
-    if (props.current_plan.plan_membership !== undefined && props.current_plan.plan_membership !== null)
-    return !props.current_plan.id ||
-      props.plan.id !== props.current_plan.plan_membership.plan_id
-      ? "plan-option"
-      : "current-plan";
+     (props.current_plan !== undefined && props.current_plan !== null) {
+      return props.plan.id !== props.current_plan.plan_id
+        ? "plan-option"
+        : "current-plan";
+    }
   };
 
   return (
@@ -53,7 +53,7 @@ const PlanCard = (props) => {
           <span>items per month</span>
           <li className='plan-description'>{props.plan.description}</li>
         </div>
-        <hr id='plan-hr' />
+        <hr id='order-hr' />
       </React.Fragment>
       <div className='plan-card-features'>
         <ul className='plan-bullet-points'>
@@ -68,7 +68,15 @@ const PlanCard = (props) => {
         </ul>
       </div>
       <div id='plan-button'>
-        {props.current_user ? (
+        <button
+          plan={props.plan.id}
+          id={renderId()}
+          value='button'
+          onClick={(e) => clickHandler(e)}
+        >
+          {renderText()}
+        </button>
+        {/* {props.current_user ? (
           <button
             plan={props.plan.id}
             id={renderId()}
@@ -83,7 +91,7 @@ const PlanCard = (props) => {
               TRY NOW
             </button>
           </NavLink>
-        )}
+        )} */}
       </div>
       <div className='plan-price'>
         <span>{props.plan.price_string}</span> <p>/month</p>
@@ -92,7 +100,10 @@ const PlanCard = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  return { current_user: state.auth.current_user };
+  return {
+    current_user: state.auth.current_user,
+    current_plan: state.plan.current_plan,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -131,7 +131,7 @@ button {
   max-width: 1424px;
   margin: auto;
   display: block;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .section-products div {
@@ -185,7 +185,7 @@ button {
   vertical-align: top;
   width: 33.3%;
   height: 645px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .favorite-card-wrapper {
@@ -197,7 +197,7 @@ button {
   vertical-align: top;
   width: 33.3%;
   height: 660px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 
@@ -542,7 +542,7 @@ button {
 .favorite-actions {
   float: right;
   margin-top: 4.5%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #add-to-favorites-button {
@@ -835,7 +835,6 @@ button {
 }
 
 .cart-item-card-photo-wrapper {
-  /* display: block; */
   float: left;
   height: 100%;
   width: 30%;
@@ -846,7 +845,6 @@ button {
 .cart-item-card-photo-wrapper img {
   height: 100%;
   width: auto;
-  /* padding-top: 8px; */
   /* border: 1px solid red; */
 }
 

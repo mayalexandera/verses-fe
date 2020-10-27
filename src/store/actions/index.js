@@ -15,7 +15,9 @@ export {
   fetchCartFailed,
   initCart,
   refreshCart,
-  addProductToCartFailed
+  addProductToCartFailed,
+  updateCartProductSize,
+  updateCartProductQty
 } from "./CartActions";
 export {
   initOrder,

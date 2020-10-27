@@ -34,34 +34,36 @@ const sizes = [
   "12",
   "14",
 ];
-const ProductNav = (props) => {
+class ProductNav extends React.Component{
 
-  const brandHandler = (e, brand_id) => {
+   brandHandler = (e, brand_id) => {
     e.preventDefault();
-    props.fetchProdByBrand(brand_id);
+    this.props.fetchProdByBrand(brand_id);
   };
 
-  const categoryHandler = (e, category) => {
+   categoryHandler = (e, category) => {
     e.preventDefault();
-    props.fetchProdByCategory(category);
+    this.props.fetchProdByCategory(category);
+    return (<div>{category}</div>)
   };
 
-  const sizeHandler = (e, size) => {
+   sizeHandler = (e, size) => {
     e.preventDefault();
-    props.fetchProdBySize(size);
+    this.props.fetchProdBySize(size);
   };
 
-  return (
+  render() {
+    return (
     <div className='product-nav'>
       <div className='product-nav-centered'>
         <div className='dropdown'>
           <li class='product-nav-title'>BRAND</li>
           <div className='dropdown-content'>
-            {props.brands.map((brand) => {
+            {this.props.brands.map((brand) => {
               return (
                 <li
                   key={brand.id}
-                  onClick={(e) => brandHandler(e, brand.id)}
+                  onClick={(e) => this.brandHandler(e, brand.id)}
                   id={brand.id}
                 >
                   {brand.name}
@@ -75,7 +77,7 @@ const ProductNav = (props) => {
           <ul className='dropdown-content'>
             {categories.map((category) => {
               return (
-                <li onClick={(e) => categoryHandler(e, category)}>
+                <li onClick={(e) => this.categoryHandler(e, category)}>
                   {category}
                 </li>
               );
@@ -86,13 +88,13 @@ const ProductNav = (props) => {
           <li class='product-nav-title'>SIZE</li>
           <div className='dropdown-content'>
             {sizes.map((size) => {
-              return <li onClick={(e) => sizeHandler(e, size)}>{size}</li>;
+              return <li onClick={(e) => this.sizeHandler(e, size)}>{size}</li>;
             })}
           </div>
         </div>
       </div>
     </div>
-  );
+  );}
 };
 
 const mapStateToProps = (state) => {

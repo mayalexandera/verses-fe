@@ -7,6 +7,7 @@ class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
     this.props.fetchUser();
+    this.props.fetchUserPlan();
   }
 
   clickHandler = (e) => {
@@ -21,6 +22,20 @@ class Cart extends React.Component {
       ? this.props.history.push("/plans")
       : this.props.initOrder();
   };
+
+  validOrder = () => {
+    let cart_items_count
+    !this.props.cart_items && !this.props.cart_items
+      ? (cart_items_count = 0)
+      : this.props.cart_items.map(
+          (item) => (cart_items_count += item.quantity)
+        );
+    console.log(cart_items_count >= this.props.plan_items)
+
+    if (!!cart_items_count <= this.props.plan_items) {
+      this.props.initOrder()
+    }
+  }
 
   findProduct = (item) => {
     let product;
@@ -43,7 +58,8 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
-    return this.props.cart_items === undefined || this.props.cart_items.length === 0 ? (
+    return this.props.cart_items === undefined ||
+      this.props.cart_items.length === 0 ? (
       <p>There are no items in your cart</p>
     ) : (
       this.props.cart_items.map((item) => {
@@ -62,7 +78,12 @@ class Cart extends React.Component {
   };
 
   render() {
-    let submitButton, message, cart, guestMessage, memberCart;
+    let submitButton,
+      plan_items,
+      cart,
+      cart_items_count = 0,
+      guestMessage,
+      memberCart;
 
     !this.props.current_user && !this.props.current_user
       ? (cart = "Cart")
@@ -78,6 +99,17 @@ class Cart extends React.Component {
             Checkout
           </button>
         ));
+
+    !this.props.cart_items && !this.props.cart_items
+      ? (cart_items_count = 0)
+      : this.props.cart_items.map(
+          (item) => (cart_items_count += item.quantity)
+        );
+
+    this.props.current_plan && this.props.current_plan
+      ? (plan_items = this.props.current_plan.items)
+      : (plan_items = null);
+    console.log(cart_items_count, plan_items);
     guestMessage = <div>{cart}</div>;
     this.props.current_user
       ? (memberCart = "Cart")
@@ -140,6 +172,10 @@ class Cart extends React.Component {
             <hr id='order-hr' />
           </div>
           {submitButton}
+          <div className='cart-quantity-message'>
+            {cart_items_count <= plan_items ? <p>You can add up to {plan_items - cart_items_count} more items.</p> : <p>You must remove {cart_items_count - plan_items} item(s).</p>}
+            
+          </div>
         </div>
       </div>
     );
@@ -149,9 +185,9 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
+    current_plan: state.plan.current_plan_membership,
     cart_total: state.cart.cart_total,
     cart_items: state.cart.cart_items,
-    cart_total: state.cart.cart_total,
     products: state.product.select,
     brands: state.brand.select,
   };
@@ -160,10 +196,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     initCart: () => dispatch(actions.initCart()),
-    addToCart: (user_id, product_id, size) =>
-      dispatch(actions.addProductToCart(user_id, product_id, size)),
     initOrder: () => dispatch(actions.initOrder()),
     fetchUser: () => dispatch(actions.fetchUser()),
+    fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
   };
 };
 

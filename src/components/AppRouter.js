@@ -26,7 +26,7 @@ export const AppRouter = (props) => {
           <Route path='/products/:product_id' exact component={ProductShow} />
           <Route exact path='/login' exact component={Auth} />
           <Route path='/cart' exact component={Cart} />
-          <Route path='/Brands' exact component={Brands} />
+          <Route path='/brands' exact component={Brands} />
           <Route path='/profile' component={Profile} />
           <Route path='/orders' component={OrderContainer} />
           <Route path='/profile/update' exact component={Profile} />

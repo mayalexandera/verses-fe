@@ -19,6 +19,7 @@ const userPlanDelete = (state) => {
     error: false,
     message: null,
     current_plan: null,
+    current_plan_membership: null,
   });
 };
 
@@ -38,14 +39,16 @@ const userPlanSuccess = (state, action) => {
       loading: false,
       error: false,
       message: action.payload.message,
-      current_plan: {...action.payload.plan_membership}
+      current_plan: {...action.payload.plan_membership},
+      current_plan_membership: {...action.payload.plan}
     });
   }
 
   return updateObject(state, {
     error: false,
     loading: false,
-    current_plan: {...action.payload},
+    current_plan: { ...action.payload.plan_membership },
+    current_plan_membership: { ...action.payload.plan },
   });
 };
 

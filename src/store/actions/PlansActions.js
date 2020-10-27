@@ -47,7 +47,7 @@ export const fetchUserPlan = () => async (dispatch, getState) => {
   await api
   .get(`users/${user}`)
   .then(response => {
-    dispatch(userPlanSuccess(response.data.plan_membership))
+    dispatch(userPlanSuccess(response.data))
   })
   .catch(err => {
     dispatch(userPlanFail(err.message))

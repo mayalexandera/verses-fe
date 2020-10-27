@@ -1,3 +1,4 @@
+// import { updateCartProductSize } from "../actions";
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
@@ -12,7 +13,6 @@ const initialState = {
 };
 
 const setCart = (state, action) => {
-  console.log(state, action);
   if (action.payload !== null) {
     return updateObject(state, {
       cart_id: action.payload.id,
@@ -27,7 +27,6 @@ const setCart = (state, action) => {
 };
 
 const startFetchCart = (state, action) => {
-  console.log(state, action.payload);
   return updateObject(state, {
     loading: true,
     error: null,
@@ -36,7 +35,6 @@ const startFetchCart = (state, action) => {
 };
 
 const addProductToCart = (state, action) => {
-  console.log(state.cart_items);
   let updatedCart;
   if (state.cart_items !== [] || state.cart_items !== "undefined") {
     updatedCart = [...state.cart_items, { ...action.payload }];
@@ -52,13 +50,52 @@ const addProductToCart = (state, action) => {
   });
 };
 
-const removeProductFromCart = (state, action) => {
-  console.log(state, action);
-  let cart_item = state.cart_items.filter((item) => item.id === action.payload);
-  console.log(cart_item);
+const updateCartProductSize = (state, action) => {
+  let cart_item = state.cart_items.filter(item => item.id === action.payload.cart_item.id)[0]
+  const updatedCart = []
+
+  state.cart_items.map(cartItem => {
+    if (cartItem.id !== cart_item.id) {
+      updatedCart.push({...cartItem})
+    }
+  })
+  
+  updatedCart.push({...action.payload.cart_item})
+  return updateObject(state, {
+    cart_items: [...updatedCart],
+    error: null,
+    message: null,
+    cart_total: action.payload.cart.total_cost_string,
+    loading: false,
+  })
+}
+
+const updateCartProductQty = (state, action) => {
+  let cart_item = state.cart_items.filter(
+    (item) => item.id === action.payload.cart_item.id
+  )[0];
   const updatedCart = [];
 
-  console.log(action.payload, updatedCart);
+  state.cart_items.map((cartItem) => {
+    if (cartItem.id !== cart_item.id) {
+      updatedCart.push({ ...cartItem });
+    }
+  });
+  
+  updatedCart.push({ ...action.payload.cart_item });
+  return updateObject(state, {
+    cart_items: [...updatedCart],
+    error: null,
+    message: null,
+    cart_total: action.payload.cart.total_cost_string,
+    loading: false,
+  });
+}
+
+const removeProductFromCart = (state, action) => {
+  let cart_item = state.cart_items.filter((item) => item.id === action.payload);
+  const updatedCart = [];
+
   state.cart_items.map((cartItem) => {
     if (cartItem.id !== action.payload[1]) {
       updatedCart.push({ ...cartItem });
@@ -73,7 +110,6 @@ const removeProductFromCart = (state, action) => {
 };
 
 const fetchCartFailed = (state, action) => {
-  console.log(state, action.payload.message);
   return updateObject(state, {
     error: true,
     loading: false,
@@ -89,6 +125,10 @@ const reducer = (state = initialState, action) => {
       return addProductToCart(state, action);
     case actionTypes.REMOVE_PRODUCT_FROM_CART:
       return removeProductFromCart(state, action);
+    case actionTypes.UPDATE_CART_PRODUCT_SIZE:
+      return updateCartProductSize(state, action);
+    case actionTypes.UPDATE_CART_PRODUCT_QTY:
+      return updateCartProductQty(state, action);
     case actionTypes.FETCH_CART_FAILED:
       return fetchCartFailed(state, action);
     case actionTypes.START_FETCH_CART:

@@ -21,6 +21,47 @@ export const addProductToCart = (product_id, size) => async (
     .catch((err) => dispatch(addProductToCartFailed(err)));
 };
 
+export const updateCartProductQty = (cart_item, quantity, size) => async (
+  dispatch,
+  getState
+) => {
+  let user = getState().auth.userId;
+  await api
+    .patch(`/users/${user}/cart/cart_items/${cart_item.id}`, {
+      cart_item_id: JSON.stringify(cart_item.id),
+      quantity: quantity,
+      size: size,
+      type: "quantity"
+    })
+    .then((resp) => {
+      console.log(resp.data);
+      dispatch({
+        type: actionTypes.UPDATE_CART_PRODUCT_QTY,
+        payload: resp.data,
+      });
+    })
+    .catch((err) => dispatch(addProductToCartFailed(err)));
+};
+
+export const updateCartProductSize = (cart_item, size) => async (dispatch, getState) => {
+  let user = getState().auth.userId
+  await api
+    .patch(`users/${user}/cart/cart_items/${cart_item.id}`, {
+      cart_item_id: JSON.stringify(cart_item.id),
+      size: size,
+      product_id: JSON.stringify(cart_item.product_id),
+      type: "size",
+    })
+    .then((resp) => {
+      console.log(resp.data);
+      dispatch({
+        type: actionTypes.UPDATE_CART_PRODUCT_SIZE,
+        payload: resp.data,
+      });
+    })
+    .catch((err) => dispatch(addProductToCartFailed(err)));
+}
+
 export const addCartToFavorite = (
   product_id,
   size,

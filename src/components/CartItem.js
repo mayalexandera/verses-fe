@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 
 const CartItem = (props) => {
-  const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  let cart_item, quantity=props.cart_item.quantity, size=props.cart_item.size_string;
-  if (props.cart_items.count !== 0 && props.cart_items.count !== 0) {
+  const quantities = [1, 2, 3, 4, 5, 6, 7, 8];
+  let cart_item,
+    quantity = props.cart_item.quantity,
+    size = props.cart_item.size_string;
+  if (props.cart_items.count !== undefined && props.cart_items.count !== 0) {
     cart_item = props.cart_items.filter(
       (item) => item.product_id === props.product.id
     );
@@ -14,7 +16,7 @@ const CartItem = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
     e.target.value === "delete"
-      ? props.removeProductFromCart(cart_item[0].id)
+      ? props.removeProductFromCart(props.cart_item.id)
       : props.addCartToFavorite(
           props.product.id,
           props.cart_item.size_string,
@@ -23,29 +25,27 @@ const CartItem = (props) => {
   };
 
   const sizeChangeHandler = (e) => {
-    e.preventDefault()
-    console.log(size)
-    size = e.target.value
-    console.log(size, props.cart_item)
-  }
+    e.preventDefault();
+    size = e.target.value;
+    props.updateCartProductSize(props.cart_item, size);
+  };
 
-    const quantityChangeHandler = (e) => {
-      e.preventDefault();
-      console.log(quantity);
-      quantity = e.target.value;
-      console.log(quantity);
-    };
+  const quantityChangeHandler = (e) => {
+    e.preventDefault();
+    quantity = e.target.value;
+    props.updateCartProductQty(props.cart_item, quantity, size);
+  };
 
   return (
     <div>
       {!props.error && !props.loading ? (
         <div className='cart-item-card'>
-        <div className='cart-item-card-photo-wrapper'>
+          <div className='cart-item-card-photo-wrapper'>
             <img
               alt={props.product.name}
               src={props.product.images.split(",")[0]}
             />
-        </div>
+          </div>
           <div className='cart-item-details-container'>
             <div className='cart-item-price'>{props.product.price_string}</div>
             <p>{props.brand.name}</p> {props.product.name}
@@ -103,13 +103,12 @@ const CartItem = (props) => {
                 Remove
               </button>
             </div>
-            {/* <br/> */}
           </div>
         </div>
       ) : (
         "loading"
-        )}
-        <hr id='order-hr'/>
+      )}
+      <hr id='order-hr' />
     </div>
   );
 };
@@ -125,11 +124,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addCartToFavorite: (product_id, size, cart_item_id) =>
-      dispatch(
-        actions.addCartToFavorite(product_id, size, cart_item_id)
-      ),
+      dispatch(actions.addCartToFavorite(product_id, size, cart_item_id)),
     removeProductFromCart: (cart_item_id) =>
       dispatch(actions.removeProductFromCart(cart_item_id)),
+    updateCartProductSize: (cart_item, size) => {
+      dispatch(actions.updateCartProductSize(cart_item, size));
+    },
+    updateCartProductQty: (cart_item, quantity, size) => {
+      dispatch(actions.updateCartProductQty(cart_item, quantity, size));
+    },
   };
 };
 

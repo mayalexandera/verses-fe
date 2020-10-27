@@ -3,7 +3,6 @@ import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 import Favorite from "./Favorite";
 
-
 class Favorites extends React.Component {
   componentDidMount() {
     this.props.initFavorites();
@@ -24,7 +23,8 @@ class Favorites extends React.Component {
       this.props.favorites.length === "undefined"
     )
       return (
-        <div className=' product-nav-centered'>
+        <div>
+          <div className='spacer' />
           <p className='brands-subtitle' id='message'>
             Items added to your Favorites will be saved here.
           </p>

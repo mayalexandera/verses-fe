@@ -22,10 +22,7 @@ class ProductShow extends React.Component {
   submitRequest = (e) => {
     if (this.props.isAuthenticated && this.props.isAuthenticated) {
       if (e.target.value === "addToCart") {
-        this.props.addToCart(
-          this.props.showProduct.id,
-          this.state.productSize
-        );
+        this.props.addToCart(this.props.showProduct.id, this.state.productSize);
       }
 
       if (e.target.value === "favorite") {
@@ -60,23 +57,17 @@ class ProductShow extends React.Component {
     return (
       <section className='product-show'>
         <div className='col span-3-of-5'>
-          <div>
-            {!this.props.showProduct ? (
-              <div>loading</div>
-            ) : (
-              this.props.images.map((image) => {
-                return (
-                  <div key={this.props.images[image]}>
-                    <img
-                      key={image.id}
-                      src={image}
-                      images={this.props.images}
-                    />
-                  </div>
-                );
-              })
-            )}
-          </div>
+          {!this.props.showProduct ? (
+            <div>loading...</div>
+          ) : (
+            this.props.images.map((image) => {
+              return (
+                <div key={this.props.images[image]}>
+                  <img key={image.id} src={image} images={this.props.images} />
+                </div>
+              );
+            })
+          )}
         </div>
         <div className='span-2-of-5 product-header'>
           <p className='product-brand-show-title'>{this.props.brand.name}</p>

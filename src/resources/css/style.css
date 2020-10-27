@@ -197,7 +197,8 @@ button {
   /* margin-bottom: 18px; */
   vertical-align: top;
   width: 33.3%;
-  height: 600px;
+  max-width: 500px;
+  height: 645px;
   /* border: 1px solid red; */
 }
 
@@ -207,6 +208,10 @@ button {
   /* border: 1px solid red; */
   margin: auto;
   background-color: white;
+}
+
+.favorite-card-content-wrapper {
+  max-width: 500px;
 }
 
 .product-card-body,
@@ -227,9 +232,13 @@ button {
 }
 
 .favorite-card-details {
-  vertical-align: center;
+  /* vertical-align: center; */
   padding-top: 15px;
   text-align: left;
+  margin: inherit;
+  margin-left: 27.5px;
+  margin-right: 27.5px;
+  max-width: 500px;
   height: 15%;
   line-height: 1.45;
   /* border: 1px solid red; */
@@ -237,6 +246,7 @@ button {
 
 .favorite-card-info {
   float: left;
+  width: 50%;
 }
 
 .product-photo-wrapper,
@@ -245,6 +255,10 @@ button {
   display: block;
   height: 85%;
   overflow: hidden;
+}
+
+.favorite-photo-wrapper {
+  max-width: 500px;
 }
 
 .product-photo-wrapper img,
@@ -353,7 +367,9 @@ button {
 }
 
 .product-header {
-  float: right;
+  /* float: right; */
+  display: inline-block;
+  height: fit-content;
   /* border: 1px solid red; */
 }
 
@@ -473,7 +489,7 @@ button {
 }
 
 #delete-favorite-button {
-  right: 34px;
+  right: 38px;
   top: 8px;
   position: absolute;
   background-color: transparent;
@@ -560,6 +576,7 @@ button {
 /* FAVORITES */
 .section-favorites {
   display: block;
+  margin: auto;
   /* border: 1px solid red; */
 }
 
@@ -568,14 +585,13 @@ button {
   display: block;
   margin: auto;
   padding-top: 50px;
-  /* max-width: 1424px; */
+  max-width: 1424px;
   margin-bottom: 48px;
 }
 
 .favorites {
-  padding-top: 40px;
   width: 100%;
-  display: flex;
+  margin: auto;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -588,7 +604,17 @@ button {
 .favorite-actions {
   float: right;
   margin-top: 4.5%;
+  width: 50%;
   /* border: 1px solid red; */
+}
+
+.favorite-actions button {
+  float: right;
+}
+
+#message {
+  display: flex;
+  justify-content: center;
 }
 
 #add-to-favorites-button {
@@ -954,6 +980,11 @@ button {
   float: right;
 }
 
+.cart-quantity-message {
+  padding-top: 30px;
+  text-align: center;
+}
+
 #remove-from-cart-button {
   cursor: pointer;
   background-color: transparent;
@@ -1144,7 +1175,7 @@ button {
 .order-summary {
   font-weight: 300;
   font-size: 80%;
-  padding: 0px 20px;
+  padding: 0px 20px 20px 20px;
   line-height: 2.2;
   /* border: 1px solid red; */
 }

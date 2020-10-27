@@ -15,14 +15,14 @@ export const initFavorites = () => async (dispatch, getState) => {
 };
 
 export const addFavoriteToCart = (
-  user_id,
   product_id,
   size,
   favorite_id
-) => async (dispatch) => {
+) => async (dispatch, getState) => {
+  let user = getState().auth.userId
   await api
-    .post(`/users/${user_id}/cart/cart_items`, {
-      user_id: user_id,
+    .post(`/users/${user}/cart/cart_items`, {
+      user_id: user,
       product_id: JSON.stringify(product_id),
       size: size,
       favorite_id: JSON.stringify(favorite_id),
@@ -65,12 +65,13 @@ export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
     );
 };
 
-export const createFavorite = (user_id, product_id, size) => async (
-  dispatch
+export const createFavorite = (product_id, size) => async (
+  dispatch, getState
 ) => {
+  let user = getState().auth.userId
   await api
-    .post(`/users/${user_id}/favorites`, {
-      member_id: user_id,
+    .post(`/users/${user}/favorites`, {
+      member_id: user,
       product_id: product_id,
       size: size,
     })

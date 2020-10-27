@@ -23,7 +23,6 @@ class ProductShow extends React.Component {
     if (this.props.isAuthenticated && this.props.isAuthenticated) {
       if (e.target.value === "addToCart") {
         this.props.addToCart(
-          this.props.userId,
           this.props.showProduct.id,
           this.state.productSize
         );
@@ -31,7 +30,6 @@ class ProductShow extends React.Component {
 
       if (e.target.value === "favorite") {
         this.props.addToFavorites(
-          this.props.userId,
           this.props.showProduct.id,
           this.state.productSize
         );
@@ -133,8 +131,8 @@ class ProductShow extends React.Component {
               </div>
             </div>
             <div className='fit-details-container'>
-                <p>Fit Details</p>
-                <hr id='product-show-hr' />
+              <p>Fit Details</p>
+              <hr id='product-show-hr' />
               <ul className='fit-details'>
                 {this.props.showProduct.fit_details !== undefined &&
                 this.props.showProduct.fit_details !== null ? (
@@ -178,12 +176,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (user_id, product_id, size) =>
-      dispatch(actions.addProductToCart(user_id, product_id, size)),
+    addToCart: (product_id, size) =>
+      dispatch(actions.addProductToCart(product_id, size)),
     fetchShowProduct: (product_id) =>
       dispatch(actions.fetchShowProduct(product_id)),
-    addToFavorites: (user_id, product_id, size) =>
-      dispatch(actions.createFavorite(user_id, product_id, size)),
+    addToFavorites: (product_id, size) =>
+      dispatch(actions.createFavorite(product_id, size)),
   };
 };
 

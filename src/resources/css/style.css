@@ -69,6 +69,7 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+  height: 9vh;
   /* border: 1px solid red; */
 }
 
@@ -103,7 +104,7 @@ button {
 }
 
 .app-header-wrapper {
-  margin-top: 72px;
+  margin-top: 9vh;
 }
 
 .guest-message {
@@ -196,7 +197,7 @@ button {
   /* margin-bottom: 18px; */
   vertical-align: top;
   width: 33.3%;
-  height: 660px;
+  height: 600px;
   /* border: 1px solid red; */
 }
 
@@ -367,6 +368,45 @@ button {
   width: 95%;
 }
 
+/* BRANDS */
+
+
+.landing {
+  background-color: black;
+  text-transform: uppercase;
+  height: 91vh;
+  font-weight: 400;
+  width: 100%;
+  overflow-x: scroll;
+  font-size: 250px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-family: "Futura";
+}
+
+.brands-landing {
+  display: block;
+  background-color: black;
+  text-transform: uppercase;
+  height: 91vh;
+  font-weight: 400;
+  width: 100%;
+  overflow-x: scroll;
+  font-size: 250px;
+  color: #fff;
+  margin: auto;
+  font-family: "Futura";
+}
+
+.landing p {
+  align-self: center;
+  margin: auto;
+  display: inline-block;
+}
+
+
 /* CART */
 
 .cart-message {
@@ -433,7 +473,7 @@ button {
 }
 
 #delete-favorite-button {
-  right: 8px;
+  right: 34px;
   top: 8px;
   position: absolute;
   background-color: transparent;
@@ -448,7 +488,7 @@ button {
   font-weight: 300;
   width: 100%;
   position: fixed;
-  height: 30px;
+  height: 4vh;
   background-color: rgb(245, 245, 245);
   box-shadow: 0 1px 1px rgb(228, 228, 228);
 }
@@ -747,16 +787,6 @@ button {
 
 .plan-card-body {
   padding: 0px 20px;
-}
-
-.landing {
-  background-color: black;
-  height: 300px;
-  font-weight: 400;
-  font-size: 250px;
-  color: #fff;
-  margin-top: 300px;
-  font-family: "Futura";
 }
 
 .plan-card-details,
@@ -1200,7 +1230,7 @@ plan-hr {
 /** PROFILE **/
 
 .profile-section {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   line-height: 1.125;
   display: inline-flex;
 }
@@ -1210,39 +1240,36 @@ plan-hr {
   margin: 0px 20px;
   /* width: 45%; */
   display: inline-block;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .profile-plan-container {
   padding-bottom: 48px;
-  margin: 0px 20px;
+  /* margin: 0px 20px; */
   text-align: right;
   display: inline-block;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .profile-plan {
-  border: 1px solid red;
-  line-height: 1.125;
-  display: inline-flex;
-  text-align: right;
+  /* border: 1px solid red; */
+  line-height: 1.5;
+  display: block;
+  font-size: 14px;
+}
+
+.profile-plan p:first-child {
+  font-weight: 400;
+    font-size: 18px;
 }
 
 .profile-section-wrapper {
-  width: 45%;
+  width: 85%;
   margin: auto;
   vertical-align: top;
-  display: inline-block;
-  border: 1px solid red;
-}
-
-.profile-plan-wrapper {
-  width: 45%;
-  text-align: right;
-
-  vertical-align: top;
-  display: inline-block;
-  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
 }
 
 .profile-title {
@@ -1252,7 +1279,7 @@ plan-hr {
   display: inline-block;
   margin-top: 16px;
   vertical-align: top;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .profile-photo {
@@ -1269,7 +1296,7 @@ plan-hr {
   font-family: "Lato";
   color: rgb(148, 146, 146);
   font-size: 50%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-weight: 300;
   display: inline-block;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
-const BrandCard = () => {
-  return <div className='brands-title'>Participating Companies</div>;
+const BrandCard = (props) => {
+  return <p>{props.brand.name}</p>;
 };
 
 export default BrandCard;

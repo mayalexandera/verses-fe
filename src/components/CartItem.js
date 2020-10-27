@@ -16,7 +16,6 @@ const CartItem = (props) => {
     e.target.value === "delete"
       ? props.removeProductFromCart(cart_item[0].id)
       : props.addCartToFavorite(
-          props.userId,
           props.product.id,
           props.cart_item.size_string,
           props.cart_item.id
@@ -117,7 +116,6 @@ const CartItem = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.auth.userId,
     cart_items: state.cart.cart_items,
     loading: state.cart.loading,
     error: state.cart.error,
@@ -126,9 +124,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCartToFavorite: (user_id, product_id, size, cart_item_id) =>
+    addCartToFavorite: (product_id, size, cart_item_id) =>
       dispatch(
-        actions.addCartToFavorite(user_id, product_id, size, cart_item_id)
+        actions.addCartToFavorite(product_id, size, cart_item_id)
       ),
     removeProductFromCart: (cart_item_id) =>
       dispatch(actions.removeProductFromCart(cart_item_id)),

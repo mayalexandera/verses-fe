@@ -3,16 +3,22 @@ import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 
 const Favorite = (props) => {
+
+  
   const clickHandler = (e) => {
     e.preventDefault();
     let favorite_id = props.fave.id;
     let product_id = props.fave.product.id;
     let size = props.fave.size_string;
 
-    e.target.value === "delete"
-      ? props.deleteFavorite(favorite_id)
-      : props.addFavoriteToCart(props.userId, product_id, size, favorite_id);
+    props.addFavoriteToCart(product_id, size, favorite_id);
   };
+
+  const deleteFaveHandler = (e) => {
+    e.preventDefault();
+    props.deleteFavorite(props.fave.id);
+  };
+
   let img;
   if (props.product === undefined && props.product === undefined) return null;
   img = props.product.images.split(",")[0];
@@ -25,7 +31,7 @@ const Favorite = (props) => {
             <button
               value='delete'
               id='delete-favorite-button'
-              onClick={(e) => clickHandler(e)}
+              onClick={(e) => deleteFaveHandler(e)}
             >
               <ion-icon size='large' name='close'></ion-icon>
             </button>
@@ -65,10 +71,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFavoriteToCart: (user_id, product_id, size, favorite_id) =>
-      dispatch(
-        actions.addFavoriteToCart(user_id, product_id, size, favorite_id)
-      ),
+    addFavoriteToCart: (product_id, size, favorite_id) =>
+      dispatch(actions.addFavoriteToCart(product_id, size, favorite_id)),
     deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
   };
 };

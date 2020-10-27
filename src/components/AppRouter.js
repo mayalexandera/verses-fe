@@ -9,7 +9,7 @@ import AppHeader from "./AppHeader";
 import Brands from "./Brands";
 import Cart from "./Cart";
 import Profile from "./Profile";
-import Favorites from "./Favorites";
+import FavoritesContainer from "./FavoritesContainer";
 import OrderContainer from "./OrderContainer";
 import Auth from "./auth/Auth";
 
@@ -30,7 +30,7 @@ export const AppRouter = (props) => {
           <Route path='/profile' component={Profile} />
           <Route path='/orders' component={OrderContainer} />
           <Route path='/profile/update' exact component={Profile} />
-          <Route path='/favorites' exact component={Favorites} />
+          <Route path='/favorites' exact component={FavoritesContainer} />
           <Redirect to='/' />
         </div>
       </Router>

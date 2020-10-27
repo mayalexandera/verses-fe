@@ -1,11 +1,12 @@
 import api from "../apis/api";
 import * as actionTypes from "../actions/actionTypes";
 
-export const addProductToCart = (user_id, product_id, size) => async (
-  dispatch
+export const addProductToCart = (product_id, size) => async (
+  dispatch, getState
 ) => {
+  let user = getState().auth.userId
   await api
-    .post(`/users/${user_id}/cart/cart_items`, {
+    .post(`/users/${user}/cart/cart_items`, {
       product_id: JSON.stringify(product_id),
       size: size,
     })
@@ -21,13 +22,13 @@ export const addProductToCart = (user_id, product_id, size) => async (
 };
 
 export const addCartToFavorite = (
-  member_id,
   product_id,
   size,
   cart_item_id
-) => async (dispatch) => {
-  await api.post(`/users/${member_id}/favorites`, {
-    member_id: member_id,
+) => async (dispatch, getState) => {
+  let user = getState().auth.userId
+  await api.post(`/users/${user}/favorites`, {
+    member_id: user,
     product_id: JSON.stringify(product_id),
     size: size,
     cart_item_id: JSON.stringify(cart_item_id),
@@ -87,7 +88,6 @@ export const removeProductFromCart = (cart_item_id) => async (
   dispatch,
   getState
 ) => {
-  console.log(cart_item_id);
   let user = getState().auth.userId;
   await api.delete(`/users/${user}/cart/cart_items/${cart_item_id}`).then(response =>
     dispatch({

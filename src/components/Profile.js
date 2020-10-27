@@ -2,12 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 import ProfileHeader from "./ProfileHeader";
+import Favorites from "./Favorites";
 
 class Profile extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchUserPlan();
     this.props.initFetchPlans();
+    this.props.initFavorites();
   }
 
   renderUser = () => {
@@ -29,11 +31,20 @@ class Profile extends React.Component {
   };
 
   renderPlan = () => {
-    return this.props.current_plan && this.props.current_plan ? (
-      <div className='profile-plan-container'>
-        <div className='profile-plan'>{this.props.current_plan.id}</div>
-      </div>
-    ) : null;
+    let user_plan;
+    if (this.props.current_plan && this.props.current_plan) {
+      user_plan = this.props.plans.filter(
+        (plan) => plan.id === this.props.current_plan.plan_id
+      )[0];
+
+      return (
+        <div className='profile-plan'>
+          <p>Current Plan</p>
+          <strong>{user_plan.items} </strong>items per month |
+          <strong>{user_plan.price_string}</strong>/month
+        </div>
+      );
+    }
   };
 
   render() {
@@ -43,10 +54,22 @@ class Profile extends React.Component {
           <div className='profile-header-container'>
             <ProfileHeader />
           </div>
-          <div className='spacer' />
         </div>
-        <div className='profile-section-wrapper'>{this.renderUser()}</div>
-        {/* <div className='profile-plan-wrapper'>{this.renderPlan()}</div> */}
+        <div className='spacer' />
+        <div className='profile-section-wrapper'>
+          {this.renderUser()}
+          {this.renderPlan()}
+        </div>
+        <div className='spacer' />
+        <hr id='order-hr' />
+        <div className='section-favorites-wrapper'>
+          <div className='order-title'>
+            <p>
+              <strong>Favorites</strong>
+            </p>
+          </div>
+          <Favorites />
+        </div>
       </>
     );
   }
@@ -66,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchUser: () => dispatch(actions.fetchUser()),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
     initFetchPlans: () => dispatch(actions.initFetchPlans()),
+    initFavorites: () => dispatch(actions.initFavorites()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

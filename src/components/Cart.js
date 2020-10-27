@@ -63,12 +63,12 @@ class Cart extends React.Component {
 
   render() {
     let submitButton, message, cart, guestMessage, memberCart;
-    this.props.cart_items === undefined
-      ? (message = "0 Items | $0.00")
-      : (message = null);
-    this.props.cart_items === undefined ? (cart = "Cart") : (cart = null);
 
-    this.props.cart_items === undefined || this.props.cart_items.length === 0
+    !this.props.current_user && !this.props.current_user
+      ? (cart = "Cart")
+      : (cart = null);
+
+    !this.props.cart_items && !this.props.cart_items
       ? (submitButton = null)
       : (submitButton = (
           <button

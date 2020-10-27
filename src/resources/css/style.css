@@ -200,7 +200,6 @@ button {
   /* border: 1px solid red; */
 }
 
-
 .product-card-content-wrapper,
 .favorite-card-content-wrapper {
   height: 98%;
@@ -219,6 +218,8 @@ button {
 
 .product-card-details {
   text-align: left;
+  width: 85%;
+  padding-top: 10px;
   height: 15%;
   line-height: 1.45;
   /* border: 1px solid red; */
@@ -310,7 +311,7 @@ button {
 
 .product-show-select {
   font-size: 80%;
-  margin-top: 20px;
+  margin-top: 30px;
   /* border: 1px solid red; */
   font-weight: 400;
   display: flex;
@@ -318,24 +319,29 @@ button {
   justify-content: space-between;
 }
 
-.product-show-description,
-.fit-details {
-  margin-top: 20px;
+.product-show-description-container,
+.fit-details-container {
+  margin-top: 40px;
   font-size: 80%;
   font-weight: 300;
   line-height: 1.5;
   display: block;
 }
 
-.fit-details li {
-  margin-left: 16px;
-  list-style-type: disc;
-  margin-bottom: 4px;
+.product-show-description-container p,
+.fit-details-container p {
+  font-weight: 400;
+  line-height: 2;
 }
 
-.fit-details li:last-child {
-  list-style: none;
-  margin-bottom: 10px;
+.product-show-description,
+.fit-details {
+  padding-top: 20px;
+  list-style-type: disc;
+}
+
+.fit-details li {
+  margin-left: 24px;
 }
 
 .errorMessage {
@@ -357,8 +363,8 @@ button {
 }
 
 #product-show-hr {
-  margin-top: 7px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  width: 95%;
 }
 
 /* CART */
@@ -591,6 +597,7 @@ button {
 
 .product-actions {
   font-size: 95%;
+  padding-top: 30px;
 }
 
 .size-chart {
@@ -609,6 +616,7 @@ button {
 /* PLANS */
 .plan-background {
   background-color: rgb(233, 242, 191);
+  min-height: 100vh;
 }
 
 .plan-box {
@@ -618,7 +626,7 @@ button {
   height: 100%;
   padding: 1%;
   display: flex;
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
 }
 
 .plan-box > div {
@@ -635,31 +643,46 @@ button {
 }
 
 .plan-header-subtitle {
-  padding: 0 26%;
+  /* padding: 0 26%; */
   line-height: 1.7;
-  display: inline-block;
+  /* display: inline-block; */
   font-weight: 400;
-  font-size: 100%;
+  font-size: 110%;
+  margin: auto;
   text-align: center;
+  width: 60%;
+}
+
+.plan-header-subtitle p {
+  padding-bottom: 20px;
+}
+
+.plan-message {
+  display: block;
+  margin: auto;
+  font-weight: 400;
+  text-align: center;
+  font-size: 28px;
+  padding-bottom: 40px;
+}
+
+.spacer-50 {
+  height: 20px;
 }
 
 #plan-route-button {
-  display: flex;
-  font-size: 150%;
-  font-family: "Playfair Display", serif;
+  display: block;
+  font-family: "Playfair Display";
+  margin: auto;
   font-weight: 400;
-  justify-content: center;
-  list-style: none;
-  z-index: 1;
-  color: black;
-  background-color: #fff;
-  transform: translate(0px, 80px);
-}
-
-#plan-route-button:hover {
-  border-bottom: 2px solid hsl(85, 76%, 85%);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  width: 182px;
+  font-size: 22px;
+  cursor: pointer;
+  border: 1px solid rgb(228, 228, 228);
+  outline: none;
+  background-color: white;
+  padding: 8px 24px;
+  margin-bottom: 8px;
 }
 
 #plan-title-hr {
@@ -667,10 +690,6 @@ button {
   margin-bottom: 35px;
   width: 30%;
   transform: translate(0px, 10px);
-}
-
-#plan-hr {
-  width: 100%;
 }
 
 #cart-item-hr {
@@ -726,6 +745,10 @@ button {
   display: inline-block;
 }
 
+.plan-card-body {
+  padding: 0px 20px;
+}
+
 .landing {
   background-color: black;
   height: 300px;
@@ -739,15 +762,10 @@ button {
 .plan-card-details,
 .plan-card-features {
   display: inline-block;
-  padding: 0px 6%;
   width: 100%;
   line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 300;
-}
-
-.plan-card-details {
-  height: 150px;
 }
 
 .plan-card-details p {
@@ -755,6 +773,9 @@ button {
   display: inline-block;
   font-weight: 400;
   line-height: 1;
+}
+.plan-card-details {
+  min-height: 160px;
 }
 
 .plan-card-details span {
@@ -780,8 +801,12 @@ button {
   line-height: 1.5;
 }
 
-.plan-bullet-points span {
-  margin-left: 14px;
+.plan-bullet-points li {
+  padding-left: 30px;
+}
+
+.plan-bullet-points ion-icon {
+  padding-right: 14px;
 }
 
 #plan-option,
@@ -810,16 +835,15 @@ button {
 #current-plan:hover {
   opacity: 0.8;
   transition: 0.2s;
+  -webkit-transition: 0.3s;
 }
 
 #plan-button {
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
-}
-
-#product-show-hr {
-  width: 90%;
+  margin: auto;
+  padding: 0px 20px;
 }
 
 /* CART */
@@ -1104,7 +1128,8 @@ button {
   font-weight: 300;
 }
 
-#order-hr {
+#order-hr,
+plan-hr {
   border-top-style: initial;
   border-right-style: initial;
   border-left-style: initial;
@@ -1174,29 +1199,50 @@ button {
 
 /** PROFILE **/
 
-.profile-container {
-  /* border: 1px solid red; */
-  margin: 0px 20px;
-  display: flex;
-}
-
-.profile-card {
-  /* border: 1px solid red; */
+.profile-section {
+  border: 1px solid red;
   line-height: 1.125;
-  display: block;
+  display: inline-flex;
 }
 
-.profile-card-container {
+.profile-section-container {
   padding-bottom: 48px;
   margin: 0px 20px;
-  width: 85%;
-  /* border: 1px solid red; */
+  /* width: 45%; */
+  display: inline-block;
+  border: 1px solid red;
 }
 
-.profile-card-wrapper {
-  width: 85%;
+.profile-plan-container {
+  padding-bottom: 48px;
+  margin: 0px 20px;
+  text-align: right;
+  display: inline-block;
+  border: 1px solid red;
+}
+
+.profile-plan {
+  border: 1px solid red;
+  line-height: 1.125;
+  display: inline-flex;
+  text-align: right;
+}
+
+.profile-section-wrapper {
+  width: 45%;
   margin: auto;
-  /* border: 1px solid red; */
+  vertical-align: top;
+  display: inline-block;
+  border: 1px solid red;
+}
+
+.profile-plan-wrapper {
+  width: 45%;
+  text-align: right;
+
+  vertical-align: top;
+  display: inline-block;
+  border: 1px solid red;
 }
 
 .profile-title {
@@ -1206,7 +1252,7 @@ button {
   display: inline-block;
   margin-top: 16px;
   vertical-align: top;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .profile-photo {
@@ -1223,7 +1269,7 @@ button {
   font-family: "Lato";
   color: rgb(148, 146, 146);
   font-size: 50%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   font-weight: 300;
   display: inline-block;
 }

@@ -125,18 +125,29 @@ class ProductShow extends React.Component {
                 Add To Favorites
               </button>
             </ul>
-            <div className='product-show-description'>
-              {this.props.showProduct.description}
+            <div className='product-show-description-container'>
+              <p>Description</p>
+              <hr id='product-show-hr' />
+              <div className='product-show-description'>
+                {this.props.showProduct.description}
+              </div>
             </div>
-            <ul className='fit-details'>
-              {this.props.showProduct.fit_details !== undefined && this.props.showProduct.fit_details !== null ? (
-                this.props.showProduct.fit_details.split(".").map((detail) => {
-                  return <li>{detail}</li>;
-                })
-              ) : (
-                <p>loading</p>
-              )}
-            </ul>
+            <div className='fit-details-container'>
+                <p>Fit Details</p>
+                <hr id='product-show-hr' />
+              <ul className='fit-details'>
+                {this.props.showProduct.fit_details !== undefined &&
+                this.props.showProduct.fit_details !== null ? (
+                  this.props.showProduct.fit_details
+                    .split(",")
+                    .map((detail) => {
+                      return <li>{detail}</li>;
+                    })
+                ) : (
+                  <p>loading</p>
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

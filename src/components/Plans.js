@@ -5,9 +5,7 @@ import PlanCard from "./PlanCard";
 
 class Plans extends React.Component {
   componentDidMount() {
-    this.props.initFetchPlans();
-    this.props.fetchUserPlan();
-    // this.renderHandler();
+    this.reload();
   }
 
   renderPlans = () => {
@@ -20,59 +18,36 @@ class Plans extends React.Component {
     );
   };
 
-  renderPlanActions = () => {
-    return (
-      <div className='title'>
-        <button
-          className='row'
-          id='plan-route-button'
-          onClick={(e) => this.changePlanHandler(e)}
-        >
-          Yes
-        </button>
-        <button
-          className='profile-title'
-          id='plan-route-button'
-          onClick={(e) => this.unsubscribeHandler(e)}
-        >
-          No, I'd like to unsubscribe.
-        </button>
-      </div>
-    );
-  };
-
-  unsubscribeHandler = () => {
-    this.props.userPlanDelete();
-  };
-
-  changePlanHandler = () => {
-    this.props.userPlanDelete();
+  reload = () => {
     this.props.initFetchPlans();
-  };
-
-  renderText = () => {
-    return this.props.error_message ===
-      "You currently have a subscription.  Would you like to change your plan?"
-      ? this.renderPlanActions()
-      : "See Plans";
-  };
-
-  renderHandler = () => {
-    let signUpResponse;
-    if (this.props.error_message) {
-      signUpResponse = (
-        <>
-          <div className='title'>{this.props.error_message}</div>
-          {this.renderPlanActions()}
-        </>
-      );
-    } else {
-      signUpResponse = this.renderPlans();
-    }
-    return signUpResponse;
+    this.props.fetchUserPlan();
   };
 
   render() {
+    let result;
+    this.props.message === null
+      ? (result = this.renderPlans())
+      : (result = (
+          <div>
+            <div className='plan-message'>
+              <div className='spacer-20' />
+              {this.props.message.split(". ").map((line) => {
+                return <p>{line}</p>;
+              })}
+            </div>
+            <div id='plan-button'>
+              <button
+                id='plan-route-button'
+                onClick={() => this.props.userPlanDelete()}
+              >
+                Yes
+              </button>
+              <button id='plan-route-button' onClick={() => this.reload()}>
+                No
+              </button>
+            </div>
+          </div>
+        ));
     return (
       <div className='plan-background'>
         <div className='plan-header'>Pick a Plan</div>
@@ -81,10 +56,12 @@ class Plans extends React.Component {
             Become a member to access a forever-evolving closet of
             identity-affirming designer clothing, accessories, and more.
           </p>
+          <hr id="plan-hr"/>
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
         <div className=' plan-box'>
-          <div>{this.renderPlans()}</div>
+          <div>{result}</div>
+          <div>{() => this.renderPlans()}</div>
         </div>
       </div>
     );
@@ -94,9 +71,8 @@ class Plans extends React.Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.plan.loading,
-    current_plan: state.plan.current_plan,
     plans: state.plan.select,
-    error_message: state.plan.message,
+    message: state.plan.message,
   };
 };
 

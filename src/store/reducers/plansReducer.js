@@ -38,6 +38,7 @@ const userPlanSuccess = (state, action) => {
       loading: false,
       error: false,
       message: action.payload.message,
+      current_plan: {...action.payload.plan_membership}
     });
   }
 

@@ -83,14 +83,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (product_id) => dispatch(actions.addProductToCart(product_id)),
-    addToFavorites: (user_id, product_id) =>
-      dispatch(actions.createFavorite(user_id, product_id)),
-    deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
-    initFavorites: () => dispatch(actions.initFavorites()),
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+
+export default connect(mapStateToProps)(Favorites);

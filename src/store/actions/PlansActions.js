@@ -45,7 +45,7 @@ export const fetchUserPlan = () => async (dispatch, getState) => {
   let user = getState().auth.userId
   dispatch(userPlanStart())
   await api
-  .get(`users/${user}`)
+  .get(`users/${user}/plan_membership`)
   .then(response => {
     dispatch(userPlanSuccess(response.data))
   })
@@ -58,7 +58,7 @@ export const initPlanMembership = (plan_id) => async (dispatch, getState) =>{
   let user = getState().auth.userId
   dispatch(userPlanStart());
   const planData = {
-    member_id: user.id,
+    member_id: user,
     plan_id: plan_id
   }
   await api

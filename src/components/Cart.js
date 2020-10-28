@@ -23,20 +23,6 @@ class Cart extends React.Component {
       : this.props.initOrder();
   };
 
-  validOrder = () => {
-    let cart_items_count
-    !this.props.cart_items && !this.props.cart_items
-      ? (cart_items_count = 0)
-      : this.props.cart_items.map(
-          (item) => (cart_items_count += item.quantity)
-        );
-    console.log(cart_items_count >= this.props.plan_items)
-
-    if (!!cart_items_count <= this.props.plan_items) {
-      this.props.initOrder()
-    }
-  }
-
   findProduct = (item) => {
     let product;
     product = this.props.products.filter(
@@ -109,7 +95,7 @@ class Cart extends React.Component {
     this.props.current_plan && this.props.current_plan
       ? (plan_items = this.props.current_plan.items)
       : (plan_items = null);
-    console.log(cart_items_count, plan_items);
+
     guestMessage = <div>{cart}</div>;
     this.props.current_user
       ? (memberCart = "Cart")
@@ -155,7 +141,7 @@ class Cart extends React.Component {
           <div className='order-summary'>
             <div>
               <p id='order-key'>Subtotal</p>
-              {this.props.cart_total}
+              {this.props.cart_total ? this.props.cart_total : "$0.00"}
             </div>
             <div>
               <p id='order-key'>Estimated Shipping & Handling</p>

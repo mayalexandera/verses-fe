@@ -61,11 +61,16 @@ export const setProducts = (products) => {
   };
 };
 
+export const setAccessories = (products) => {
+  return {
+    type: actionTypes.SET_ACCESSORIES,
+    payload: products,
+  };
+};
 export const setShowProduct = (product) => async (dispatch) => {
   await dispatch(actions.setShowBrand(product.brand_id)).then(
     dispatch({ type: actionTypes.SET_SHOW_PRODUCT, payload: product })
     );
-    console.log(product)
 };
 
 export const initProducts = () => async (dispatch) => {
@@ -73,6 +78,22 @@ export const initProducts = () => async (dispatch) => {
     .get(`/products/`)
     .then((resp) => {
       dispatch(setProducts(resp.data));
+    })
+    .catch((error) => {
+      dispatch(fetchProductsFailed(error));
+    });
+};
+
+export const initAccessories = () => async (dispatch) => {
+  await api
+    .get(`/products/`, {
+      params: {
+        category: "Accessory"
+      }
+    })
+    .then((resp) => {
+      console.log('in initAccessori3s', resp)
+      dispatch(setAccessories(resp.data));
     })
     .catch((error) => {
       dispatch(fetchProductsFailed(error));

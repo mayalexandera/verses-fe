@@ -56,7 +56,7 @@ class Plans extends React.Component {
             Become a member to access a forever-evolving closet of
             identity-affirming designer clothing, accessories, and more.
           </p>
-          <hr id="plan-hr"/>
+          <hr id='plan-hr' />
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
         <div className=' plan-box'>
@@ -78,9 +78,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userPlanDelete: () => dispatch(actions.userPlanDelete()),
     initFetchPlans: () => dispatch(actions.initFetchPlans()),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
+    userPlanDelete: () => dispatch(actions.userPlanDelete())
   };
 };
 

@@ -37,14 +37,15 @@ export {
   addFavoriteToCart
 } from "./FavoritesActions";
 export {
-  fetchProdByBrand,
   initProducts,
-  fetchProductsFailed,
-  setProducts,
-  setShowProduct,
-  fetchProdByCategory,
+  initAccessories,
   fetchProdBySize,
+  fetchProdByBrand,
+  fetchProdByCategory,
   fetchShowProduct,
+  fetchProductsFailed,
+  setShowProduct,
+  setProducts,
 } from "./ProductsActions";
 export {
   auth,

@@ -33,6 +33,7 @@ class Profile extends React.Component {
   renderPlan = () => {
     let user_plan;
     if (this.props.current_plan && this.props.current_plan) {
+      console.log(this.props.current_plan);
       user_plan = this.props.plans.filter(
         (plan) => plan.id === this.props.current_plan.plan_id
       )[0];
@@ -79,6 +80,7 @@ const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
     current_plan: state.plan.current_plan,
+    message: state.plan.message,
     favorites: state.favorite.favorites,
     plans: state.plan.select,
   };

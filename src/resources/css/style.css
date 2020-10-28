@@ -1054,7 +1054,7 @@ button {
   border-radius: 2px;
   display: block;
   align-content: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 1200px;
   margin: auto;
 }

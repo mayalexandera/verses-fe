@@ -147,7 +147,7 @@ class Auth extends Component {
 
     return (
       <div className='form title'>
-        <p className='login-title'>Your account</p>
+        <p className='profile-title'>Your account</p>
         {authRedirect}
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>

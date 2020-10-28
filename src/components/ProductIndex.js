@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as actions from "../store/actions/index";
 import ProductCard from "./ProductCard";
 import ProductNav from "./ProductNav";
 

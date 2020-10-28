@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const userPlanStart = (state) => {
-  return updateObject(state, { error: false, loading: true, message: null, current_plan: null });
+  return updateObject(state, { error: false, loading: true, message: null, current_plan: null, current_plan_membership: null });
 };
 
 const userPlanDelete = (state) => {
@@ -39,15 +39,24 @@ const userPlanSuccess = (state, action) => {
       loading: false,
       error: false,
       message: action.payload.message,
-      current_plan: {...action.payload.plan_membership},
-      current_plan_membership: {...action.payload.plan}
+      current_plan: null,
+      current_plan_membership: null
+    });
+  } else if (action.payload.status === 404) {
+    return updateObject(state, {
+      loading: false,
+      error: false,
+      message: null,
+      current_plan: null,
+      current_plan_membership: null,
     });
   }
 
   return updateObject(state, {
     error: false,
     loading: false,
-    current_plan: { ...action.payload.plan_membership },
+    message: null,
+    current_plan: { ...action.payload.plan_membership } ,
     current_plan_membership: { ...action.payload.plan },
   });
 };
@@ -57,6 +66,8 @@ const userPlanFail = (state, action) => {
     error: action.error,
     loading: false,
     message: null,
+    current_plan: null,
+    current_plan_membership: null
   });
 };
 

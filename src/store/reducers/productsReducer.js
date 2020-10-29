@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const setProducts = (state, action) => {
-  console.log(action)
   return updateObject(state, {
     select: [...action.payload.products],
     error: null,
@@ -21,7 +20,6 @@ const setProducts = (state, action) => {
 };
 
 const setAccessories = (state, action) => {
-  console.log(action);
   return updateObject(state, {
     accessories: [...action.payload.products],
     error: null,
@@ -31,7 +29,6 @@ const setAccessories = (state, action) => {
 
 const setShowProduct = (state, action) => {
   const array = action.payload.images.split(",");
-  console.log(state, action);
   return updateObject(state, {
     show: { ...action.payload },
     images: array,
@@ -40,8 +37,7 @@ const setShowProduct = (state, action) => {
 };
 
 const fetchProductsFailed = (state, action) => {
-  console.log(state, action.payload);
-  return updateObject(state, { error: true });
+  return updateObject(state, { error: true, loading: false });
 };
 
 const reducer = (state = initialState, action) => {

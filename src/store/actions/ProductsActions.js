@@ -92,7 +92,6 @@ export const initAccessories = () => async (dispatch) => {
       }
     })
     .then((resp) => {
-      console.log('in initAccessori3s', resp)
       dispatch(setAccessories(resp.data));
     })
     .catch((error) => {

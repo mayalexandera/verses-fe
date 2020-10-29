@@ -59,10 +59,12 @@ class Plans extends React.Component {
           <hr id='plan-hr' />
           <em>No commitments. Pause or cancel at any time.</em>
         </div>
+        <div className='spacer' />
         <div className=' plan-box'>
           <div>{result}</div>
           <div>{() => this.renderPlans()}</div>
         </div>
+        <div className='spacer' />
       </div>
     );
   }

@@ -5,14 +5,15 @@ import { connect } from "react-redux";
 const categories = [
   "Underwear",
   "Pant",
-  "Jumpsuit",
+  "Coverall",
   "Jacket",
+  "Blazer",
   "T-Shirt",
   "Button-Up",
-  "Tee Shirt",
   "Hoodie",
-  "Long Sleeve Tee Shirt",
+  "Long Sleeve T-Shirt",
   "Long Sleeve Button Up",
+  "Short Sleeve Button Up"
 ];
 const sizes = [
   "XS",
@@ -33,11 +34,23 @@ const sizes = [
   "10",
   "12",
   "14",
+  "16",
+  "18",
+  "20",
+  "22",
+  "24"
 ];
 class ProductNav extends React.Component{
 
+  state = {
+    queries: []
+  }
+
    brandHandler = (e, brand_id) => {
     e.preventDefault();
+    let brand = this.props.brands.filter(brand => brand.id === brand_id)[0]
+
+    this.setState((state) => ({queries: state.queries.push(brand.name)}, console.log(state)))
     this.props.fetchProdByBrand(brand_id);
   };
 
@@ -54,52 +67,63 @@ class ProductNav extends React.Component{
 
   render() {
     return (
-    <div className='product-nav'>
-      <div className='product-nav-centered'>
-        <div className='dropdown'>
-          <li class='product-nav-title'>BRAND</li>
-          <div className='dropdown-content'>
-            {this.props.brands.map((brand) => {
-              return (
-                <li
-                  key={brand.id}
-                  onClick={(e) => this.brandHandler(e, brand.id)}
-                  id={brand.id}
-                >
-                  {brand.name}
-                </li>
-              );
-            })}
+<>
+      <div className='product-nav'>
+        <div className='product-nav-centered'>
+          <div className='dropdown'>
+            <li class='product-nav-title'>BRAND</li>
+            <div className='dropdown-content'>
+              {this.props.brands.map((brand) => {
+                return (
+                  <li
+                    key={brand.id}
+                    onClick={(e) => this.brandHandler(e, brand.id)}
+                    id={brand.id}
+                  >
+                    {brand.name}
+                  </li>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className='dropdown'>
-          <li class='product-nav-title'>CATEGORY</li>
-          <ul className='dropdown-content'>
-            {categories.map((category) => {
-              return (
-                <li onClick={(e) => this.categoryHandler(e, category)}>
-                  {category}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className=' dropdown'>
-          <li class='product-nav-title'>SIZE</li>
-          <div className='dropdown-content'>
-            {sizes.map((size) => {
-              return <li onClick={(e) => this.sizeHandler(e, size)}>{size}</li>;
-            })}
+          <div className='dropdown'>
+            <li class='product-nav-title'>CATEGORY</li>
+            <ul className='dropdown-content'>
+              {categories.map((category) => {
+                return (
+                  <li key={category} onClick={(e) => this.categoryHandler(e, category)}>
+                    {category}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className=' dropdown'>
+            <li class='product-nav-title'>SIZE</li>
+            <div className='dropdown-content'>
+              {sizes.map((size) => {
+                return <li key={size} onClick={(e) => this.sizeHandler(e, size)}>{size}</li>;
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      {/* <div className='product-nav-queries-container'>
+          {this.state.queries.map(query => {
+            return (
+              <button id="product-nav-button">{query}</button>
+            )
+          })}
+        </div> */}
+</>
   );}
 };
 
 const mapStateToProps = (state) => {
   return {
     products: state.product.select,
+    accessories: state.product.accessories,
+    brands: state.brand.select
   };
 };
 

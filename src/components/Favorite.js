@@ -37,7 +37,7 @@ const Favorite = (props) => {
             </button>
           </div>
           <div className='favorite-card-details'>
-            <div className='favorite-card-info'>
+            <div className='favorite-card-product-details'>
               <p className='product-title'>
                 <strong>{props.brand.name}</strong>
               </p>

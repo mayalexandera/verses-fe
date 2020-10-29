@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../store/actions/index";
 import ProductCard from "./ProductCard";
-// import ProductNav from "./ProductNav";
+import ProductNav from "./ProductNav";
 
 
 const Accessories = (props) => {
@@ -13,7 +13,6 @@ const Accessories = (props) => {
     };
 
   const renderList = () => {
-    console.log(props)
     return props.accessories.map((prod) => {
       return (
         <ProductCard brand={findBrand(prod)} key={prod.id} product={prod} />
@@ -22,7 +21,7 @@ const Accessories = (props) => {
   };
   return (
     <>
-      {/* <ProductNav brands={props.brands} /> */}
+      <ProductNav brands={props.brands} />
       <div className='section-products'>
         <div>{renderList()}</div>
       </div>

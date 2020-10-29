@@ -32,31 +32,31 @@ const PlanCard = (props) => {
           <li className='plan-description'>{props.plan.description}</li>
         </div>
         <hr id='order-hr' />
-      </div>
-      <div className='plan-card-features'>
-        <ul className='plan-bullet-points'>
-          {props.plan.features.split(",").map((feature) => {
-            return (
-              <li>
-                <ion-icon name='checkmark'></ion-icon>
-                <span>{feature}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div id='plan-button'>
-        <button
-          plan={props.plan.id}
-          id={renderId()}
-          value='button'
-          onClick={(e) => clickHandler(e)}
-        >
-          {renderText()}
-        </button>
-      </div>
-      <div className='plan-price'>
-        <span>{props.plan.price_string}</span> <p>/month</p>
+        <div className='plan-card-features'>
+          <ul className='plan-bullet-points'>
+            {props.plan.features.split(",").map((feature) => {
+              return (
+                <li>
+                  <ion-icon name='checkmark'></ion-icon>
+                  <span>{feature}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div id='plan-button'>
+          <button
+            plan={props.plan.id}
+            id={renderId()}
+            value='button'
+            onClick={(e) => clickHandler(e)}
+          >
+            {renderText()}
+          </button>
+        </div>
+        <div className='plan-price'>
+          <span>{props.plan.price_string}</span> <p>/month</p>
+        </div>
       </div>
     </div>
   );

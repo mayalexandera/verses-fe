@@ -124,11 +124,31 @@ button {
   border: none;
 }
 
+/* PRODUCT NAV */
+.product-nav-queries-container {
+  border: 1px solid red;
+  display: inline-block;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  top: 13vh;
+  margin: auto;
+}
+
+#product-nav-button {
+  /* display: inline; */
+  min-width: 150px;
+  padding: 8px 16px;
+  margin: auto;
+  background-color: blue;
+  border: 1px solid red;
+}
+
 /* PRODUCT index */
 .section-products {
   font-weight: 400;
   min-height: 100vh;
-  padding-top: 60px;
+  padding-top: 14vh;
   max-width: 1424px;
   margin: auto;
   display: block;
@@ -171,47 +191,34 @@ button {
   line-height: 1.75;
 }
 
+.order-summary div {
+  align-items: center;
+}
+
 .guest-cart-link {
   text-decoration: underline;
   cursor: pointer;
 }
 
-/* PRODUCT CARD */
-.product-card-wrapper {
-  display: inline-block;
-  position: relative;
-  padding: 8px;
-  margin: auto;
-  /* margin-bottom: 18px; */
-  vertical-align: top;
-  width: 33.3%;
-  height: 645px;
-  /* border: 1px solid red; */
-}
-
+/* PRODUCT CARD / FAVORITE CARD*/
+.product-card-wrapper,
 .favorite-card-wrapper {
-  display: inline-block;
-  position: relative;
+  display: inline-flex;
   padding: 8px;
-  margin: auto;
-  /* margin-bottom: 18px; */
+  justify-content: center;
   vertical-align: top;
   width: 33.3%;
-  max-width: 500px;
   height: 645px;
   /* border: 1px solid red; */
 }
 
 .product-card-content-wrapper,
 .favorite-card-content-wrapper {
-  height: 98%;
+  height: 100%;
+  width: 100%;
   /* border: 1px solid red; */
   margin: auto;
   background-color: white;
-}
-
-.favorite-card-content-wrapper {
-  max-width: 500px;
 }
 
 .product-card-body,
@@ -220,31 +227,21 @@ button {
   vertical-align: top;
   position: relative;
   height: 100%;
-}
-
-.product-card-details {
-  text-align: left;
   width: 85%;
-  padding-top: 10px;
-  height: 15%;
-  line-height: 1.45;
-  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
 }
 
+.product-card-details,
 .favorite-card-details {
-  /* vertical-align: center; */
-  padding-top: 15px;
   text-align: left;
-  margin: inherit;
-  margin-left: 27.5px;
-  margin-right: 27.5px;
-  max-width: 500px;
+  padding: 10px;
   height: 15%;
   line-height: 1.45;
   /* border: 1px solid red; */
 }
 
-.favorite-card-info {
+.favorite-card-product-details {
   float: left;
   width: 50%;
 }
@@ -252,21 +249,19 @@ button {
 .product-photo-wrapper,
 .favorite-photo-wrapper {
   /* border: 1px solid red; */
-  display: block;
+  display: flex;
+  justify-content: center;
   height: 85%;
+  width: 100%;
   overflow: hidden;
 }
 
-.favorite-photo-wrapper {
-  max-width: 500px;
-}
-
-.product-photo-wrapper img,
+.product-photo-wrapper a img,
 .favorite-photo-wrapper img {
-  width: 85%;
+  display: block;
+  height: 100%;
+  width: auto;
   margin: auto;
-  display: flex;
-  /* height: 100% */
 }
 
 .product-photo-wrapper img:hover,
@@ -288,6 +283,25 @@ button {
   color: black;
   margin-bottom: 2;
   text-align: left;
+}
+
+#favorite-card-button {
+  font-weight: 300;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid rgb(228, 228, 228);
+  outline: none;
+  background-color: white;
+  border-radius: 20px;
+  padding: 8px 24px;
+}
+
+#delete-favorite-button {
+  right: 10px;
+  top: 8px;
+  position: absolute;
+  background-color: transparent;
+  opacity: 40%;
 }
 
 /* PRODUCT SHOW */
@@ -477,24 +491,7 @@ button {
   color: rgb(38, 38, 38);
 }
 
-#favorite-card-button {
-  font-weight: 300;
-  font-size: 16px;
-  cursor: pointer;
-  border: 1px solid rgb(228, 228, 228);
-  outline: none;
-  background-color: white;
-  border-radius: 20px;
-  padding: 8px 24px;
-}
 
-#delete-favorite-button {
-  right: 38px;
-  top: 8px;
-  position: absolute;
-  background-color: transparent;
-  opacity: 40%;
-}
 
 /* PRODUCT NAV */
 
@@ -577,6 +574,7 @@ button {
 .section-favorites {
   display: block;
   margin: auto;
+  margin-top: 20px;
   /* border: 1px solid red; */
 }
 
@@ -671,32 +669,25 @@ button {
   font-size: 75%;
 }
 
-.center-nav-button {
-  float: none;
-  position: absolute;
-  top: 0%;
-  left: -20%;
-  transform: translate(50%, -50%);
-}
-
 /* PLANS */
 .plan-background {
   background-color: rgb(233, 242, 191);
-  min-height: 100vh;
+  min-height: 110vh;
 }
 
 .plan-box {
   justify-content: center;
-  margin: 20px auto;
-  max-width: 80%;
-  height: 100%;
-  padding: 1%;
+  margin: 0px auto;
+  max-width: 1424px;
+  height: 475px;
+  /* border: 1px solid red; */
   display: flex;
   /* padding-bottom: 100px; */
 }
 
 .plan-box > div {
   display: flex;
+  width: inherit;
 }
 
 .plan-header {
@@ -803,8 +794,7 @@ button {
 .plan-card {
   background-color: #fff;
   box-shadow: 0px 2px 2px #efefef;
-  margin: 20px 20px;
-  padding-top: 20px;
+  margin: 0px 20px;
   max-width: 325px;
   max-height: 475px;
   border-radius: 5px;
@@ -812,7 +802,8 @@ button {
 }
 
 .plan-card-body {
-  padding: 0px 20px;
+  padding: 20px;
+  height: 100%;
 }
 
 .plan-card-details,
@@ -822,6 +813,7 @@ button {
   line-height: 1.5;
   margin-bottom: 10px;
   font-weight: 300;
+  /* border: 1px solid red; */
 }
 
 .plan-card-details p {
@@ -832,6 +824,7 @@ button {
 }
 .plan-card-details {
   min-height: 160px;
+  height: 35%
 }
 
 .plan-card-details span {
@@ -842,7 +835,9 @@ button {
 }
 
 .plan-card-features {
-  min-height: 99px;
+  min-height: 100px;
+  height: 25%;
+  /* max-height: 100px; */
 }
 
 .plan-bullet-points {
@@ -895,11 +890,10 @@ button {
 }
 
 #plan-button {
-  margin-bottom: 25px;
+  margin-top: 5%;
   display: flex;
   justify-content: center;
-  margin: auto;
-  padding: 0px 20px;
+  height: 10%;
 }
 
 /* CART */
@@ -1267,16 +1261,13 @@ plan-hr {
 }
 
 .profile-section-container {
-  padding-bottom: 48px;
   margin: 0px 20px;
-  /* width: 45%; */
   display: inline-block;
   /* border: 1px solid red; */
 }
 
 .profile-plan-container {
   padding-bottom: 48px;
-  /* margin: 0px 20px; */
   text-align: right;
   display: inline-block;
   /* border: 1px solid red; */
@@ -1296,6 +1287,7 @@ plan-hr {
 
 .profile-section-wrapper {
   width: 85%;
+  max-width: 1424px;
   margin: auto;
   vertical-align: top;
   display: flex;

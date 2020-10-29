@@ -84,18 +84,20 @@ class ProductShow extends React.Component {
               </a>
             </div>
             <div>
-              {this.props.sizes.map((size) => {
-                return (
-                  <button
-                    onClick={(e) => this.handleSizeClick(e)}
-                    className='product-show-subtitle'
-                    id={this.button(size)}
-                    value={size}
-                  >
-                    {size}
-                  </button>
-                );
-              })}
+              {this.props.sizes !== []
+                ? this.props.sizes.map((size) => {
+                    return (
+                      <button
+                        onClick={(e) => this.handleSizeClick(e)}
+                        className='product-show-subtitle'
+                        id={this.button(size)}
+                        value={size}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })
+                : null}
             </div>
             <ul className='product-actions'>
               <div className='errorMessage'>{this.state.errorMessage}</div>
@@ -126,15 +128,13 @@ class ProductShow extends React.Component {
               <hr id='product-show-hr' />
               <ul className='fit-details'>
                 {this.props.showProduct.fit_details !== undefined &&
-                this.props.showProduct.fit_details !== null ? (
-                  this.props.showProduct.fit_details
-                    .split(",")
-                    .map((detail) => {
-                      return <li>{detail}</li>;
-                    })
-                ) : (
-                  <p>loading</p>
-                )}
+                this.props.showProduct.fit_details !== null
+                  ? this.props.showProduct.fit_details
+                      .split(",")
+                      .map((detail) => {
+                        return <li>{detail}</li>;
+                      })
+                  : <span>{":)"}</span>}
               </ul>
             </div>
           </div>

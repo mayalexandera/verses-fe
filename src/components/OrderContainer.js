@@ -66,7 +66,7 @@ class OrderContainer extends React.Component {
         <div className='orders-container-wrapper'>
           <div className='orders-container'>
             <hr id='order-hr' />
-            <> {this.renderOrders()}</>
+            <div> {this.renderOrders()}</div>
           </div>
         </div>
       </div>

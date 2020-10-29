@@ -8,9 +8,7 @@ const initialState = {
 };
 
 const startOrder = (state) => {
-  return updateObject(state, {
-    loading: false,
-  });
+  return updateObject(state, {loading: false});
 };
 
 const orderSuccess = (state, action) => {
@@ -49,7 +47,7 @@ const fetchOrderSuccess = (state, action) => {
   }
 };
 
-const orderFailed = (state, action) => {
+const orderFailed = (state) => {
   return updateObject(state, {
     error: true,
     loading: false,

@@ -53,7 +53,6 @@ export const updateCartProductSize = (cart_item, size) => async (dispatch, getSt
       type: "size",
     })
     .then((resp) => {
-      console.log(resp.data);
       dispatch({
         type: actionTypes.UPDATE_CART_PRODUCT_SIZE,
         payload: resp.data,
@@ -74,7 +73,6 @@ export const addCartToFavorite = (
     size: size,
     cart_item_id: JSON.stringify(cart_item_id),
   });
-  console.log(cart_item_id);
   dispatch(removeProductFromCart(cart_item_id));
 };
 

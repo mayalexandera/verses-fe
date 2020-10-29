@@ -7,10 +7,17 @@ const initialState = {
   error: false,
   message: null,
   current_plan: null,
+  current_plan_membership: null
 };
 
 const userPlanStart = (state) => {
-  return updateObject(state, { error: false, loading: true, message: null, current_plan: null, current_plan_membership: null });
+  return updateObject(state, { 
+    error: false,
+    loading: true,
+    message: null,
+    current_plan: null,
+    current_plan_membership: null
+   });
 };
 
 const userPlanDelete = (state) => {
@@ -80,7 +87,7 @@ const fetchPlansSuccess = (state, action) => {
   });
 };
 
-const fetchPlansStart = (state, action) => {
+const fetchPlansStart = (state) => {
   return updateObject(state, { error: false, loading: true });
 };
 

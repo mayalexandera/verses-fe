@@ -4,7 +4,6 @@ import * as actionTypes from "./actionTypes";
 export const setShowBrand = (brand_id) => async (dispatch, getState) => {
   let brands = getState().brand.select 
   let brand = brands.filter(brand => brand.id === brand_id)
-  console.log(brand_id)
   dispatch({ type: actionTypes.SET_SHOW_BRAND, brand: brand[0]});
 }
 

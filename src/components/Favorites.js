@@ -9,7 +9,7 @@ class Favorites extends React.Component {
   }
 
   findBrand = (product) => {
-    if (product !== "undefined" && product !== undefined) {
+    if (product !== undefined && product !== undefined) {
       let brand = this.props.brands.filter(
         (brand) => brand.id === product.brand_id
       );
@@ -20,7 +20,7 @@ class Favorites extends React.Component {
   renderList = () => {
     if (
       this.props.favorites.length < 1 ||
-      this.props.favorites.length === "undefined"
+      this.props.favorites.length === undefined
     )
       return (
         <div>
@@ -45,19 +45,15 @@ class Favorites extends React.Component {
   };
 
   render() {
-    return <div className='favorites'>{this.renderList()}</div>;
+    return <div>{this.renderList()}</div>;
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     favorites: state.favorite.select,
     brands: state.brand.select,
-    current_user: state.auth.current_user,
     products: state.product.select,
-    error: state.favorite.error,
-    loading: state.favorite.loading,
   };
 };
 

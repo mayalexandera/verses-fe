@@ -11,23 +11,21 @@ class FavoritesContainer extends React.Component {
       ? (header = <ProfileHeader />)
       : (header = null);
     return (
-      <div>
-        <div className='section-favorites-wrapper'>
-          <div className='section-favorites'>
-            <div className='order-title'>
-              <p>
-                <strong>Favorites</strong>
-              </p>
-              <div className='favorites-header-wrapper'>
-                <div className='order-header-container'>
-                  <div className='order-header-links'>{header}</div>
-                </div>
+      <div className='section-favorites-wrapper'>
+        <div className='section-favorites'>
+          <div className='order-title'>
+            <p>
+              <strong>Favorites</strong>
+            </p>
+            <div className='favorites-header-wrapper'>
+              <div className='order-header-container'>
+                <div className='order-header-links'>{header}</div>
               </div>
             </div>
-            <div className='spacer' />
           </div>
-          <Favorites/>
+          <div className='spacer' />
         </div>
+        <Favorites />
       </div>
     );
   }

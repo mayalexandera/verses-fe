@@ -11,8 +11,6 @@ import "./resources/css/style.css";
 import "./resources/css/normalize.css";
 import "./resources/css/queries.css";
 import "./resources/css/grid.css";
-import "./resources/js/carousel.js";
-import "./resources/js/util.js";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

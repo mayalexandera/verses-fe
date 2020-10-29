@@ -8,9 +8,13 @@ import BrandCard from "./BrandCard";
 const Brands = (props) => {
   return (
     <div className='brands-landing'>
-        {props.brands.map((brand) => {
-          return <div ><BrandCard brand={brand} /></div>;
-        })}
+      <div className='spacer' />
+      <div className='brands-title'>Participating Companies</div>
+      <div className='spacer' />
+      {props.brands.map((brand) => {
+        return <BrandCard brand={brand} />;
+      })}
+      <div className='spacer' />
     </div>
   );
 };

@@ -26,7 +26,7 @@ const setCart = (state, action) => {
   }
 };
 
-const startFetchCart = (state, action) => {
+const startFetchCart = (state) => {
   return updateObject(state, {
     loading: true,
     error: null,
@@ -36,7 +36,7 @@ const startFetchCart = (state, action) => {
 
 const addProductToCart = (state, action) => {
   let updatedCart;
-  if (state.cart_items !== [] || state.cart_items !== "undefined") {
+  if (state.cart_items !== [] || state.cart_items !== undefined) {
     updatedCart = [...state.cart_items, { ...action.payload }];
   } else {
     updatedCart = [action.payload];
@@ -55,9 +55,7 @@ const updateCartProductSize = (state, action) => {
   const updatedCart = []
 
   state.cart_items.map(cartItem => {
-    if (cartItem.id !== cart_item.id) {
-      updatedCart.push({...cartItem})
-    }
+    if (cartItem.id !== cart_item.id) updatedCart.push({...cartItem})
   })
   
   updatedCart.push({...action.payload.cart_item})

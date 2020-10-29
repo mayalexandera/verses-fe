@@ -1,10 +1,9 @@
 import React from "react";
 import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Favorite = (props) => {
-
-  
   const clickHandler = (e) => {
     e.preventDefault();
     let favorite_id = props.fave.id;
@@ -27,13 +26,15 @@ const Favorite = (props) => {
       <div className='favorite-card-body'>
         <div className='favorite-card-content-wrapper'>
           <div className='favorite-photo-wrapper'>
-            <img alt={props.product.name} src={img} />
+            <NavLink to={`/products/${props.product.id}`}>
+              <img alt={props.product.name} src={img} />
+            </NavLink>
             <button
               value='delete'
               id='delete-favorite-button'
               onClick={(e) => deleteFaveHandler(e)}
             >
-              <ion-icon size='large' name='close'></ion-icon>
+              <ion-icon size='large' name='close' />
             </button>
           </div>
           <div className='favorite-card-details'>
@@ -63,12 +64,6 @@ const Favorite = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userId: state.auth.userId,
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     addFavoriteToCart: (product_id, size, favorite_id) =>
@@ -76,4 +71,4 @@ const mapDispatchToProps = (dispatch) => {
     deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Favorite);
+export default connect(null, mapDispatchToProps)(Favorite);

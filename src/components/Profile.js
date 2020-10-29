@@ -14,26 +14,23 @@ class Profile extends React.Component {
 
   renderUser = () => {
     return this.props.current_user && this.props.current_user ? (
-      <>
-        <section className='profile-section-container'>
-          <div className='profile-section'>
-            <p className='profile-photo' />
-            <div className='profile-title'>
-              <p>
-                <strong>{this.props.current_user.name}</strong>
-              </p>
-              <p className='profile-subtitle'>Verses member since June 2016</p>
-            </div>
+      <section className='profile-section-container'>
+        <div className='profile-section'>
+          <p className='profile-photo' />
+          <div className='profile-title'>
+            <p>
+              <strong>{this.props.current_user.name}</strong>
+            </p>
+            <p className='profile-subtitle'>Verses member since June 2016</p>
           </div>
-        </section>
-      </>
+        </div>
+      </section>
     ) : null;
   };
 
   renderPlan = () => {
     let user_plan;
     if (this.props.current_plan && this.props.current_plan) {
-      console.log(this.props.current_plan);
       user_plan = this.props.plans.filter(
         (plan) => plan.id === this.props.current_plan.plan_id
       )[0];

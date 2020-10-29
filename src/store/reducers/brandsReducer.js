@@ -8,14 +8,12 @@ const initialState = {
 };
 
 const setShowBrand = (state, action) => {
-  console.log(action);
   return updateObject(state, {
     show: { ...action.brand },
   });
 };
 
 const setBrands = (state, action) => {
-  console.log("in set brands", state, action);
   return updateObject(state, { select: [...action.brands] });
 };
 

@@ -27,9 +27,9 @@ const deleteFavorite = (state, action) => {
 };
 
 const startFetchFavorites = (state, action) => {
-  console.log(state, action.payload);
   return updateObject(state, {
     loading: true,
+    error: false
   });
 };
 
@@ -43,7 +43,7 @@ const setFavorites = (state, action) => {
   });
 };
 
-const fetchFavoritesFailed = (state, action) => {
+const fetchFavoritesFailed = (state) => {
   return updateObject(state, { error: true, loading: false });
 };
 

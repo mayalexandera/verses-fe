@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../store/actions/index";
 import ProductCard from "./ProductCard";
-import ProductNav from "./ProductNav";
 
 
 const Accessories = (props) => {
@@ -20,12 +18,9 @@ const Accessories = (props) => {
     });
   };
   return (
-    <>
-      <ProductNav brands={props.brands} />
       <div className='section-products'>
-        <div>{renderList()}</div>
+        {renderList()}
       </div>
-    </>
   );
 };
 
@@ -33,7 +28,6 @@ const mapStateToProps = (state) => {
   return {
     accessories: state.product.accessories,
     brands: state.brand.select,
-    error: state.product.error,
   };
 };
 

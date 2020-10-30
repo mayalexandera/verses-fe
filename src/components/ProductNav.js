@@ -50,7 +50,7 @@ class ProductNav extends React.Component{
     e.preventDefault();
     let brand = this.props.brands.filter(brand => brand.id === brand_id)[0]
 
-    this.setState((state) => ({queries: state.queries.push(brand.name)}, console.log(state)))
+    this.setState((state) => ({queries: state.queries.push(brand.name)}))
     this.props.fetchProdByBrand(brand_id);
   };
 

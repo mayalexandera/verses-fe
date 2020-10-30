@@ -34,11 +34,7 @@ class FavoritesContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorite.select,
-    brands: state.brand.select,
     current_user: state.auth.current_user,
-    products: state.product.select,
-    error: state.favorite.error,
-    loading: state.favorite.loading,
   };
 };
 

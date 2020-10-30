@@ -7,9 +7,9 @@ import OrderContainer from "./OrderContainer";
 import ProfileHeader from "./ProfileHeader";
 import Settings from "./Settings";
 
-export const ProfileRouter = (props) => {
+export const ProfileRouter = () => {
   return (
-    <div className='row'>
+    <div>
       <Router>
         <ProfileHeader />
         <div className='rapper-whatever'>

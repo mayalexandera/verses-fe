@@ -11,7 +11,6 @@ export const addProductToCart = (product_id, size) => async (
       size: size,
     })
     .then((resp) => {
-      console.log(resp.data)
       dispatch({
         type: actionTypes.ADD_PRODUCT_TO_CART,
         payload: resp.data,
@@ -34,7 +33,6 @@ export const updateCartProductQty = (cart_item, quantity, size) => async (
       type: "quantity"
     })
     .then((resp) => {
-      console.log(resp.data);
       dispatch({
         type: actionTypes.UPDATE_CART_PRODUCT_QTY,
         payload: resp.data,

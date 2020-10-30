@@ -1,7 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../store/actions/index";
 
 class ProfileHeader extends React.Component {
   
@@ -41,17 +39,4 @@ class ProfileHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    orders: state.order.orders
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchOrders: () => dispatch(actions.fetchOrders())
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileHeader);
+export default (ProfileHeader);

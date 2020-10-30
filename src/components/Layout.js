@@ -8,8 +8,8 @@ class Layout extends React.Component {
     this.props.initProducts();
     this.props.initAccessories();
     this.props.fetchUser();
-    this.props.initFavorites();
     this.props.fetchOrders();
+    this.props.initFavorites();
   }
 
   render() {
@@ -21,13 +21,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     userId: state.auth.userId,
-    current_user: state.auth.current_user,
-    current_plan: state.plan.current_plan,
-    products: state.product.select,
-    accessories: state.product.accessories,
-    brands: state.brand.select,
-    favorites: state.favorite.select,
-    orders: state.order.orders,
+    current_user: state.auth.current_user
   };
 };
 
@@ -36,9 +30,9 @@ const mapDispatchToProps = (dispatch) => {
     initProducts: () => dispatch(actions.initProducts()),
     initAccessories: () => dispatch(actions.initAccessories()),
     initBrands: () => dispatch(actions.initBrands()),
-    initFavorites: () => dispatch(actions.initFavorites()),
     fetchUser: () => actions.fetchUser(),
     fetchOrders: () => actions.fetchOrders(),
+    initFavorites: () => dispatch(actions.initFavorites()),
   };
 };
 

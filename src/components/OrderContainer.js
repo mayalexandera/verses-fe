@@ -3,8 +3,6 @@ import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 import OrderItem from "./OrderItem";
 import ProfileHeader from "./ProfileHeader";
-import { Link } from "react-router-dom";
-
 class OrderContainer extends React.Component {
   componentDidMount() {
     this.props.fetchOrders();
@@ -74,8 +72,7 @@ class OrderContainer extends React.Component {
   }
 }
 
-const msp = (state) => {
-  console.log(state);
+const mapStateToProps = (state) => {
   return {
     orders: state.order.orders,
     order_items: state.order.order_items,
@@ -83,10 +80,10 @@ const msp = (state) => {
   };
 };
 
-const mdp = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchOrders: () => dispatch(actions.fetchOrders()),
   };
 };
 
-export default connect(msp, mdp)(OrderContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderContainer);

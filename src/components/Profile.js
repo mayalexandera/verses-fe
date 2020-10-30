@@ -8,7 +8,6 @@ class Profile extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchUserPlan();
-    this.props.initFetchPlans();
     this.props.initFavorites();
   }
 
@@ -29,17 +28,17 @@ class Profile extends React.Component {
   };
 
   renderPlan = () => {
-    let user_plan;
-    if (this.props.current_plan && this.props.current_plan) {
-      user_plan = this.props.plans.filter(
-        (plan) => plan.id === this.props.current_plan.plan_id
-      )[0];
-
+    if (
+      this.props.current_plan_membership &&
+      this.props.current_plan_membership
+    ) {
       return (
         <div className='profile-plan'>
           <p>Current Plan</p>
-          <strong>{user_plan.items} </strong>items per month |
-          <strong>{user_plan.price_string}</strong>/month
+          <strong>{this.props.current_plan_membership.items} </strong>items per
+          month |
+          <strong>{this.props.current_plan_membership.price_string}</strong>
+          /month
         </div>
       );
     }
@@ -76,10 +75,8 @@ class Profile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
-    current_plan: state.plan.current_plan,
-    message: state.plan.message,
+    current_plan_membership: state.plan.current_plan_membership,
     favorites: state.favorite.favorites,
-    plans: state.plan.select,
   };
 };
 
@@ -87,7 +84,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUser: () => dispatch(actions.fetchUser()),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
-    initFetchPlans: () => dispatch(actions.initFetchPlans()),
     initFavorites: () => dispatch(actions.initFavorites()),
   };
 };

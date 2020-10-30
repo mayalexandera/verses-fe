@@ -5,7 +5,6 @@ import * as actions from "../store/actions/index";
 class AccountInfo extends React.Component {
 
   render() {
-    console.log(this.props.current_user)
     return (
       <div className='account-details'>
         <form>

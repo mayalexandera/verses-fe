@@ -5,18 +5,19 @@ import * as actions from "../store/actions/index";
 const PlanCard = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
-    props.initPlanMembership(props.plan.id);
+    return !props.current_user ? null : props.initPlanMembership(props.plan.id);
   };
 
   const renderText = () => {
-    return (props.current_plan === null && props.current_plan === null) ||
+    return (props.current_plan === null) ||
       props.plan.id !== props.current_plan.plan_id
       ? "Try Now"
       : "Current Plan";
   };
 
   const renderId = () => {
-    return (props.current_plan === null && props.current_plan === null) ||
+    return !props.current_user ? "disabled" :
+     (props.current_plan === null) ||
       props.plan.id !== props.current_plan.plan_id
       ? "plan-option"
       : "current-plan";
@@ -62,7 +63,9 @@ const PlanCard = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  return { current_plan: state.plan.current_plan };
+  return {
+    current_user: state.auth.current_user,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

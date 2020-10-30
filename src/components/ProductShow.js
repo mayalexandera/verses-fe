@@ -60,10 +60,10 @@ class ProductShow extends React.Component {
           {!this.props.showProduct ? (
             <div>loading...</div>
           ) : (
-            this.props.images.map((image) => {
+            this.props.images.map((image, index) => {
               return (
-                <div key={this.props.images[image]}>
-                  <img key={image.id} src={image} images={this.props.images} />
+                <div key={index}>
+                  <img alt={this.props.showProduct.name} key={image.id} src={image} images={this.props.images} />
                 </div>
               );
             })
@@ -85,9 +85,10 @@ class ProductShow extends React.Component {
             </div>
             <div>
               {this.props.sizes !== []
-                ? this.props.sizes.map((size) => {
+                ? this.props.sizes.map((size, index) => {
                     return (
                       <button
+                        key={index}
                         onClick={(e) => this.handleSizeClick(e)}
                         className='product-show-subtitle'
                         id={this.button(size)}
@@ -128,13 +129,15 @@ class ProductShow extends React.Component {
               <hr id='product-show-hr' />
               <ul className='fit-details'>
                 {this.props.showProduct.fit_details !== undefined &&
-                this.props.showProduct.fit_details !== null
-                  ? this.props.showProduct.fit_details
-                      .split(",")
-                      .map((detail) => {
-                        return <li>{detail}</li>;
-                      })
-                  : <span>{":)"}</span>}
+                this.props.showProduct.fit_details !== null ? (
+                  this.props.showProduct.fit_details
+                    .split(",")
+                    .map((detail, index) => {
+                      return <li key={index}>{detail}</li>;
+                    })
+                ) : (
+                  <span>{":)"}</span>
+                )}
               </ul>
             </div>
           </div>

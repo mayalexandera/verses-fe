@@ -1,70 +1,58 @@
 import React from "react";
-import * as actions from "../store/actions/index";
 import { connect } from "react-redux";
 import Favorite from "./Favorite";
 
-class Favorites extends React.Component {
-  componentDidMount() {
-    this.props.initFavorites();
-  }
-
-  findBrand = (product) => {
-    if (product !== undefined && product !== undefined) {
-      let brand = this.props.brands.filter(
-        (brand) => brand.id === product.brand_id
-      );
-      return brand[0];
-    }
+const Favorites = (props) => {
+  const findBrand = (brand_id) => {
+    return props.brands.filter((brand) => brand.id === brand_id)[0];
   };
 
-  renderList = () => {
-    if (
-      this.props.favorites.length < 1 ||
-      this.props.favorites.length === undefined
-    )
-      return (
-        <div>
-          <div className='spacer' />
-          <p className='brands-subtitle' id='message'>
-            Items added to your Favorites will be saved here.
-          </p>
-        </div>
-      );
-    return this.props.favorites.map((fave) => {
-      let product = fave["product"];
-      let brand = this.findBrand(product);
-      return (
-        <Favorite
-          brand={brand}
-          fave={fave}
-          product={product}
-          size={fave.size}
-        />
-      );
-    });
+  const findProduct = (fave) => {
+    return props.products.filter((prod) => prod.id === fave.product_id)[0];
   };
 
-  render() {
-    return <div>{this.renderList()}</div>;
-  }
-}
+  const renderList = () => {
+    if (!props.loading && !props.loading)
+      return props.favorites.map((fave) => {
+        let product = findProduct(fave);
+        return (
+          <Favorite
+            brand={findBrand(product.brand_id)}
+            fave={fave}
+            product={product}
+            size={fave.size}
+            key={fave.id}
+          />
+        );
+      });
+  };
+
+  let message;
+
+  message =
+    props.favorites === null || props.favorites.length === 0 ? (
+      <p className='brands-subtitle'>
+        Items added to your favorites will be saved here.
+      </p>
+    ) : (
+      <div>{renderList()}</div>
+    );
+
+  return (
+    <>
+      <div className='spacer' />
+      {message}
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorite.select,
     brands: state.brand.select,
     products: state.product.select,
+    loading: state.favorite.loading,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (product_id) => dispatch(actions.addProductToCart(product_id)),
-    addToFavorites: (user_id, product_id) =>
-      dispatch(actions.createFavorite(user_id, product_id)),
-    deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
-    initFavorites: () => dispatch(actions.initFavorites()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(mapStateToProps)(Favorites);

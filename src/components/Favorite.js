@@ -18,9 +18,7 @@ const Favorite = (props) => {
     props.deleteFavorite(props.fave.id);
   };
 
-  let img;
-  if (props.product === undefined && props.product === undefined) return null;
-  img = props.product.images.split(",")[0];
+  let img = props.product.images.split(",")[0];
   return (
     <div className='favorite-card-wrapper'>
       <div className='favorite-card-body'>

@@ -2,51 +2,36 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
 const initialState = {
-  token: localStorage.getItem("token"),
-  userId: JSON.parse(localStorage.getItem("user")),
+  token: null,
+  userId: null,
   error: null,
   loading: null,
-   authRedirectPath: '/',
+  authRedirectPath: '/',
   current_user: null,
 };
 
 const authStart = (state) => {
-  return updateObject(state, { error: null });
+  return updateObject(state, { loading: true });
 };
 
 const authSuccess = (state, action) => {
-  localStorage.setItem("token", action.idToken);
-  localStorage.setItem("user", action.userId);
-
   return updateObject(state, {
-    token: action.idToken,
-    userId: action.userId,
-    error: null,
+    token: action.payload.user.session_token,
+    userId: action.payload.user.id,
+    current_user: action.payload.user,
     loading: false,
+    error: null
   });
-};
-
-const fetchUserStart = (state) => {
-  return updateObject(state, { error: null, loading: true });
 };
 
 const fetchUserFail = (state) => {
   return updateObject(state, { error: true, loading: false });
 };
 
-const fetchUserSuccess = (state, action) => {
-  return updateObject(state, {
-    error: null,
-    current_user: action.user,
-    loading: false,
-  });
-};
-
 const authFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
+    error: action.error.message,
     loading: false,
-    current_user: null,
   });
 };
 
@@ -73,10 +58,6 @@ const reducer = (state = initialState, action) => {
       return authFail(state, action);
     case actionTypes.AUTH_LOGOUT:
       return authLogout(state, action);
-    case actionTypes.FETCH_USER_SUCCESS:
-      return fetchUserSuccess(state, action);
-    case actionTypes.FETCH_USER_START:
-      return fetchUserStart(state, action);
     case actionTypes.FETCH_USER_FAIL:
       return fetchUserFail(state, action);
     case actionTypes.SET_AUTH_REDIRECT_PATH:

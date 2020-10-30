@@ -7,9 +7,7 @@ class Layout extends React.Component {
     this.props.initBrands();
     this.props.initProducts();
     this.props.initAccessories();
-    this.props.fetchUser();
-    this.props.fetchOrders();
-    this.props.initFavorites();
+    this.props.initFetchPlans();
   }
 
   render() {
@@ -30,9 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     initProducts: () => dispatch(actions.initProducts()),
     initAccessories: () => dispatch(actions.initAccessories()),
     initBrands: () => dispatch(actions.initBrands()),
-    fetchUser: () => actions.fetchUser(),
-    fetchOrders: () => actions.fetchOrders(),
-    initFavorites: () => dispatch(actions.initFavorites()),
+    initFetchPlans: () => dispatch(actions.initFetchPlans()),
   };
 };
 

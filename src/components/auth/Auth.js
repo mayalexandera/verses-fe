@@ -103,6 +103,8 @@ class Auth extends Component {
       this.state.controls.name.value,
       this.state.isSignup
     );
+
+    // this.props.fetchUser()
   };
 
   switchAuthModeHandler = () => {
@@ -134,8 +136,8 @@ class Auth extends Component {
     ));
 
     let errorMessage = null;
-    if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
+    if (this.props.message) {
+      errorMessage = <p>{this.props.message}</p>;
     }
 
     let authRedirect = null;
@@ -165,8 +167,9 @@ class Auth extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error,
+    message: state.auth.error,
     isAuthenticated: state.auth.token !== null,
+    authRedirectPath: state.auth.authRedirectPath
   };
 };
 
@@ -174,6 +177,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, name, isSignup) =>
       dispatch(actions.auth(email, password, name, isSignup)),
+    fetchUser: () => dispatch(actions.fetchUser())
   };
 };
 

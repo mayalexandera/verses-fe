@@ -6,8 +6,6 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
-    this.props.fetchUser();
-    this.props.fetchUserPlan();
   }
 
   clickHandler = (e) => {
@@ -44,9 +42,16 @@ class Cart extends React.Component {
   };
 
   renderList = () => {
+    let errorMessage;
+    !this.props.current_user
+      ? (errorMessage = null)
+      : (errorMessage = this.props.message);
     return this.props.cart_items === undefined ||
       this.props.cart_items.length === 0 ? (
-      <p>There are no items in your cart</p>
+      <>
+        <p>There are no items in your cart</p>
+        <p>{errorMessage}</p>
+      </>
     ) : (
       this.props.cart_items.map((item) => {
         let product = this.findProduct(item);
@@ -71,28 +76,27 @@ class Cart extends React.Component {
       guestMessage,
       memberCart;
 
-    !this.props.current_user && !this.props.current_user
-      ? (cart = "Cart")
-      : (cart = null);
+    !this.props.current_user ? (cart = "Cart") : (cart = null);
 
-    !this.props.cart_items && !this.props.cart_items
-      ? (submitButton = null)
-      : (submitButton = (
-          <button
-            id='add-to-favorites-button'
-            onClick={(e) => this.clickHandler(e)}
-          >
-            Checkout
-          </button>
-        ));
+    if (!this.props.cart_items) {
+      submitButton = null;
+      cart_items_count = 0;
+    } else {
+      submitButton = (
+        <button
+          id='add-to-favorites-button'
+          onClick={(e) => this.clickHandler(e)}
+        >
+          Checkout
+        </button>
+      );
 
-    !this.props.cart_items && !this.props.cart_items
-      ? (cart_items_count = 0)
-      : this.props.cart_items.map(
-          (item) => (cart_items_count += item.quantity)
-        );
+      this.props.cart_items.map((item) => {
+        return (cart_items_count += item.quantity);
+      });
+    }
 
-    this.props.current_plan && this.props.current_plan
+    this.props.current_plan
       ? (plan_items = this.props.current_plan.items)
       : (plan_items = null);
 
@@ -105,27 +109,26 @@ class Cart extends React.Component {
               <p>Free Shipping for Members</p>
               <p>
                 {"Become a Verses member for fast and free shipping. "}
-                <a
+                <span
                   className='guest-cart-link'
                   onClick={() => this.props.history.push("/login")}
                 >
                   {" "}
                   Join Us
-                </a>{" "}
+                </span>{" "}
                 or
-                <a
+                <span
                   className='guest-cart-link'
                   onClick={() => this.props.history.push("/login")}
                 >
                   {" "}
                   Log In
-                </a>
+                </span>
               </p>
             </div>
             <div className='spacer' />
           </div>
         ));
-
     return (
       <div className='section-products'>
         <div className='spacer' />
@@ -159,8 +162,13 @@ class Cart extends React.Component {
           </div>
           {submitButton}
           <div className='cart-quantity-message'>
-            {cart_items_count <= plan_items ? <p>You can add up to {plan_items - cart_items_count} more items.</p> : <p>You must remove {cart_items_count - plan_items} item(s).</p>}
-            
+            {cart_items_count <= plan_items ? (
+              <p>
+                You can add up to {plan_items - cart_items_count} more items.
+              </p>
+            ) : (
+              <p>You must remove {cart_items_count - plan_items} item(s).</p>
+            )}
           </div>
         </div>
       </div>
@@ -174,6 +182,7 @@ const mapStateToProps = (state) => {
     current_plan: state.plan.current_plan_membership,
     cart_total: state.cart.cart_total,
     cart_items: state.cart.cart_items,
+    message: state.cart.message,
     products: state.product.select,
     brands: state.brand.select,
   };
@@ -181,6 +190,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    initFetchPlans: () => dispatch(actions.initFetchPlans()),
     initCart: () => dispatch(actions.initCart()),
     initOrder: () => dispatch(actions.initOrder()),
     fetchUser: () => dispatch(actions.fetchUser()),

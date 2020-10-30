@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as actions from "../store/actions/index";
 import ProductCard from "./ProductCard";
 import ProductNav from "./ProductNav";
 
@@ -16,6 +17,7 @@ const ProductIndex = (props) => {
       );
     });
   };
+
   return (
     <>
       <ProductNav brands={props.brands} />
@@ -34,4 +36,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProductIndex);
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    initProducts: () => dispatch(actions.initProducts())
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductIndex);

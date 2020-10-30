@@ -13,33 +13,43 @@ const initialState = {
 };
 
 const setCart = (state, action) => {
-  if (action.payload !== null) {
-    return updateObject(state, {
-      cart_id: action.payload.id,
-      member_id: action.payload.member_id,
-      cart_items: action.payload.cart_items,
-      cart_total: action.payload.total_cost_string,
-      loading: false,
-      error: null,
-      message: null,
-    });
-  }
-};
-
-const startFetchCart = (state) => {
   return updateObject(state, {
-    loading: true,
+    cart_id: action.payload.cart.id,
+    member_id: action.payload.cart.member_id,
+    cart_items: action.payload.cart_items,
+    cart_total: action.payload.cart.total_cost_string,
+    loading: false,
     error: null,
     message: null,
   });
 };
 
+const startFetchCart = (state) => {
+  return updateObject(state, {
+    loading: true,
+    error: false,
+    message: null,
+  });
+};
+
+const cartLogout = (state) => {
+  return updateObject(state, {
+    cart_id: null,
+    member_id: null,
+    cart_items: [],
+    error: null,
+    cart_total: null,
+    loading: false,
+    message: null,
+  });
+}
+
 const addProductToCart = (state, action) => {
   let updatedCart;
   if (state.cart_items !== [] || state.cart_items !== undefined) {
-    updatedCart = [...state.cart_items, { ...action.payload }];
+    updatedCart = [...state.cart_items, { ...action.payload.cart_item }];
   } else {
-    updatedCart = [action.payload];
+    updatedCart = [action.payload.cart_item];
   }
 
   return updateObject(state, {
@@ -51,35 +61,15 @@ const addProductToCart = (state, action) => {
 };
 
 const updateCartProductSize = (state, action) => {
-  let cart_item = state.cart_items.filter(item => item.id === action.payload.cart_item.id)[0]
-  const updatedCart = []
-
-  state.cart_items.map(cartItem => {
-    if (cartItem.id !== cart_item.id) updatedCart.push({...cartItem})
-  })
-  
-  updatedCart.push({...action.payload.cart_item})
-  return updateObject(state, {
-    cart_items: [...updatedCart],
-    error: null,
-    message: null,
-    cart_total: action.payload.cart.total_cost_string,
-    loading: false,
-  })
-}
-
-const updateCartProductQty = (state, action) => {
   let cart_item = state.cart_items.filter(
     (item) => item.id === action.payload.cart_item.id
   )[0];
-  const updatedCart = [];
+  let updatedCart = [];
 
   state.cart_items.map((cartItem) => {
-    if (cartItem.id !== cart_item.id) {
-      updatedCart.push({ ...cartItem });
-    }
+    return (cartItem.id !== cart_item.id) ? updatedCart = [...updatedCart,{ ...cartItem }] : updatedCart
   });
-  
+
   updatedCart.push({ ...action.payload.cart_item });
   return updateObject(state, {
     cart_items: [...updatedCart],
@@ -88,22 +78,37 @@ const updateCartProductQty = (state, action) => {
     cart_total: action.payload.cart.total_cost_string,
     loading: false,
   });
-}
+};
 
-const removeProductFromCart = (state, action) => {
-  let cart_item = state.cart_items.filter((item) => item.id === action.payload);
-  const updatedCart = [];
+const updateCartProductQty = (state, action) => {
+  let cart_item = state.cart_items.filter(
+    (item) => item.id === action.payload.cart_item.id
+  )[0];
+  let updatedCart = [action.payload.cart_item];
 
   state.cart_items.map((cartItem) => {
-    if (cartItem.id !== action.payload[1]) {
-      updatedCart.push({ ...cartItem });
-    }
+    return cartItem.id !== cart_item.id ? updatedCart = [...updatedCart, { ...cartItem }] : updatedCart
+    })
+
+  return updateObject(state, {
+    cart_items: [...updatedCart],
+    error: null,
+    message: null,
+    cart_total: action.payload.cart.total_cost_string,
+    loading: false,
   });
+};
+
+const removeProductFromCart = (state, action) => {
+  const updatedCart = [];
+
+  action.payload.cart_items.map((item) => updatedCart.push({ ...item }));
+
   return updateObject(state, {
     cart_items: [...updatedCart],
     error: false,
     message: null,
-    cart_total: action.payload[0]
+    cart_total: action.payload.cart_total,
   });
 };
 
@@ -111,12 +116,14 @@ const fetchCartFailed = (state, action) => {
   return updateObject(state, {
     error: true,
     loading: false,
-    message: "You must be a subscriber to place orders",
+    message: action.payload.message,
   });
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.AUTH_LOGOUT:
+      return cartLogout(state, action)
     case actionTypes.SET_CART:
       return setCart(state, action);
     case actionTypes.ADD_PRODUCT_TO_CART:

@@ -5,11 +5,6 @@ import ProfileHeader from "./ProfileHeader";
 import Favorites from "./Favorites";
 
 class Profile extends React.Component {
-  componentDidMount() {
-    this.props.fetchUser();
-    this.props.fetchUserPlan();
-    this.props.initFavorites();
-  }
 
   renderUser = () => {
     return this.props.current_user && this.props.current_user ? (
@@ -82,8 +77,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: () => dispatch(actions.fetchUser()),
-    fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
     initFavorites: () => dispatch(actions.initFavorites()),
   };
 };

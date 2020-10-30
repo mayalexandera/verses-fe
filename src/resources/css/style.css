@@ -110,6 +110,7 @@ button {
 #product-nav-button {
   min-width: 150px;
   padding: 8px 16px;
+  z-index: 3;
   margin: auto;
   background-color: blue;
   border: 1px solid red;
@@ -390,6 +391,11 @@ button {
   font-size: 40px;
 }
 
+.brands-subtitle {
+    display: flex;
+  justify-content: center;
+}
+
 /* CART */
 
 .cart-message {
@@ -467,12 +473,14 @@ button {
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
-  padding: 0px 14px;
-  margin-bottom: 7px;
+  padding: 7px 14px;
+  /* margin-bottom: 7px; */
 }
 
 .product-nav-title {
   text-transform: uppercase;
+  text-align: center;
+  width: 100px;
   font-size: 80%;
 }
 
@@ -481,6 +489,7 @@ button {
   display: inline-block;
   font-size: 80%;
   z-index: 1;
+      border: 1px solid red;
   border: none;
 }
 
@@ -491,13 +500,14 @@ button {
   border: 1px solid rgb(245, 245, 245);
   background-color: white;
   z-index: 1;
+      border: 1px solid red;
 }
 
-.dropdown-content li,
-.dropdown-content option {
+.dropdown-content li{
   color: rgb(148, 146, 146);
   padding: 3px 10px;
   font-weight: 400;
+      border: 1px solid red;
 }
 
 .dropdown-content li:hover {
@@ -506,16 +516,21 @@ button {
   color: black;
 }
 
+.dropdown:hover .product-nav {
+  height: 200px;
+}
+
 .dropdown:hover .dropdown-content {
   display: block;
   z-index: 1;
+  height: 200px;
   position: absolute;
   top: 50%;
   left: 50%;
   opacity: 1;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  transform: translate(-50%, 2vh);
+  transform: translate(-50%);
 }
 
 /* FAVORITES */
@@ -532,11 +547,6 @@ button {
 }
 
 .favorite-actions button { float: right }
-
-#message {
-  display: flex;
-  justify-content: center;
-}
 
 #add-to-favorites-button {
   background-color: black;
@@ -752,7 +762,8 @@ button {
 .plan-bullet-points ion-icon { padding-right: 14px }
 
 #plan-option,
-#current-plan {
+#current-plan,
+#disabled {
   min-width: 226px;
   text-transform: uppercase;
   font-size: 85%;
@@ -767,10 +778,20 @@ button {
   border: 1px solid hsl(85, 64%, 79%);
 }
 
-#plan-option {
+#plan-option,
+#disabled  {
   background-color: rgb(12, 11, 11);
   border: 1px solid rgb(12, 11, 11);
   color: #fff;
+}
+
+#disabled {
+  opacity: .5;
+}
+
+#disabled:hover {
+  opacity: 0.3;
+  transition: 0.3s;
 }
 
 #plan-option:hover,

@@ -71,7 +71,7 @@ export const createFavorite = (product_id, size) => async (
   let user = getState().auth.userId
   await api
     .post(`/users/${user}/favorites`, {
-      member_id: user,
+      member_id: JSON.stringify(user),
       product_id: product_id,
       size: size,
     })

@@ -4,23 +4,15 @@ import * as actions from "../store/actions/index";
 import PlanCard from "./PlanCard";
 
 class Plans extends React.Component {
-  componentDidMount() {
-    this.reload();
-  }
 
   renderPlans = () => {
     return this.props.loading ? (
       <div>loading</div>
     ) : (
       this.props.plans.map((plan) => {
-        return <PlanCard plan={plan} />;
+        return <PlanCard plan={plan} current_plan={this.props.current_plan}/>;
       })
     );
-  };
-
-  reload = () => {
-    this.props.initFetchPlans();
-    this.props.fetchUserPlan();
   };
 
   render() {
@@ -74,6 +66,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.plan.loading,
     plans: state.plan.select,
+    current_plan: state.plan.current_plan,
     message: state.plan.message,
   };
 };

@@ -7,15 +7,15 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (response) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    idToken: token,
-    userId: userId,
-  };
+    payload: response,
+  }
 };
 
 export const authFail = (error) => {
+
   return {
     type: actionTypes.AUTH_FAIL,
     error: error,
@@ -30,8 +30,8 @@ export const logout = () => {
   };
 };
 
-export const auth = (email, password, name, isSignup) => {
-  return (dispatch) => {
+export const auth = (email, password, name, isSignup) => 
+   async (dispatch) => {
     dispatch(authStart());
     const authData = {
       email: email,
@@ -41,28 +41,16 @@ export const auth = (email, password, name, isSignup) => {
     };
     let path = !isSignup ? `/session` : `/users/`;
 
-    api
+    await api
       .post(path, authData)
       .then((response) => {
-        localStorage.setItem("token", response.data.session_token);
-        localStorage.setItem("userId", response.data.id);
-        dispatch(
-          authSuccess(
-            response.data.session_token,
-            response.data.id,
-            response.data
-          )
-        );
-      })
-      .catch((err) => {
-        dispatch(authFail(err));
-      });
+          dispatch(authSuccess(response.data))
+          localStorage.setItem("token", response.data.user.session_token);
+          localStorage.setItem("userId", response.data.user.id);
+        }
+      )
   };
-};
 
-export const fetchUserStart = () => {
-  return { type: actionTypes.FETCH_USER_START };
-};
 
 export const fetchUser = () => async (dispatch) => {
   let user = localStorage.getItem("userId");
@@ -86,7 +74,7 @@ export const fetchUserFail = (error) => {
 
 export const fetchUserSuccess = (user) => {
   return {
-    type: actionTypes.FETCH_USER_SUCCESS,
+    
     user: user,
   };
 };
@@ -95,17 +83,5 @@ export const setAuthRedirectPath = (path) => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
     path: path,
-  };
-};
-
-export const authCheckState = () => {
-  return (dispatch) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      dispatch(logout());
-    } else {
-      const userId = localStorage.getItem("userId");
-      dispatch(authSuccess(token, userId));
-    }
   };
 };

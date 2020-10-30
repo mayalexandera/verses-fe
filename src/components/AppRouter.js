@@ -13,18 +13,18 @@ import FavoritesContainer from "./FavoritesContainer";
 import OrderContainer from "./OrderContainer";
 import Auth from "./auth/Auth";
 
-export const AppRouter = (props) => {
+export const AppRouter = () => {
   return (
     <div className='row'>
       <Router>
         <AppHeader />
         <div className='app-header-wrapper'>
-          <Route exact path='/' exact component={Landing} />
+          <Route path='/' exact component={Landing} />
           <Route path='/plans' exact component={Plans} />
           <Route path='/products' exact component={ProductIndex} />
           <Route path='/accessories' exact component={Accessories} />
           <Route path='/products/:product_id' exact component={ProductShow} />
-          <Route exact path='/login' exact component={Auth} />
+          <Route path='/login' exact component={Auth} />
           <Route path='/cart' exact component={Cart} />
           <Route path='/brands' exact component={Brands} />
           <Route path='/profile' component={Profile} />

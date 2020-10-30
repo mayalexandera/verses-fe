@@ -9,24 +9,15 @@ class OrderContainer extends React.Component {
   }
 
   renderOrders = () => {
-    if (this.props.orders && this.props.orders) {
+    if (this.props.orders !== undefined && this.props.orders !== undefined) {
       return this.props.orders.map((order) => {
-        if (order.order_items && order.order_items) {
-          return order.order_items.map((item) => {
-            let product_item;
-            product_item = this.props.products.filter(
-              (prod) => prod.id === item.product_id
-            );
-            return (
-              <OrderItem
-                key={item.id}
-                product_item={product_item}
-                order_item={item}
-                order={order}
-              />
-            );
-          });
-        }
+        return order.order_items !== undefined
+          ? order.order_items.map((item) => {
+              return (
+                <OrderItem key={item.id} order_item={item} order={order} />
+              );
+            })
+          : null;
       });
     }
   };
@@ -75,8 +66,6 @@ class OrderContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     orders: state.order.orders,
-    order_items: state.order.order_items,
-    products: state.product.select,
   };
 };
 

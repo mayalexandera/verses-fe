@@ -1,7 +1,11 @@
 import React from 'react'
+import { connect } from "react-redux";
 
 const OrderItem = (props) => {
-  return props.product_item && props.product_item ? 
+  let product_item = props.products.filter(product => product.id === props.order_item.product_id)
+
+
+  return product_item !== undefined && product_item[0] !== undefined ? 
    (
     <>
       <div className='order-card-wrapper'>
@@ -10,13 +14,13 @@ const OrderItem = (props) => {
           <div className='order-card-thumbnail-wrapper'>
             <img
               alt={props.order.number}
-              src={props.product_item[0].images.split(",")[0]}
+              src={product_item[0].images.split(",")[0]}
             />
           </div>
           <div className='order-card-details'>
             <div className='order-item-info'>
               {"Delivered"}
-              <p><strong>{props.product_item[0].name}</strong></p>
+              <p><strong>{product_item[0].name}</strong></p>
               <p>
                 <span>Ordered:</span> {props.order.ordered_date}
               </p>
@@ -29,8 +33,8 @@ const OrderItem = (props) => {
               View or Manage
             </button>
             <button
-              onClick={() => console.log(props.product_item[0].product_type)}
-              value={props.product_item[0].product_type}
+              onClick={() => console.log(product_item[0].product_type)}
+              value={product_item[0].product_type}
               >
               Shop Similar
             </button>
@@ -43,6 +47,13 @@ const OrderItem = (props) => {
   ) : null
 };
 
+const mapStateToProps = (state) => {
+  return {
+    products: state.product.select,
+    brands: state.brand.select,
+  }
+}
 
 
-export default OrderItem;
+
+export default connect(mapStateToProps)(OrderItem);

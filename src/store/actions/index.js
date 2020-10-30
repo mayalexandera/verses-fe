@@ -51,9 +51,6 @@ export {
   auth,
   logout,
   fetchUser, 
-  authCheckState,
-  fetchUserStart,
-  fetchUserSuccess,
   setAuthRedirectPath,
   fetchUserFail,
 } from "./AuthActions";

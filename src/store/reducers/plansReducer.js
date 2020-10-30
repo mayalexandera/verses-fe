@@ -10,6 +10,8 @@ const initialState = {
   current_plan_membership: null
 };
 
+
+
 const userPlanStart = (state) => {
   return updateObject(state, { 
     error: false,
@@ -45,8 +47,8 @@ const userPlanSuccess = (state, action) => {
       loading: false,
       error: false,
       message: action.payload.message,
-      current_plan: null,
-      current_plan_membership: null
+      current_plan: action.payload.plan,
+      current_plan_membership: action.payload.plan_membership
     });
   } else if (action.payload.status === 404) {
     return updateObject(state, {
@@ -77,6 +79,16 @@ const userPlanFail = (state, action) => {
   });
 };
 
+const userPlanLogout = (state) => {
+  return updateObject(state, {
+    error: null,
+    loading: false,
+    message: null,
+    current_plan: null,
+    current_plan_membership: null
+  })
+}
+
 const fetchPlansSuccess = (state, action) => {
   return updateObject(state, {
     select: action.payload,
@@ -92,7 +104,12 @@ const fetchPlansStart = (state) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+  
+    case actionTypes.AUTH_LOGOUT:
+      return userPlanLogout(state,action)
     case actionTypes.USER_PLAN_SUCCESS:
+      return userPlanSuccess(state, action);
+    case actionTypes.AUTH_SUCCESS:
       return userPlanSuccess(state, action);
     case actionTypes.USER_PLAN_START:
       return userPlanStart(state, action);

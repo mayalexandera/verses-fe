@@ -8,19 +8,19 @@ const initialState = {
 };
 
 const updateFavorites = (state, action) => {
-  const updatedFavorites = [...state.select, action.payload];
+  let updatedFavorites = [{...action.payload}]
+  state.select.map(fave => updatedFavorites = [...updatedFavorites, {...fave}])
   return updateObject(state, {
     select: updatedFavorites,
   });
 };
 
 const deleteFavorite = (state, action) => {
-  const updatedFavorites = [];
+  let updatedFavorites = [];
 
   state.select.map((fave) => {
-    if (fave.id !== action.payload) updatedFavorites.push({ ...fave });
+    return fave.id !== action.payload ? updatedFavorites = [...updatedFavorites, {...fave}]: null
   });
-
   return updateObject(state, {
     select: updatedFavorites,
   });
@@ -40,6 +40,8 @@ const setFavorites = (state, action) => {
   });
   return updateObject(state, {
     select: favorites,
+    loading: false,
+    error: null,
   });
 };
 

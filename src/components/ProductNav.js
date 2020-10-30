@@ -13,7 +13,7 @@ const categories = [
   "Hoodie",
   "Long Sleeve T-Shirt",
   "Long Sleeve Button Up",
-  "Short Sleeve Button Up"
+  "Short Sleeve Button Up",
 ];
 const sizes = [
   "XS",
@@ -38,92 +38,100 @@ const sizes = [
   "18",
   "20",
   "22",
-  "24"
+  "24",
 ];
-class ProductNav extends React.Component{
-
+class ProductNav extends React.Component {
   state = {
-    queries: []
-  }
+    queries: [],
+  };
 
-   brandHandler = (e, brand_id) => {
+  brandHandler = (e, brand_id) => {
     e.preventDefault();
-    let brand = this.props.brands.filter(brand => brand.id === brand_id)[0]
+    let brand = this.props.brands.filter((brand) => brand.id === brand_id)[0]
 
-    this.setState((state) => ({queries: state.queries.push(brand.name)}))
+    this.setState((state) => ({ queries:[...state.queries, brand.name ]})
+    );
     this.props.fetchProdByBrand(brand_id);
   };
 
-   categoryHandler = (e, category) => {
+  categoryHandler = (e, category) => {
     e.preventDefault();
     this.props.fetchProdByCategory(category);
-    return (<div>{category}</div>)
+    return <div>{category}</div>;
   };
 
-   sizeHandler = (e, size) => {
+  sizeHandler = (e, size) => {
     e.preventDefault();
     this.props.fetchProdBySize(size);
   };
 
   render() {
     return (
-<>
-      <div className='product-nav'>
-        <div className='product-nav-centered'>
-          <div className='dropdown'>
-            <li class='product-nav-title'>BRAND</li>
-            <div className='dropdown-content'>
-              {this.props.brands.map((brand) => {
-                return (
-                  <li
-                    key={brand.id}
-                    onClick={(e) => this.brandHandler(e, brand.id)}
-                    id={brand.id}
-                  >
-                    {brand.name}
-                  </li>
-                );
-              })}
+      <>
+        <div className='product-nav'>
+          <div className='product-nav-centered'>
+            <div className='dropdown'>
+              <li className='product-nav-title'>BRAND</li>
+              <div className='dropdown-content'>
+                {this.props.brands.map((brand) => {
+                  return (
+                    <li
+                      key={brand.id}
+                      onClick={(e) => this.brandHandler(e, brand.id)}
+                      id={brand.id}
+                    >
+                      {brand.name}
+                    </li>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          <div className='dropdown'>
-            <li class='product-nav-title'>CATEGORY</li>
-            <ul className='dropdown-content'>
-              {categories.map((category) => {
-                return (
-                  <li key={category} onClick={(e) => this.categoryHandler(e, category)}>
-                    {category}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className=' dropdown'>
-            <li class='product-nav-title'>SIZE</li>
-            <div className='dropdown-content'>
-              {sizes.map((size) => {
-                return <li key={size} onClick={(e) => this.sizeHandler(e, size)}>{size}</li>;
-              })}
+            <div className='dropdown'>
+              <li className='product-nav-title'>CATEGORY</li>
+              <ul className='dropdown-content'>
+                {categories.map((category) => {
+                  return (
+                    <li
+                      key={category}
+                      onClick={(e) => this.categoryHandler(e, category)}
+                    >
+                      {category}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className=' dropdown'>
+              <li className='product-nav-title'>SIZE</li>
+              <div className='dropdown-content'>
+                {sizes.map((size) => {
+                  return (
+                    <li key={size} onClick={(e) => this.sizeHandler(e, size)}>
+                      {size}
+                    </li>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className='product-nav-queries-container'>
+        <div>
           {this.state.queries.map(query => {
             return (
               <button id="product-nav-button">{query}</button>
             )
           })}
-        </div> */}
-</>
-  );}
-};
+        </div>
+      </>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
     products: state.product.select,
     accessories: state.product.accessories,
-    brands: state.brand.select
+    brands: state.brand.select,
   };
 };
 

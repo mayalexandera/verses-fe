@@ -4,13 +4,14 @@ import * as actions from "../store/actions/index";
 
 const CartItem = (props) => {
   const quantities = [1, 2, 3, 4, 5, 6, 7, 8];
-  let cart_item,
-    quantity = props.cart_item.quantity,
-    size = props.cart_item.size_string;
+    let quantity = props.cart_item.quantity;
+    let size = props.cart_item.size_string;
   if (props.cart_items.count !== undefined && props.cart_items.count !== 0) {
-    cart_item = props.cart_items.filter(
+    let cart_item = props.cart_items.filter(
       (item) => item.product_id === props.product.id
     );
+
+    return cart_item
   }
 
   const clickHandler = (e) => {

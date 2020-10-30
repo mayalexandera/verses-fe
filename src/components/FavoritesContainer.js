@@ -5,9 +5,13 @@ import Favorites from "./Favorites";
 import ProfileHeader from "./ProfileHeader";
 
 class FavoritesContainer extends React.Component {
+
+  componentDidMount = () => {
+    this.props.initFavorites()
+  }
   render() {
     let header;
-    this.props.current_user !== null && this.props.current_user !== null
+    this.props.current_user !== null 
       ? (header = <ProfileHeader />)
       : (header = null);
     return (
@@ -24,8 +28,8 @@ class FavoritesContainer extends React.Component {
             </div>
           </div>
           <div className='spacer' />
-        </div>
         <Favorites />
+        </div>
       </div>
     );
   }
@@ -40,10 +44,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (product_id) => dispatch(actions.addProductToCart(product_id)),
-    addToFavorites: (user_id, product_id) =>
-      dispatch(actions.createFavorite(user_id, product_id)),
-    deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
     initFavorites: () => dispatch(actions.initFavorites()),
   };
 };

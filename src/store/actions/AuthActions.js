@@ -7,11 +7,11 @@ export const authStart = () => {
   };
 };
 
-export const authSuccess = (response) => {
+export const authSuccess = (user) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    payload: response,
-  }
+    user: user.user
+  };
 };
 
 export const authFail = (error) => {
@@ -52,17 +52,18 @@ export const auth = (email, password, name, isSignup) =>
   };
 
 
-export const fetchUser = () => async (dispatch) => {
-  let user = localStorage.getItem("userId");
+export const fetchUser = () => async (dispatch, getState) => {
+  let user = getState().auth.userId
+  dispatch(authStart())
   JSON.stringify(user);
   await api
     .get(`/users/${user}`)
     .then((response) => {
       dispatch(fetchUserSuccess(response.data));
-    })
+    ;console.log(response.data)})
     .catch((err) => {
       dispatch(fetchUserFail(err));
-    });
+    })
 };
 
 export const fetchUserFail = (error) => {
@@ -72,10 +73,10 @@ export const fetchUserFail = (error) => {
   };
 };
 
-export const fetchUserSuccess = (user) => {
+export const fetchUserSuccess = (response) => {
   return {
-    
-    user: user,
+    type: actionTypes.FETCH_USER_SUCCESS,
+    user: response.user
   };
 };
 

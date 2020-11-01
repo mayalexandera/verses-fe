@@ -71,9 +71,10 @@ export const initPlanMembership = (plan_id) => async (dispatch, getState) =>{
   })
  }
 
-export const userPlanSuccess = (plan_id) => {
+export const userPlanSuccess = (response) => {
+  console.log(response)
   return {
-   type: actionTypes.USER_PLAN_SUCCESS, payload: plan_id
+   type: actionTypes.USER_PLAN_SUCCESS, message: response.message, status: response.status, plan: response.plan, plan_membership: response.plan_membership
   }
 }
 

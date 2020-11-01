@@ -650,7 +650,7 @@ button {
   padding-bottom: 40px;
 }
 
-.spacer-50 { height: 20px }
+.spacer-50 { height: 50px }
 
 #plan-route-button {
   display: block;
@@ -1099,8 +1099,32 @@ button {
 
 /* LOGIN */
 
+.form-container {
+  width: 44%;
+  display: block;
+  margin: auto;
+  min-height: 91vh;
+}
+
+.form-container > hr {
+  display: block;
+  margin: auto;
+  border-top-style: initial;
+  border-right-style: initial;
+  border-left-style: initial;
+  border-top-color: initial;
+  border-right-color: initial;
+  border-left-color: initial;
+  border-width: 0px 0px 1px;
+  width: 50%;
+}
+
+.form {
+  margin-bottom: 40px;
+}
+
 .form input {
-  width: 30%;
+  width: 60%;
   height: 40px;
   margin: 5px auto;
   display: flex;
@@ -1120,6 +1144,17 @@ button {
   padding: 10px 70px;
   background-color: white;
 }
+
+.login-title {
+  padding-top: 40px;
+  display: flex;
+  font-size: 48px;
+  line-height: 2;
+  font-family: "Futura";
+  text-transform: uppercase;
+  justify-content: center;
+}
+
 
 /** PROFILE **/
 

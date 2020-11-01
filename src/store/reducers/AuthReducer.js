@@ -2,12 +2,12 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
 const initialState = {
-  token: null,
-  userId: null,
+  token: localStorage.getItem("token"),
+  userId: localStorage.getItem("userId"),
   error: null,
-  loading: null,
-  authRedirectPath: '/',
-  current_user: null,
+  loading: null, 
+  authRedirectPath: "/",
+  current_user:null,
 };
 
 const authStart = (state) => {
@@ -16,15 +16,15 @@ const authStart = (state) => {
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
-    token: action.payload.user.session_token,
-    userId: action.payload.user.id,
-    current_user: action.payload.user,
+    token: action.user.session_token,
+    userId: action.user.id,
+    current_user: {...action.user},
     loading: false,
     error: null
   });
 };
 
-const fetchUserFail = (state) => {
+const fetchUserFail = (state, action) => {
   return updateObject(state, { error: true, loading: false });
 };
 
@@ -40,6 +40,7 @@ const authLogout = (state) => {
     token: null,
     userId: null,
     current_user: null,
+    error: null,
     cart: [],
   });
 };
@@ -50,6 +51,8 @@ const setAuthRedirectPath = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.FETCH_USER_SUCCESS:
+      return authSuccess(state, action)
     case actionTypes.AUTH_START:
       return authStart(state, action);
     case actionTypes.AUTH_SUCCESS:

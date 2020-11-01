@@ -42,7 +42,9 @@ const sizes = [
 ];
 class ProductNav extends React.Component {
   state = {
-    queries: [],
+    brands: [],
+    sizes: [],
+    categories: []
   };
 
   brandHandler = (e, brand_id) => {
@@ -115,11 +117,9 @@ class ProductNav extends React.Component {
             </div>
           </div>
         </div>
-        <div>
-          {this.state.queries.map(query => {
-            return (
-              <button id="product-nav-button">{query}</button>
-            )
+        <div className='product-nav-queries-container'>
+          {this.state.queries.map((query) => {
+            return <button id='product-nav-button'>{query}</button>;
           })}
         </div>
       </>

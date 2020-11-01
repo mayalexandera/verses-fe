@@ -103,8 +103,6 @@ class Auth extends Component {
       this.state.controls.name.value,
       this.state.isSignup
     );
-
-    // this.props.fetchUser()
   };
 
   switchAuthModeHandler = () => {
@@ -148,14 +146,16 @@ class Auth extends Component {
     }
 
     return (
-      <div className='form title'>
-        <p className='profile-title'>Your account</p>
+      <div className='form-container'>
+        <p className='login-title'>sign in</p>
+        <hr />
+        <div className='spacer-50' />
         {authRedirect}
         {errorMessage}
         <form className='form' onSubmit={this.submitHandler}>
           {form}
-          <Button id={"add-to-favorites-button"}>SUBMIT</Button>
         </form>
+        <Button id={"add-to-favorites-button"}>SUBMIT</Button>
         <Button id={"add-to-cart-button"} clicked={this.switchAuthModeHandler}>
           SWITCH TO {!this.state.isSignup ? "SIGN UP" : "SIGN IN"}
         </Button>
@@ -177,7 +177,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAuth: (email, password, name, isSignup) =>
       dispatch(actions.auth(email, password, name, isSignup)),
-    fetchUser: () => dispatch(actions.fetchUser())
   };
 };
 

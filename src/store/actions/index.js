@@ -49,10 +49,9 @@ export {
 } from "./ProductsActions";
 export {
   auth,
+  fetchUser,
   logout,
-  fetchUser, 
   setAuthRedirectPath,
-  fetchUserFail,
 } from "./AuthActions";
 export {
   userPlanStart,

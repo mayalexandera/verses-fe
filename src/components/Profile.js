@@ -6,6 +6,11 @@ import Favorites from "./Favorites";
 
 class Profile extends React.Component {
 
+  componentDidMount = () => {
+    this.props.fetchUser()
+    this.props.fetchUserPlan()
+  }
+
   renderUser = () => {
     return this.props.current_user && this.props.current_user ? (
       <section className='profile-section-container'>
@@ -24,15 +29,15 @@ class Profile extends React.Component {
 
   renderPlan = () => {
     if (
-      this.props.current_plan_membership &&
-      this.props.current_plan_membership
+      this.props.current_plan &&
+      this.props.current_plan
     ) {
       return (
         <div className='profile-plan'>
           <p>Current Plan</p>
-          <strong>{this.props.current_plan_membership.items} </strong>items per
+          <strong>{this.props.current_plan.items} </strong>items per
           month |
-          <strong>{this.props.current_plan_membership.price_string}</strong>
+          <strong>{this.props.current_plan.price_string}</strong>
           /month
         </div>
       );
@@ -70,14 +75,15 @@ class Profile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
-    current_plan_membership: state.plan.current_plan_membership,
+    current_plan: state.plan.current_plan,
     favorites: state.favorite.favorites,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchUser: () => dispatch(actions.fetchUser()),
     initFavorites: () => dispatch(actions.initFavorites()),
-  };
+    fetchUserPlan: () => dispatch(actions.fetchUserPlan())  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -6,6 +6,7 @@ import CartItem from "./CartItem";
 class Cart extends React.Component {
   componentDidMount() {
     this.props.initCart();
+    this.props.fetchUserPlan();
   }
 
   clickHandler = (e) => {
@@ -21,31 +22,24 @@ class Cart extends React.Component {
       : this.props.initOrder();
   };
 
-  findProduct = (item) => {
+  findProduct = (item_product_id) => {
     let product;
-    product = this.props.products.filter(
-      (product) => product.id === item.product_id
-    );
-    return product !== undefined ? product[0] : null;
+ product = this.props.products.filter(
+   (product) => product.id === item_product_id
+ );
+ return product !== undefined ? product[0] : null;
   };
 
   findBrand = (product) => {
-    let brand;
-    if (product !== undefined && product !== null) {
-      brand = this.props.brands.filter(
-        (brand) => brand.id === product.brand_id
-      );
-      return brand[0];
-    } else {
-      return null;
-    }
+    return product !== undefined && product !== null
+      ? this.props.brands.filter((brand) => brand.id === product.brand_id)[0]
+      : null;
   };
 
   renderList = () => {
-    let errorMessage;
-    !this.props.current_user
-      ? (errorMessage = null)
-      : (errorMessage = this.props.message);
+    let product, brand;
+    let errorMessage = !this.props.current_user ? null : this.props.message;
+
     return this.props.cart_items === undefined ||
       this.props.cart_items.length === 0 ? (
       <>
@@ -54,8 +48,8 @@ class Cart extends React.Component {
       </>
     ) : (
       this.props.cart_items.map((item) => {
-        let product = this.findProduct(item);
-        let brand = this.findBrand(product);
+        product = this.findProduct(item.product_id);
+        brand = this.findBrand(product);
         return (
           <CartItem
             cart_item={item}
@@ -101,7 +95,7 @@ class Cart extends React.Component {
       : (plan_items = null);
 
     guestMessage = <div>{cart}</div>;
-    this.props.current_user
+    this.props.current_user && this.props.current_user
       ? (memberCart = "Cart")
       : (memberCart = (
           <div>
@@ -113,7 +107,6 @@ class Cart extends React.Component {
                   className='guest-cart-link'
                   onClick={() => this.props.history.push("/login")}
                 >
-                  {" "}
                   Join Us
                 </span>{" "}
                 or
@@ -121,7 +114,6 @@ class Cart extends React.Component {
                   className='guest-cart-link'
                   onClick={() => this.props.history.push("/login")}
                 >
-                  {" "}
                   Log In
                 </span>
               </p>
@@ -179,7 +171,7 @@ class Cart extends React.Component {
 const mapStateToProps = (state) => {
   return {
     current_user: state.auth.current_user,
-    current_plan: state.plan.current_plan_membership,
+    current_plan: state.plan.current_plan,
     cart_total: state.cart.cart_total,
     cart_items: state.cart.cart_items,
     message: state.cart.message,
@@ -190,10 +182,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initFetchPlans: () => dispatch(actions.initFetchPlans()),
     initCart: () => dispatch(actions.initCart()),
     initOrder: () => dispatch(actions.initOrder()),
-    fetchUser: () => dispatch(actions.fetchUser()),
     fetchUserPlan: () => dispatch(actions.fetchUserPlan()),
   };
 };

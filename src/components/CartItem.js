@@ -4,15 +4,9 @@ import * as actions from "../store/actions/index";
 
 const CartItem = (props) => {
   const quantities = [1, 2, 3, 4, 5, 6, 7, 8];
-    let quantity = props.cart_item.quantity;
-    let size = props.cart_item.size_string;
-  if (props.cart_items.count !== undefined && props.cart_items.count !== 0) {
-    let cart_item = props.cart_items.filter(
-      (item) => item.product_id === props.product.id
-    );
 
-    return cart_item
-  }
+  let quantity = props.cart_item.quantity;
+  let size = props.cart_item.size_string;
 
   const clickHandler = (e) => {
     e.preventDefault();
@@ -39,7 +33,7 @@ const CartItem = (props) => {
 
   return (
     <div>
-      {!props.error && !props.loading ? (
+      {props.product && props.product ? (
         <div className='cart-item-card'>
           <div className='cart-item-card-photo-wrapper'>
             <img
@@ -67,7 +61,7 @@ const CartItem = (props) => {
                         </option>
                       );
                     })
-                  : null}
+                  : console.log(props)}
               </select>
               <p>Quantity:</p>
               <select
@@ -85,7 +79,7 @@ const CartItem = (props) => {
                         </option>
                       );
                     })
-                  : null}
+                  : console.log(props)}
               </select>
             </div>
             <div className='cart-item-buttons'>
@@ -107,7 +101,7 @@ const CartItem = (props) => {
           </div>
         </div>
       ) : (
-        "loading"
+        console.log(props)
       )}
       <hr id='order-hr' />
     </div>
@@ -117,6 +111,8 @@ const CartItem = (props) => {
 const mapStateToProps = (state) => {
   return {
     cart_items: state.cart.cart_items,
+    brands: state.brand.select,
+    products: state.product.select,
     loading: state.cart.loading,
     error: state.cart.error,
   };

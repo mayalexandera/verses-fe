@@ -8,6 +8,7 @@ class Layout extends React.Component {
     this.props.initProducts();
     this.props.initAccessories();
     this.props.initFetchPlans();
+    this.props.fetchUser()
   }
 
   render() {
@@ -19,7 +20,9 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
     userId: state.auth.userId,
-    current_user: state.auth.current_user
+    current_user: state.auth.current_user,
+    brands: state.brand.select,
+    products: state.product.select,
   };
 };
 
@@ -29,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     initAccessories: () => dispatch(actions.initAccessories()),
     initBrands: () => dispatch(actions.initBrands()),
     initFetchPlans: () => dispatch(actions.initFetchPlans()),
+    fetchUser: () => dispatch(actions.fetchUser())
   };
 };
 

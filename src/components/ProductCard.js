@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const ProductCard = (props) => {
-  let img;
-  if (props.product !== "undefined" && props.product !== "undefined")
-    img = props.product.images.split(",")[0];
+  let img = props.product.images.split(",")[0];
   return (
     <div className='product-card-wrapper'>
       <div className='product-card-body'>

@@ -10,8 +10,6 @@ const initialState = {
   current_plan_membership: null
 };
 
-
-
 const userPlanStart = (state) => {
   return updateObject(state, { 
     error: false,
@@ -42,19 +40,19 @@ const fetchPlansFail = (state, action) => {
 };
 
 const userPlanSuccess = (state, action) => {
-  if (action.payload.status === 204) {
+  if (action.status === 204) {
     return updateObject(state, {
       loading: false,
-      error: false,
-      message: action.payload.message,
-      current_plan: action.payload.plan,
-      current_plan_membership: action.payload.plan_membership
+      error: action.status,
+      message: action.message,
+      current_plan: {...action.plan},
+      current_plan_membership: {...action.plan_membership}
     });
-  } else if (action.payload.status === 404) {
+  } else if (action.status === 404) {
     return updateObject(state, {
       loading: false,
-      error: false,
-      message: null,
+      error: action.status,
+      message: action.message,
       current_plan: null,
       current_plan_membership: null,
     });
@@ -64,16 +62,16 @@ const userPlanSuccess = (state, action) => {
     error: false,
     loading: false,
     message: null,
-    current_plan: { ...action.payload.plan_membership } ,
-    current_plan_membership: { ...action.payload.plan },
+    current_plan: { ...action.plan } ,
+    current_plan_membership: { ...action.plan_membership },
   });
 };
 
 const userPlanFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
+    error: true,
     loading: false,
-    message: null,
+    message: action.error,
     current_plan: null,
     current_plan_membership: null
   });
@@ -108,8 +106,6 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_LOGOUT:
       return userPlanLogout(state,action)
     case actionTypes.USER_PLAN_SUCCESS:
-      return userPlanSuccess(state, action);
-    case actionTypes.AUTH_SUCCESS:
       return userPlanSuccess(state, action);
     case actionTypes.USER_PLAN_START:
       return userPlanStart(state, action);

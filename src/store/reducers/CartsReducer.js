@@ -45,21 +45,21 @@ const cartLogout = (state) => {
 }
 
 const addProductToCart = (state, action) => {
-  let updatedCart;
-  if (state.cart_items !== [] || state.cart_items !== undefined) {
-    updatedCart = [...state.cart_items, { ...action.payload.cart_item }];
-  } else {
-    updatedCart = [action.payload.cart_item];
-  }
-
+  let updatedCart =
+    state.cart_items !== []
+      ? state.cart_items.map(
+          (item) => (updatedCart = [...updatedCart, { ...item }])
+        )
+      : [{ ...action.payload.cart_item }];
+  
   return updateObject(state, {
-    cart_items: [...updatedCart],
+    cart_items: updatedCart,
     error: null,
     loading: false,
     message: null,
   });
 };
-
+  
 const updateCartProductSize = (state, action) => {
   let cart_item = state.cart_items.filter(
     (item) => item.id === action.payload.cart_item.id

@@ -5,22 +5,21 @@ import * as actions from "../store/actions/index";
 const PlanCard = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
-    return !props.current_user ? null : props.initPlanMembership(props.plan.id);
+    props.initPlanMembership(props.plan.id);
   };
 
   const renderText = () => {
-    return (props.current_plan === null) ||
-      props.plan.id !== props.current_plan.plan_id
-      ? "Try Now"
-      : "Current Plan";
+return (props.current_plan_membership === null ||
+  props.plan.id !== props.current_plan_membership.plan_id)
+  ? "Try Now"
+  : "Current Plan";
   };
 
   const renderId = () => {
-    return !props.current_user ? "disabled" :
-     (props.current_plan === null) ||
-      props.plan.id !== props.current_plan.plan_id
-      ? "plan-option"
-      : "current-plan";
+return (props.current_plan_membership === null ||
+  props.plan.id !== props.current_plan_membership.plan_id)
+  ? "plan-option"
+  : "current-plan";
   };
 
   return (

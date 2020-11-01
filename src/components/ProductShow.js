@@ -14,25 +14,22 @@ class ProductShow extends React.Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.state.productSize === null
-      ? this.setState({ errorMessage: "Please select a size." })
-      : this.submitRequest(e);
+    this.state.productSize !== null && this.props.isAuthenticated
+      ? this.submitRequest(e)
+      : this.setState({ errorMessage: "Please select a size." });
   };
 
   submitRequest = (e) => {
-    if (this.props.isAuthenticated && this.props.isAuthenticated) {
-      if (e.target.value === "addToCart") {
-        this.props.addToCart(this.props.showProduct.id, this.state.productSize);
-      }
+    if (e.target.value === "addToCart") {
+      console.log(this.state,this.props.showProduct)
+      this.props.addToCart(this.props.showProduct.id, this.state.productSize);
+    }
 
-      if (e.target.value === "favorite") {
-        this.props.addToFavorites(
-          this.props.showProduct.id,
-          this.state.productSize
-        );
-      }
-    } else {
-      this.props.history.push("/login");
+    if (e.target.value === "favorite") {
+      this.props.addToFavorites(
+        this.props.showProduct.id,
+        this.state.productSize
+      );
     }
   };
 
@@ -63,7 +60,12 @@ class ProductShow extends React.Component {
             this.props.images.map((image, index) => {
               return (
                 <div key={index}>
-                  <img alt={this.props.showProduct.name} key={image.id} src={image} images={this.props.images} />
+                  <img
+                    alt={this.props.showProduct.name}
+                    key={image.id}
+                    src={image}
+                    images={this.props.images}
+                  />
                 </div>
               );
             })
@@ -128,8 +130,7 @@ class ProductShow extends React.Component {
               <p>Fit Details</p>
               <hr id='product-show-hr' />
               <ul className='fit-details'>
-                {this.props.showProduct.fit_details !== undefined &&
-                this.props.showProduct.fit_details !== null ? (
+                {this.props.showProduct.fit_details ? (
                   this.props.showProduct.fit_details
                     .split(",")
                     .map((detail, index) => {

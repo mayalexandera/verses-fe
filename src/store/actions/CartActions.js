@@ -1,7 +1,7 @@
 import api from "../apis/api";
 import * as actionTypes from "../actions/actionTypes";
 
-export const addProductToCart = (product_id, size) => async (
+export const addProductToCart = (product_id, size_id, size) => async (
   dispatch,
   getState
 ) => {
@@ -9,7 +9,8 @@ export const addProductToCart = (product_id, size) => async (
   await api
     .post(`/users/${user}/cart/cart_items`, {
       product_id: JSON.stringify(product_id),
-      size: size,
+      size_id: size_id,
+      size: size
     })
     .then((resp) => {
       dispatch({
@@ -28,8 +29,9 @@ export const updateCartProductQty = (cart_item, quantity, size) => async (
   await api
     .patch(`/users/${user}/cart/cart_items/${cart_item.id}`, {
       cart_item_id: JSON.stringify(cart_item.id),
-      quantity: quantity,
-      size: size,
+      cart_id: JSON.stringify(cart_item.cart_id),
+      product_id: JSON.stringify(cart_item.product_id),
+      value: quantity,
       type: "quantity",
     })
     .then((resp) => {
@@ -49,7 +51,9 @@ export const updateCartProductSize = (cart_item, size) => async (
   await api
     .patch(`users/${user}/cart/cart_items/${cart_item.id}`, {
       cart_item_id: JSON.stringify(cart_item.id),
-      size: size,
+      cart_id: JSON.stringify(cart_item.cart_id),
+      product_id: JSON.stringify(cart_item.product_id),
+      value: size,
       type: "size",
     })
     .then((resp) => {
@@ -128,7 +132,11 @@ export const removeProductFromCart = (cart_item_id) => async (
 ) => {
   let user = getState().auth.userId;
   await api
-    .delete(`/users/${user}/cart/cart_items/${cart_item_id}`)
+    .delete(`/users/${user}/cart/cart_items/${cart_item_id}`, {
+      params: {
+        cart_item_id: JSON.stringify(cart_item_id)
+      }
+    })
     .then((response) => {
       dispatch({
         type: actionTypes.REMOVE_PRODUCT_FROM_CART,

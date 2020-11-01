@@ -31,7 +31,7 @@ const Favorites = (props) => {
 
   message =
     props.favorites === null || props.favorites.length === 0 ? (
-      <p className='brands-subtitle'>
+      <p className='favorites-placeholder'>
         Items added to your favorites will be saved here.
       </p>
     ) : (

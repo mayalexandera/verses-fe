@@ -11,7 +11,8 @@ const ProductIndex = (props) => {
   };
 
   const renderList = () => {
-    return props.products.map((prod) => {
+    let list = props.products.filter(prod => prod.product_type !== "Accessory" || prod.product_type !=="Underwear" )
+    return list.map((prod) => {
       return (
         <ProductCard brand={findBrand(prod)} key={prod.id} product={prod} />
       );

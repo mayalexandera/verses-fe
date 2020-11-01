@@ -3,7 +3,7 @@ import { updateObject } from "../utility";
 
 const initialState = {
   select: [],
-  accessories: [],
+  // accessories: [],
   show: [],
   images: [],
   sizes: [],
@@ -28,6 +28,7 @@ const setAccessories = (state, action) => {
 };
 
 const setShowProduct = (state, action) => {
+  console.log(action.payload.sizes)
   const array = action.payload.images.split(",");
   return updateObject(state, {
     show: { ...action.payload },
@@ -42,11 +43,7 @@ const fetchProductsFailed = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_PRODUCTS_BY_BRAND:
-      return setProducts(state, action);
-    case actionTypes.FETCH_PRODUCTS_BY_CATEGORY:
-      return setProducts(state, action);
-    case actionTypes.FETCH_PRODUCTS_BY_SIZE:
+    case actionTypes.FETCH_PRODUCTS_BY_FILTER:
       return setProducts(state, action);
     case actionTypes.SET_PRODUCTS:
       return setProducts(state, action);

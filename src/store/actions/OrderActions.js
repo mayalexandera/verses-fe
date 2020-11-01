@@ -6,7 +6,11 @@ export const initOrder = () => async (dispatch, getState) => {
   let user = getState().auth.userId;
   dispatch(startOrder());
   await api
-    .post(`/users/${user}/orders/`)
+    .post(`/users/${user}/orders/`, {
+      params: {
+        plan_membership_id: user.plan_membership_id
+      }
+    })
     .then((resp) => {
       dispatch(orderSuccess(resp.data));
     })

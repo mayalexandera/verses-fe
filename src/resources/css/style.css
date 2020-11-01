@@ -386,9 +386,15 @@ button {
   text-align: center;
 }
 
-.brands-title {
+.brands-title,
+.favorites-placeholder {
   text-align: center;
   font-size: 40px;
+}
+
+.favorites-placeholder {
+  font-size: 28px;
+  font-weight: 400;
 }
 
 .brands-subtitle {
@@ -471,10 +477,9 @@ button {
 
 .product-nav-centered li {
   cursor: pointer;
-  display: inline-block;
+  display: block;
   font-weight: 400;
   padding: 7px 14px;
-  /* margin-bottom: 7px; */
 }
 
 .product-nav-title {
@@ -489,25 +494,24 @@ button {
   display: inline-block;
   font-size: 80%;
   z-index: 1;
-      border: 1px solid red;
   border: none;
 }
 
 .dropdown-content {
   display: none;
+  overflow-y: scroll;
   position: absolute;
-  min-width: 350px;
+  height: 200px;
+  /* min-width: 120%; */
   border: 1px solid rgb(245, 245, 245);
   background-color: white;
   z-index: 1;
-      border: 1px solid red;
 }
 
 .dropdown-content li{
   color: rgb(148, 146, 146);
   padding: 3px 10px;
   font-weight: 400;
-      border: 1px solid red;
 }
 
 .dropdown-content li:hover {
@@ -517,13 +521,13 @@ button {
 }
 
 .dropdown:hover .product-nav {
-  height: 200px;
+  display: block;
+  /* height: 200px; */
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
   z-index: 1;
-  height: 200px;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -4,8 +4,9 @@ import * as actions from "../store/actions/index";
 
 class ProductShow extends React.Component {
   state = {
-    productSize: null,
-    errorMessage: null,
+    size_id: "",
+    size: "",
+    errorMessage: "",
   };
 
   componentDidMount() {
@@ -14,37 +15,38 @@ class ProductShow extends React.Component {
 
   handleClick = (e) => {
     e.preventDefault();
-    this.state.productSize !== null && this.props.isAuthenticated
+    this.state.size !== "" && this.props.userId
       ? this.submitRequest(e)
       : this.setState({ errorMessage: "Please select a size." });
   };
 
   submitRequest = (e) => {
     if (e.target.value === "addToCart") {
-      this.props.addToCart(this.props.showProduct.id, this.state.productSize);
+      this.props.addToCart(this.props.showProduct.id, this.state.size_id, this.state.size);
     }
 
-    if (e.target.value === "favorite") {
+    if (e.target.value === "favorite" && this.state.size )
       this.props.addToFavorites(
         this.props.showProduct.id,
-        this.state.productSize
-      );
-    }
-  };
+        this.state.size_id,
+        this.state.size
+      )
+  }
 
   verifyUser = (e) => {
-    return this.props.userId !== null ? this.handleClick(e) : "";
+    return this.props.userId !== null ? this.handleClick(e) : this.setState({ errorMessage: "Sign up to place orders."});
   };
 
   handleSizeClick = (e) => {
     e.preventDefault();
-    e.target.value === this.state.productSize
-      ? this.setState({ productSize: null })
-      : this.setState({ productSize: e.target.value, errorMessage: null });
+    e.target.innerHTML === this.state.size
+      ? this.setState({ size: null })
+      : this.setState({ size_id: e.target.value, size: e.target.innerHTML, errorMessage: null });
   };
 
   button = (size) => {
-    return size === this.state.productSize
+    console.log(size, this.state.size)
+    return size === this.state.size
       ? "size-button-clicked"
       : "size-button";
   };
@@ -85,17 +87,17 @@ class ProductShow extends React.Component {
               </a>
             </div>
             <div>
-              {this.props.sizes !== []
-                ? this.props.sizes.map((size, index) => {
+              {this.props.showProduct.sizes !== undefined
+                ? this.props.showProduct.sizes.map((size, index) => {
                     return (
                       <button
                         key={index}
                         onClick={(e) => this.handleSizeClick(e)}
                         className='product-show-subtitle'
-                        id={this.button(size)}
-                        value={size}
+                        id={this.button(size.size)}
+                        value={size.id}
                       >
-                        {size}
+                        {size.size}
                       </button>
                     );
                   })
@@ -160,7 +162,6 @@ const mapStateToProps = (state) => {
   return {
     showProduct: state.product.show,
     brand: state.brand.show,
-    sizes: state.product.sizes,
     images: state.product.images,
     userId: state.auth.userId,
     cart: state.cart.cart,
@@ -170,12 +171,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (product_id, size) =>
-      dispatch(actions.addProductToCart(product_id, size)),
+    addToCart: (product_id, size_id, size) =>
+      dispatch(actions.addProductToCart(product_id, size_id, size)),
     fetchShowProduct: (product_id) =>
       dispatch(actions.fetchShowProduct(product_id)),
-    addToFavorites: (product_id, size) =>
-      dispatch(actions.createFavorite(product_id, size)),
+    addToFavorites: (product_id, size_id, size) =>
+      dispatch(actions.createFavorite(product_id, size_id, size)),
   };
 };
 

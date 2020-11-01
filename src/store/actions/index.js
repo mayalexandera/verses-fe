@@ -39,13 +39,11 @@ export {
 export {
   initProducts,
   initAccessories,
-  fetchProdBySize,
-  fetchProdByBrand,
-  fetchProdByCategory,
   fetchShowProduct,
   fetchProductsFailed,
   setShowProduct,
   setProducts,
+  fetchProdByFilter
 } from "./ProductsActions";
 export {
   auth,

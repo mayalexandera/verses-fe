@@ -14,6 +14,7 @@ const categories = [
   "Long Sleeve T-Shirt",
   "Long Sleeve Button Up",
   "Short Sleeve Button Up",
+  "All"
 ];
 const sizes = [
   "XS",
@@ -39,25 +40,17 @@ const sizes = [
   "20",
   "22",
   "24",
+  "All"
 ];
 class ProductNav extends React.Component {
 
-  brandHandler = (e, brand_id) => {
+  productHandler = (e, value) => {
     e.preventDefault();
-    let brand = this.props.brands.filter((brand) => brand.id === brand_id)[0]
-    this.props.fetchProdByBrand(brand_id);
+    e.target.value === "All"
+      ? this.props.initProducts()
+      : this.props.fetchProdByFilter(e.target.type, value);
   };
 
-  categoryHandler = (e, category) => {
-    e.preventDefault();
-    this.props.fetchProdByCategory(category);
-    return <div>{category}</div>;
-  };
-
-  sizeHandler = (e, size) => {
-    e.preventDefault();
-    this.props.fetchProdBySize(size);
-  };
 
   render() {
     return (
@@ -67,11 +60,15 @@ class ProductNav extends React.Component {
             <div className='dropdown'>
               <li className='product-nav-title'>BRAND</li>
               <div className='dropdown-content'>
+                <li value='All' onClick={(e) => this.productHandler(e)}>
+                  All
+                </li>
                 {this.props.brands.map((brand) => {
                   return (
                     <li
+                      type='brand'
                       key={brand.id}
-                      onClick={(e) => this.brandHandler(e, brand.id)}
+                      onClick={(e) => this.productHandler(e, brand.id)}
                       id={brand.id}
                     >
                       {brand.name}
@@ -83,11 +80,16 @@ class ProductNav extends React.Component {
             <div className='dropdown'>
               <li className='product-nav-title'>CATEGORY</li>
               <ul className='dropdown-content'>
+                <li value='All' onClick={(e) => this.productHandler(e)}>
+                  All
+                </li>
+
                 {categories.map((category) => {
                   return (
                     <li
+                    type="category"
                       key={category}
-                      onClick={(e) => this.categoryHandler(e, category)}
+                      onClick={(e) => this.productHandler(e, category)}
                     >
                       {category}
                     </li>
@@ -98,9 +100,12 @@ class ProductNav extends React.Component {
             <div className=' dropdown'>
               <li className='product-nav-title'>SIZE</li>
               <div className='dropdown-content'>
+                <li value='All' onClick={(e) => this.productHandler(e)}>
+                  All
+                </li>
                 {sizes.map((size) => {
                   return (
-                    <li key={size} onClick={(e) => this.sizeHandler(e, size)}>
+                    <li type="size" key={size} onClick={(e) => this.productHandler(e, size)}>
                       {size}
                     </li>
                   );
@@ -109,7 +114,6 @@ class ProductNav extends React.Component {
             </div>
           </div>
         </div>
-
       </>
     );
   }
@@ -125,11 +129,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProdByBrand: (brand_id) =>
-      dispatch(actions.fetchProdByBrand(brand_id)),
-    fetchProdByCategory: (category) =>
-      dispatch(actions.fetchProdByCategory(category)),
-    fetchProdBySize: (size) => dispatch(actions.fetchProdBySize(size)),
+    fetchProdByFilter: (type,value) =>
+      dispatch(actions.fetchProdByFilter(type,value)),
+    initProducts: () => dispatch(actions.initProducts())
   };
 };
 

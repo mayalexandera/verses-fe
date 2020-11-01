@@ -16,6 +16,7 @@ export const initFavorites = () => async (dispatch, getState) => {
 
 export const addFavoriteToCart = (
   product_id,
+  size_id,
   size,
   favorite_id
 ) => async (dispatch, getState) => {
@@ -25,6 +26,7 @@ export const addFavoriteToCart = (
       user_id: user,
       product_id: JSON.stringify(product_id),
       size: size,
+      size_id: size_id,
       favorite_id: JSON.stringify(favorite_id),
     })
     .then(dispatch(deleteFavorite(favorite_id)));
@@ -65,7 +67,7 @@ export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
     );
 };
 
-export const createFavorite = (product_id, size) => async (
+export const createFavorite = (product_id, size_id, size) => async (
   dispatch, getState
 ) => {
   let user = getState().auth.userId
@@ -74,6 +76,7 @@ export const createFavorite = (product_id, size) => async (
       member_id: JSON.stringify(user),
       product_id: product_id,
       size: size,
+      size_id: size_id
     })
     .then((response) =>
       dispatch({ type: actionTypes.CREATE_FAVORITE, payload: response.data })

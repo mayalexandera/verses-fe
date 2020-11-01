@@ -59,8 +59,7 @@ export const fetchUser = () => async (dispatch, getState) => {
   await api
     .get(`/users/${user}`)
     .then((response) => {
-      dispatch(fetchUserSuccess(response.data));
-    ;console.log(response.data)})
+      dispatch(fetchUserSuccess(response.data))})
     .catch((err) => {
       dispatch(fetchUserFail(err));
     })

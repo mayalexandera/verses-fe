@@ -41,18 +41,10 @@ const sizes = [
   "24",
 ];
 class ProductNav extends React.Component {
-  state = {
-    brands: [],
-    sizes: [],
-    categories: []
-  };
 
   brandHandler = (e, brand_id) => {
     e.preventDefault();
     let brand = this.props.brands.filter((brand) => brand.id === brand_id)[0]
-
-    this.setState((state) => ({ queries:[...state.queries, brand.name ]})
-    );
     this.props.fetchProdByBrand(brand_id);
   };
 
@@ -117,11 +109,7 @@ class ProductNav extends React.Component {
             </div>
           </div>
         </div>
-        <div className='product-nav-queries-container'>
-          {this.state.queries.map((query) => {
-            return <button id='product-nav-button'>{query}</button>;
-          })}
-        </div>
+
       </>
     );
   }

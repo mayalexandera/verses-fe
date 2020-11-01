@@ -103,6 +103,8 @@ class Auth extends Component {
       this.state.controls.name.value,
       this.state.isSignup
     );
+
+    // this.props.fetchUser()
   };
 
   switchAuthModeHandler = () => {
@@ -147,15 +149,14 @@ class Auth extends Component {
 
     return (
       <div className='form-container'>
-        <p className='login-title'>sign in</p>
-        <hr />
-        <div className='spacer-50' />
+        <p className='login-title'>Your account</p>
+        <hr/>
         {authRedirect}
         {errorMessage}
-        <form className='form' onSubmit={this.submitHandler}>
-          {form}
+        <form onSubmit={this.submitHandler}>
+          <div className='form'>{form}</div>
+          <Button id={"add-to-favorites-button"}>SUBMIT</Button>
         </form>
-        <Button id={"add-to-favorites-button"}>SUBMIT</Button>
         <Button id={"add-to-cart-button"} clicked={this.switchAuthModeHandler}>
           SWITCH TO {!this.state.isSignup ? "SIGN UP" : "SIGN IN"}
         </Button>

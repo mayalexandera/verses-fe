@@ -21,7 +21,6 @@ class ProductShow extends React.Component {
 
   submitRequest = (e) => {
     if (e.target.value === "addToCart") {
-      console.log(this.state,this.props.showProduct)
       this.props.addToCart(this.props.showProduct.id, this.state.productSize);
     }
 

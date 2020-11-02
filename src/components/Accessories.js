@@ -26,7 +26,7 @@ const Accessories = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    accessories: state.product.accessories,
+    accessories: state.product.select.filter(prod => prod.product_type === "Accessory"),
     brands: state.brand.select,
   };
 };

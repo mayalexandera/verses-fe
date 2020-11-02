@@ -31,7 +31,7 @@ const ProductIndex = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.product.select,
+    products: state.product.select.filter(prod => prod.product_type !== "Accessory"),
     brands: state.brand.select,
     error: state.product.error,
   };

@@ -29,7 +29,6 @@ class ProductShow extends React.Component {
       this.props.addToFavorites(
         this.props.showProduct.id,
         this.state.size_id,
-        this.state.size
       )
   }
 
@@ -39,13 +38,13 @@ class ProductShow extends React.Component {
 
   handleSizeClick = (e) => {
     e.preventDefault();
-    e.target.innerHTML === this.state.size
+      let size_id = this.props.showProduct.sizes.filter(size => size.size === e.target.value)[0].id
+      e.target.value === this.state.size
       ? this.setState({ size: null })
-      : this.setState({ size_id: e.target.value, size: e.target.innerHTML, errorMessage: null });
+      : this.setState({ size_id: size_id, size: e.target.value, errorMessage: null });
   };
 
   button = (size) => {
-    console.log(size, this.state.size)
     return size === this.state.size
       ? "size-button-clicked"
       : "size-button";
@@ -87,17 +86,17 @@ class ProductShow extends React.Component {
               </a>
             </div>
             <div>
-              {this.props.showProduct.sizes !== undefined
-                ? this.props.showProduct.sizes.map((size, index) => {
+              {this.props.sizes !== undefined
+                ? this.props.sizes.map((size, index) => {
                     return (
                       <button
                         key={index}
                         onClick={(e) => this.handleSizeClick(e)}
                         className='product-show-subtitle'
-                        id={this.button(size.size)}
-                        value={size.id}
+                        id={this.button(size)}
+                        value={size}
                       >
-                        {size.size}
+                        {size}
                       </button>
                     );
                   })
@@ -162,10 +161,9 @@ const mapStateToProps = (state) => {
   return {
     showProduct: state.product.show,
     brand: state.brand.show,
+    sizes: state.product.sizes,
     images: state.product.images,
     userId: state.auth.userId,
-    cart: state.cart.cart,
-    isAuthenticated: state.auth.token !== null,
   };
 };
 
@@ -175,8 +173,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(actions.addProductToCart(product_id, size_id, size)),
     fetchShowProduct: (product_id) =>
       dispatch(actions.fetchShowProduct(product_id)),
-    addToFavorites: (product_id, size_id, size) =>
-      dispatch(actions.createFavorite(product_id, size_id, size)),
+    addToFavorites: (product_id, size_id) =>
+      dispatch(actions.createFavorite(product_id, size_id)),
   };
 };
 

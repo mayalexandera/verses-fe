@@ -65,18 +65,17 @@ export const updateCartProductSize = (cart_item, size) => async (
     .catch((err) => dispatch(addProductToCartFailed(err)));
 };
 
-export const addCartToFavorite = (product_id, size, cart_item_id) => async (
+export const addCartToFavorite = (product_id, size_id, size, cart_item_id) => async (
   dispatch,
   getState
 ) => {
   let user = getState().auth.userId;
   await api.post(`/users/${user}/favorites`, {
-    member_id: user,
     product_id: JSON.stringify(product_id),
+    size_id: JSON.stringify(size_id),
     size: size,
     cart_item_id: JSON.stringify(cart_item_id),
-  });
-  dispatch(removeProductFromCart(cart_item_id));
+  }).then(dispatch(removeProductFromCart(cart_item_id)))
 };
 
 export const initCart = () => async (dispatch, getState) => {

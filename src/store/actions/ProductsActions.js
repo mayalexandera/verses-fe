@@ -2,14 +2,12 @@ import api from "../apis/api";
 import * as actionTypes from "./actionTypes";
 import * as actions from "../actions/index";
 
-
 export const fetchProdByFilter = (type, value) => async (dispatch) => {
-  console.log(type, value)
   await api
     .get(`/products/`, {
       params: {
         type: type,
-        value: value
+        value: value,
       },
     })
     .then((resp) => {
@@ -18,7 +16,7 @@ export const fetchProdByFilter = (type, value) => async (dispatch) => {
     .catch((err) => {
       dispatch(fetchProductsFailed(err));
     });
-}
+};
 
 export const fetchProductsFailed = (error) => {
   return {
@@ -34,38 +32,21 @@ export const setProducts = (products) => {
   };
 };
 
-export const setAccessories = (products) => {
-  return {
-    type: actionTypes.SET_ACCESSORIES,
-    payload: products,
-  };
-};
 export const setShowProduct = (product) => async (dispatch) => {
   await dispatch(actions.setShowBrand(product.brand_id)).then(
     dispatch({ type: actionTypes.SET_SHOW_PRODUCT, payload: product })
-    );
+  );
 };
 
 export const initProducts = () => async (dispatch) => {
   await api
-    .get(`/products/`)
-    .then((resp) => {
-      dispatch(setProducts(resp.data));
-    })
-    .catch((error) => {
-      dispatch(fetchProductsFailed(error));
-    });
-};
-
-export const initAccessories = () => async (dispatch) => {
-  await api
     .get(`/products/`, {
       params: {
-        category: "Accessory"
-      }
+        type: "All",
+      },
     })
     .then((resp) => {
-      dispatch(setAccessories(resp.data));
+      dispatch(setProducts(resp.data));
     })
     .catch((error) => {
       dispatch(fetchProductsFailed(error));

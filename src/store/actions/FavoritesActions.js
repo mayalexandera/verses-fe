@@ -23,10 +23,9 @@ export const addFavoriteToCart = (
   let user = getState().auth.userId
   await api
     .post(`/users/${user}/cart/cart_items`, {
-      user_id: user,
       product_id: JSON.stringify(product_id),
+      size_id: JSON.stringify(size_id),
       size: size,
-      size_id: size_id,
       favorite_id: JSON.stringify(favorite_id),
     })
     .then(dispatch(deleteFavorite(favorite_id)));
@@ -58,7 +57,6 @@ export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
   await api
     .delete(`/users/${user_id}/favorites/${id}`, {
       params: {
-        user_id: user_id.value,
         favorite_id: JSON.stringify(favorite_id),
       },
     })
@@ -67,15 +65,13 @@ export const deleteFavorite = (favorite_id) => async (dispatch, getState) => {
     );
 };
 
-export const createFavorite = (product_id, size_id, size) => async (
+export const createFavorite = (product_id, size_id) => async (
   dispatch, getState
 ) => {
   let user = getState().auth.userId
   await api
     .post(`/users/${user}/favorites`, {
-      member_id: JSON.stringify(user),
       product_id: product_id,
-      size: size,
       size_id: size_id
     })
     .then((response) =>

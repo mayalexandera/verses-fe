@@ -3,7 +3,6 @@ import { updateObject } from "../utility";
 
 const initialState = {
   select: [],
-  // accessories: [],
   show: [],
   images: [],
   sizes: [],
@@ -19,16 +18,7 @@ const setProducts = (state, action) => {
   });
 };
 
-const setAccessories = (state, action) => {
-  return updateObject(state, {
-    accessories: [...action.payload.products],
-    error: null,
-    loading: false,
-  });
-};
-
 const setShowProduct = (state, action) => {
-  console.log(action.payload.sizes)
   const array = action.payload.images.split(",");
   return updateObject(state, {
     show: { ...action.payload },
@@ -47,8 +37,6 @@ const reducer = (state = initialState, action) => {
       return setProducts(state, action);
     case actionTypes.SET_PRODUCTS:
       return setProducts(state, action);
-    case actionTypes.SET_ACCESSORIES:
-      return setAccessories(state, action);
     case actionTypes.SET_SHOW_PRODUCT:
       return setShowProduct(state, action);
     case actionTypes.FETCH_PRODUCTS_FAILED:

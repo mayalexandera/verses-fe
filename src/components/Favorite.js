@@ -6,11 +6,12 @@ import { NavLink } from "react-router-dom";
 const Favorite = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
-    let favorite_id = props.fave.id;
-    let product_id = props.fave.product.id;
+    let product_id = props.fave.product_id;
+    let size_id = props.fave.size_id
     let size = props.fave.size_string;
+    let favorite_id = props.fave.id;
 
-    props.addFavoriteToCart(product_id, size, favorite_id);
+    props.addFavoriteToCart(product_id, size_id, size, favorite_id);
   };
 
   const deleteFaveHandler = (e) => {
@@ -64,8 +65,8 @@ const Favorite = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFavoriteToCart: (product_id, size, favorite_id) =>
-      dispatch(actions.addFavoriteToCart(product_id, size, favorite_id)),
+    addFavoriteToCart: (product_id, size_id, size, favorite_id) =>
+      dispatch(actions.addFavoriteToCart(product_id, size_id, size, favorite_id)),
     deleteFavorite: (favorite) => dispatch(actions.deleteFavorite(favorite)),
   };
 };

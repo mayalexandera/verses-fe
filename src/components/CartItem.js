@@ -14,7 +14,8 @@ const CartItem = (props) => {
       ? props.removeProductFromCart(props.cart_item.id)
       : props.addCartToFavorite(
           props.product.id,
-          props.cart_item.size_string,
+          props.cart_item.size_id,
+          props.product.size_string,
           props.cart_item.id
         );
   };
@@ -51,11 +52,12 @@ const CartItem = (props) => {
                 onChange={(e) => sizeChangeHandler(e)}
               >
                 {props.product && props.product
-                  ? props.product.size_range.split(",").map((size) => {
+                  ? props.product.size_range.split(",").map((size, index) => {
                       return (
                         <option
                           selected={size === props.cart_item.size_string}
                           value={size}
+                          key={index}
                         >
                           {size}
                         </option>
@@ -69,11 +71,12 @@ const CartItem = (props) => {
                 onChange={(e) => quantityChangeHandler(e)}
               >
                 {props.product && props.product
-                  ? quantities.map((quantity) => {
+                  ? quantities.map((quantity, index) => {
                       return (
                         <option
                           selected={quantity === props.cart_item.quantity}
                           value={quantity}
+                          key={index}
                         >
                           {quantity}
                         </option>
@@ -120,8 +123,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCartToFavorite: (product_id, size, cart_item_id) =>
-      dispatch(actions.addCartToFavorite(product_id, size, cart_item_id)),
+    addCartToFavorite: (product_id, size_id, size, cart_item_id) =>
+      dispatch(
+        actions.addCartToFavorite(product_id, size_id, size, cart_item_id)
+      ),
     removeProductFromCart: (cart_item_id) =>
       dispatch(actions.removeProductFromCart(cart_item_id)),
     updateCartProductSize: (cart_item, size) => {

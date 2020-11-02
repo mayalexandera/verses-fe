@@ -38,7 +38,6 @@ export {
 } from "./FavoritesActions";
 export {
   initProducts,
-  initAccessories,
   fetchShowProduct,
   fetchProductsFailed,
   setShowProduct,

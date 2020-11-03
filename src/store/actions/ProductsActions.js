@@ -1,6 +1,6 @@
 import api from "../apis/api";
 import * as actionTypes from "./actionTypes";
-import * as actions from "../actions/index";
+import * as actions from "./index";
 
 export const fetchProdByFilter = (type, value) => async (dispatch) => {
   await api

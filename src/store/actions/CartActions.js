@@ -1,5 +1,5 @@
 import api from "../apis/api";
-import * as actionTypes from "../actions/actionTypes";
+import * as actionTypes from "./actionTypes";
 
 export const addProductToCart = (product_id, size_id, size) => async (
   dispatch,

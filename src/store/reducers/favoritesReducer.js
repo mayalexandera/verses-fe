@@ -35,8 +35,8 @@ const startFetchFavorites = (state, action) => {
 
 const setFavorites = (state, action) => {
   let favorites = [];
-  action.payload.forEach((product) => {
-    favorites.push(product);
+  action.payload.map((product) => {
+    favorites.push({...product});
   });
   return updateObject(state, {
     select: favorites,

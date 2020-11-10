@@ -1,6 +1,6 @@
 # Verses
 
-## <a href="verses.mayaaylexandera.com">verses.mayaalexandera.com</a>
+## <a href="verses.mayaalexandera.com">verses.mayaalexandera.com</a>
 
 <p> Verses is a subscription-based wardrobe service for the queer community and all other divergent dressers! Made for those for whom what you wear is more than a wardrobe. </p>
 
